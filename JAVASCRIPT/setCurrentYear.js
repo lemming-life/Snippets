@@ -1,5 +1,7 @@
+// Author: http://lemming.life
+// Language: Javascript
+// Description: sets the inner HTML to be the current year as a string.
 
-// Sets the inner HTML to be the current year.
 function setCurrentYear() {
     var elementId = "currentYear";
     var d = new Date();

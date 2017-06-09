@@ -16,7 +16,7 @@ void main() {
 }
 
 string AddStrings(string first, string second) {
-    makeEqual(first, second);
+    makeEqualSize(first, second);
     string result = "";
     char carry = '0';
 
@@ -42,7 +42,7 @@ string AddStrings(string first, string second) {
     return result;
 }
 
-void makeEqual(ref string first, ref string second) {
+void makeEqualSize(ref string first, ref string second) {
     while (first.length < second.length) first = "0" ~ first;
     while (first.length > second.length) second = "0" ~ second;
 }
