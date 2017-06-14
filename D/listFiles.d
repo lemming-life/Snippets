@@ -1,8 +1,7 @@
 // Author: http://lemming.life
 // Language: D
-// Description: a function to get array of strings containing
-//              file and folder/directories names and paths.
-
+// Description: a function to get an array of strings containing
+//              the names or pathNames of file and folder/directories.
 
 string[] listFiles(alias isFunc)(string path, bool onlyBaseName = true) {
     import std.algorithm: filter, map;
@@ -15,6 +14,7 @@ string[] listFiles(alias isFunc)(string path, bool onlyBaseName = true) {
         .map!(a=> onlyBaseName ? baseName(a.name) : a.name)
         .array;
 }
+
 
 // Test Driver
 void main() {
