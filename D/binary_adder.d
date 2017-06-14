@@ -1,6 +1,6 @@
 // Author: http://lemming.life
 // Language: D
-// Description: a binary adder
+// Description: a binary adder using strings.
 
 import std.stdio;
 
