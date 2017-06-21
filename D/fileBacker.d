@@ -29,14 +29,14 @@ import std.exception;
 
 void main(string[] args) {
     if (args.length != 3) return;
-    
+
     string[] messages;
     int copyCount, removedFileCount, removedFolderCount;
     const int MAX_MESSAGES = 99;
 
     // Begin writing the log.
     auto backupLogName = "backupLogTemp.txt";
-    append(backupLogName, "\n\nBACKUP START: " ~ (to!DateTime(Clock.currTime)).toSimpleString);
+    append(backupLogName, "BACKUP START: " ~ (to!DateTime(Clock.currTime)).toSimpleString);
     append(backupLogName, "\nMessages:");
 
     // Functions for saving log
@@ -51,7 +51,6 @@ void main(string[] args) {
         append(backupLogName, "\n - Removed files count: " ~ to!string(removedFileCount));
         append(backupLogName, "\n - Removed folders count: " ~ to!string(removedFolderCount));
         append(backupLogName, "\nBACKUP COMPLETED: " ~ (to!DateTime(Clock.currTime)).toSimpleString);
-
         
         // Begin saving the final log
         string backupLogFinalName = "backupLogFinal.txt";
@@ -110,7 +109,6 @@ void main(string[] args) {
         } catch (Exception e) {
             logOffloadMessages;
             messages ~= "\n - Failed to copy: " ~ sourceFile;
-            
         }
     }
 
