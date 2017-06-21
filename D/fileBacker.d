@@ -10,6 +10,9 @@ Details:
  - Remove files found in destination that are not in source.
  - Keeps log as backupLog.txt
 
+Note:
+ - Recommend using some kind of scheduler (in Windows use Task Scheduler)
+
 To compile:
 rdmd --build-only fileBacker.d
 
