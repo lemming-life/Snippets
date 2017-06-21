@@ -3,7 +3,7 @@ Author: http://lemming.life
 Project: fileBacker.d
 Date: June 21, 2017
 Language: D
-Dependencies: rdmd from http://dlang.org
+Compile tool: rdmd from http://dlang.org
 Details:
  - Copy files from source drive to destination drive.
  - If source and destination file modified-times are different then override.
