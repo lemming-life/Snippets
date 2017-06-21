@@ -32,11 +32,12 @@ void main(string[] args) {
     int copyCount, removedFileCount, removedFolderCount;
     const int MAX_MESSAGES = 99;
 
+    // Write the log
     auto backupLog = "backupLog.txt";
     append(backupLog, "\n\nBACKUP START: " ~ (to!DateTime(Clock.currTime)).toSimpleString);
     append(backupLog, "\nMessages:");
 
-    // Write the log
+    // Finish writing the log
     scope(exit) {
         logMessages(backupLog, messages);
         append(backupLog, "\n - Files/folders copied: " ~ to!string(copyCount));
