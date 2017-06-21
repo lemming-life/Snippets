@@ -20,30 +20,65 @@ To run (on Windows), where D: and E: are the source and destination drives, resp
 fileBacker.exe D: E:
 */
 
-import std.file: append, copy, DirEntry, dirEntries, exists, isDir, mkdir, remove, rmdirRecurse, SpanMode;
+import std.algorithm: each;
+import std.file: append, copy, DirEntry, dirEntries, exists, isFile, isDir, mkdir, rename, remove, rmdirRecurse, SpanMode;
 import std.datetime;
 import std.conv: to;
-import std.stdio: writeln;
+import std.stdio: writeln, File;
 import std.exception; 
 
 void main(string[] args) {
     if (args.length != 3) return;
+    
     string[] messages;
     int copyCount, removedFileCount, removedFolderCount;
     const int MAX_MESSAGES = 99;
 
-    // Write the log
-    auto backupLog = "backupLog.txt";
-    append(backupLog, "\n\nBACKUP START: " ~ (to!DateTime(Clock.currTime)).toSimpleString);
-    append(backupLog, "\nMessages:");
+    // Begin writing the log.
+    auto backupLogName = "backupLogTemp.txt";
+    append(backupLogName, "\n\nBACKUP START: " ~ (to!DateTime(Clock.currTime)).toSimpleString);
+    append(backupLogName, "\nMessages:");
+
+    // Functions for saving log
+    void logMessages() { messages.each!(message => append(backupLogName, message)); }
+    void logOffloadMessages() { if (messages.length > MAX_MESSAGES) { logMessages; } }
 
     // Finish writing the log
     scope(exit) {
-        logMessages(backupLog, messages);
-        append(backupLog, "\n - Files/folders copied: " ~ to!string(copyCount));
-        append(backupLog, "\n - Removed files count: " ~ to!string(removedFileCount));
-        append(backupLog, "\n - Removed folders count: " ~ to!string(removedFolderCount));
-        append(backupLog, "\nBACKUP COMPLETED: " ~ (to!DateTime(Clock.currTime)).toSimpleString);
+        // Save remaining messages
+        logMessages;
+        append(backupLogName, "\n - Files/folders copied: " ~ to!string(copyCount));
+        append(backupLogName, "\n - Removed files count: " ~ to!string(removedFileCount));
+        append(backupLogName, "\n - Removed folders count: " ~ to!string(removedFolderCount));
+        append(backupLogName, "\nBACKUP COMPLETED: " ~ (to!DateTime(Clock.currTime)).toSimpleString);
+
+        
+        // Begin saving the final log
+        string backupLogFinalName = "backupLogFinal.txt";
+        auto backupLogFinal = File(backupLogFinalName, "w");
+
+        // Save this run's log
+        auto backupLog = File(backupLogName);
+        foreach(line; backupLog.byLine()) { backupLogFinal.writeln(line); }
+        backupLog.close;
+
+        // Save the previous log
+        string backupLogExistingName = "backupLog.txt";
+        if (backupLogExistingName.exists) {
+            auto backupLogExisting = File(backupLogExistingName);
+            foreach( line; backupLogExisting.byLine()) {
+                backupLogFinal.writeln(line);
+            }
+            backupLogExisting.close;
+        }
+
+        // Close the final log
+        backupLogFinal.close;
+
+        // Cleanup
+        remove(backupLogName);
+        remove(backupLogExistingName);
+        rename(backupLogFinalName, backupLogName);
     }
 
     // For readability
@@ -73,7 +108,7 @@ void main(string[] args) {
                 }
             }
         } catch (Exception e) {
-            if (messages.length > MAX_MESSAGES) { logMessages(backupLog, messages); }
+            logOffloadMessages;
             messages ~= "\n - Failed to copy: " ~ sourceFile;
             
         }
@@ -88,17 +123,8 @@ void main(string[] args) {
                 if ( destinationFile.isDir ) { rmdirRecurse(destinationFile); ++removedFolderCount; }
             }
         } catch (Exception e) {
-            if (messages.length > MAX_MESSAGES) { logMessages(backupLog, messages); }
+            logOffloadMessages;
             messages ~= "\n - Failed to remove: " ~ sourceFile;
         }
     }
-}
-
-void logMessages(string backupLog, ref string[] messages) {
-    if (messages.length>0) {
-        foreach(message; messages) {
-            append(backupLog, message);
-        }
-    }
-    messages.length = 0;
 }
