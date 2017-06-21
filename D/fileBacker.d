@@ -30,21 +30,19 @@ void main(string[] args) {
     if (args.length != 3) return;
     string[] messages;
     int copyCount, removedFileCount, removedFolderCount;
+    const int MAX_MESSAGES = 99;
+
+    auto backupLog = "backupLog.txt";
+    append(backupLog, "\n\nBACKUP START: " ~ (to!DateTime(Clock.currTime)).toSimpleString);
+    append(backupLog, "\nMessages:");
 
     // Write the log
     scope(exit) {
-        auto backupLog = "backupLog.txt";
-        append(backupLog, "BACKUP START: " ~ (to!DateTime(Clock.currTime)).toSimpleString);
-        append(backupLog, "Files/folders copied: " ~ to!string(copyCount));
-        append(backupLog, "Removed files count: " ~ to!string(removedFileCount));
-        append(backupLog, "Removed folders count: " ~ to!string(removedFolderCount));
-
-        if (messages.length>0) {
-            foreach(message; messages) {
-                append(backupLog, message);
-            }
-        }
-        append(backupLog, "BACKUP COMPLETED: " ~ (to!DateTime(Clock.currTime)).toSimpleString);
+        logMessages(backupLog, messages);
+        append(backupLog, "\n - Files/folders copied: " ~ to!string(copyCount));
+        append(backupLog, "\n - Removed files count: " ~ to!string(removedFileCount));
+        append(backupLog, "\n - Removed folders count: " ~ to!string(removedFolderCount));
+        append(backupLog, "\nBACKUP COMPLETED: " ~ (to!DateTime(Clock.currTime)).toSimpleString);
     }
 
     // For readability
@@ -74,7 +72,9 @@ void main(string[] args) {
                 }
             }
         } catch (Exception e) {
-            messages ~= " - Failed to copy: " ~ sourceFile;
+            if (messages.length > MAX_MESSAGES) { logMessages(backupLog, messages); }
+            messages ~= "\n - Failed to copy: " ~ sourceFile;
+            
         }
     }
 
@@ -87,7 +87,17 @@ void main(string[] args) {
                 if ( destinationFile.isDir ) { rmdirRecurse(destinationFile); ++removedFolderCount; }
             }
         } catch (Exception e) {
-            messages ~= " - Failed to remove: " ~ sourceFile;
+            if (messages.length > MAX_MESSAGES) { logMessages(backupLog, messages); }
+            messages ~= "\n - Failed to remove: " ~ sourceFile;
         }
     }
+}
+
+void logMessages(string backupLog, ref string[] messages) {
+    if (messages.length>0) {
+        foreach(message; messages) {
+            append(backupLog, message);
+        }
+    }
+    messages.length = 0;
 }
