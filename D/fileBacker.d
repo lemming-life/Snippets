@@ -1,5 +1,4 @@
-/*
-Author: http://lemming.life
+/* Author: http://lemming.life
 Project: fileBacker.d
 Date: June 21, 2017
 Language: D
@@ -17,17 +16,16 @@ To compile:
 rdmd --build-only fileBacker.d
 
 To run (on Windows), where D: and E: are the source and destination drives, respectively.
-fileBacker.exe D: E:
-*/
+fileBacker.exe D: E: */
 
 import std.algorithm: each, map;
-import std.file: append, copy, DirEntry, dirEntries, exists, getcwd, isFile, isDir, mkdir, rename, remove, rmdirRecurse, SpanMode;
-import std.datetime;
-import std.conv: to;
-import std.range: retro;
-import std.stdio: writeln, File;
-import std.exception; 
 import std.array;
+import std.conv: to;
+import std.datetime;
+import std.exception; 
+import std.file: append, copy, dirEntries, DirEntry, exists, isDir, isFile, mkdir, remove, rename, rmdirRecurse, SpanMode;
+import std.range: retro;
+import std.stdio: File, write, writeln;
 
 void main(string[] args) {
     if (args.length != 3) return;
@@ -84,6 +82,7 @@ void main(string[] args) {
         backupLogFinal.close;
         remove(backupLogName);
         rename(backupLogFinalName, backupLogExistingName);
+
     } // End scope(exit)
 
     // For readability
@@ -99,8 +98,8 @@ void main(string[] args) {
 
             if ( sourceFile.isFile ) {
                 if ( destinationFile.exists )  {
-                    auto sourceTime = sourceFile.timeLastModified;
-                    auto destinationTime = (new DirEntry(destinationFile)).timeLastModified;
+                    immutable auto sourceTime = sourceFile.timeLastModified;
+                    immutable auto destinationTime = (new DirEntry(destinationFile)).timeLastModified;
 
                     if ( sourceTime != destinationTime ) {
                         remove(destinationFile);
