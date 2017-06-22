@@ -6,7 +6,7 @@ Language: D
 Compile tool: rdmd from http://dlang.org
 Details:
  - Copy files from source drive to destination drive.
- - If source and destination file modified-times are different then override.
+ - If modified-times of source and destination files are different then override.
  - Remove files found in destination that are not in source.
  - Keeps log as backupLog.txt
 
@@ -20,26 +20,26 @@ To run (on Windows), where D: and E: are the source and destination drives, resp
 fileBacker.exe D: E:
 */
 
-import std.algorithm: each;
-import std.conv: to;
+import std.algorithm: each, map;
+import std.file: append, copy, DirEntry, dirEntries, exists, getcwd, isFile, isDir, mkdir, rename, remove, rmdirRecurse, SpanMode;
 import std.datetime;
-import std.exception;
-import std.file: append, copy, DirEntry, dirEntries, exists, isFile, isDir, mkdir, remove, rename, rmdirRecurse, SpanMode;
-import std.stdio: File, writeln;
- 
+import std.conv: to;
+import std.range: retro;
+import std.stdio: writeln, File;
+import std.exception; 
+import std.array;
 
 void main(string[] args) {
     if (args.length != 3) return;
-
+    
     string[] messages;
     int copyCount, removedFileCount, removedFolderCount;
     const int MAX_MESSAGES = 99;
 
     // Begin writing the log.
     auto backupLogName = "backupLogTemp.txt";
-    append(backupLogName, "BACKUP START: " ~ (to!DateTime(Clock.currTime)).toSimpleString);
-    append(backupLogName, "\nMessages:");
-
+    auto startTime = (to!DateTime(Clock.currTime)).toSimpleString;
+    
     // Functions for saving log
     void logMessages() { messages.each!(message => append(backupLogName, message)); }
     void logOffloadMessages() { if (messages.length > MAX_MESSAGES) { logMessages; } }
@@ -48,45 +48,50 @@ void main(string[] args) {
     scope(exit) {
         // Save remaining messages
         logMessages;
-        append(backupLogName, "\n - Files/folders copied: " ~ to!string(copyCount));
-        append(backupLogName, "\n - Removed files count: " ~ to!string(removedFileCount));
+        append(backupLogName, "\n - Messages:");
         append(backupLogName, "\n - Removed folders count: " ~ to!string(removedFolderCount));
-        append(backupLogName, "\nBACKUP COMPLETED: " ~ (to!DateTime(Clock.currTime)).toSimpleString);
-        
+        append(backupLogName, "\n - Removed files count: " ~ to!string(removedFileCount));
+        append(backupLogName, "\n - Files/folders copied: " ~ to!string(copyCount));
+        append(backupLogName, "\n - Completed: " ~ (to!DateTime(Clock.currTime)).toSimpleString);
+        append(backupLogName, "\nBACKUP START: " ~ startTime);
+
         // Begin saving the final log
         string backupLogFinalName = "backupLogFinal.txt";
         auto backupLogFinal = File(backupLogFinalName, "w");
 
-        // Save this run's log
-        auto backupLog = File(backupLogName);
-        foreach(line; backupLog.byLine()) { backupLogFinal.writeln(line); }
-        backupLog.close;
-
+        // Reverse the order of this run's log, and save it to the final log file.
+        // Read the file by line, convert the line to a string, add each line to an array,
+        // , reverse the array, store each entry in the array to backupLogFinal
+        // and close the file. :)
+        if (backupLogName.exists) {
+            with ( File(backupLogName) ) {
+                byLine.map!(to!string).array.retro.each!(line => backupLogFinal.writeln(line));
+                close;
+            }
+        }
+        
         // Save the previous log
         string backupLogExistingName = "backupLog.txt";
         if (backupLogExistingName.exists) {
-            auto backupLogExisting = File(backupLogExistingName);
-            foreach( line; backupLogExisting.byLine()) {
-                backupLogFinal.writeln(line);
+            with( File(backupLogExistingName) ) {
+                byLine.each!(line => backupLogFinal.write(line));
+                close;
             }
-            backupLogExisting.close;
+            backupLogFinal.writeln("\n");
         }
 
-        // Close the final log
-        backupLogFinal.close;
-
         // Cleanup
+        backupLogFinal.close;
         remove(backupLogName);
-        remove(backupLogExistingName);
-        rename(backupLogFinalName, backupLogName);
-    }
+        rename(backupLogFinalName, backupLogExistingName);
+    } // End scope(exit)
 
     // For readability
     string sourceDrive = args[1];
     string destinationDrive = args[2];
 
     // Copy files from source drive to destination drive.
-    // If source and destination file modified-times are different then override.
+    // - If modified-times of source and destination files are different then override.
     foreach(sourceFile; dirEntries(sourceDrive, SpanMode.breadth)) {
         string destinationFile = destinationDrive ~ sourceFile[destinationDrive.length .. $];
         try {
@@ -111,11 +116,11 @@ void main(string[] args) {
             logOffloadMessages;
             messages ~= "\n - Failed to copy: " ~ sourceFile;
         }
-    }
+    } // End copy files section
 
     // Remove files found in destination that are not in source.
-    foreach(destinationFile; dirEntries(sourceDrive, SpanMode.breadth)) {
-        string sourceFile = destinationDrive ~ destinationFile[sourceDrive.length .. $];
+    foreach(destinationFile; dirEntries(destinationDrive, SpanMode.breadth)) {
+        string sourceFile = sourceDrive ~ destinationFile[sourceDrive.length .. $];
         try {
             if ( !sourceFile.exists ) {
                 if ( destinationFile.isFile ) { remove(destinationFile); ++removedFileCount; }
@@ -125,5 +130,6 @@ void main(string[] args) {
             logOffloadMessages;
             messages ~= "\n - Failed to remove: " ~ sourceFile;
         }
-    }
-}
+    } // End remove files section
+
+} // End main()
