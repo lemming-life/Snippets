@@ -72,7 +72,7 @@ void main(string[] args) {
         string backupLogExistingName = "backupLog.txt";
         if (backupLogExistingName.exists) {
             with( File(backupLogExistingName) ) {
-                byLine.each!(line => backupLogFinal.write(line));
+                byLine.each!(line => backupLogFinal.writeln(line));
                 close;
             }
             backupLogFinal.writeln("\n");
