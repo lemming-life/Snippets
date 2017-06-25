@@ -1,11 +1,11 @@
 /* Author: http://lemming.life
 Project: fileBacker.d
-Date: June 21, 2017
+Date: June 25, 2017
 Language: D
 Compile tool: rdmd from http://dlang.org
 Details:
  - Copy files from source drive to destination drive.
- - If modified-times of source and destination files are different then override.
+ - If modified-times of source is greater than destination files then override.
  - Remove files found in destination that are not in source.
  - Keeps log as backupLog.txt
 
@@ -23,7 +23,7 @@ import std.array;
 import std.conv: to;
 import std.datetime;
 import std.exception; 
-import std.file: append, copy, dirEntries, DirEntry, exists, isDir, isFile, mkdir, remove, rename, rmdirRecurse, SpanMode;
+import std.file: append, copy, dirEntries, DirEntry, exists, isDir, isFile, mkdir, remove, rename, rmdirRecurse, SpanMode, timeLastModified;
 import std.range: retro;
 import std.stdio: File, write, writeln;
 
@@ -90,7 +90,7 @@ void main(string[] args) {
     string destinationDrive = args[2];
 
     // Copy files from source drive to destination drive.
-    // - If modified-times of source and destination files are different then override.
+    // - If modified-times of source is greater than destination files then override.
     foreach(sourceFile; dirEntries(sourceDrive, SpanMode.breadth)) {
         string destinationFile = destinationDrive ~ sourceFile[destinationDrive.length .. $];
         try {
@@ -98,10 +98,7 @@ void main(string[] args) {
 
             if ( sourceFile.isFile ) {
                 if ( destinationFile.exists )  {
-                    immutable auto sourceTime = sourceFile.timeLastModified;
-                    immutable auto destinationTime = (new DirEntry(destinationFile)).timeLastModified;
-
-                    if ( sourceTime != destinationTime ) {
+                    if ( timeLastModified(sourceFile) >= timeLastModified(destinationFile) ) {
                         remove(destinationFile);
                         copy(sourceFile, destinationFile);
                         ++copyCount;
