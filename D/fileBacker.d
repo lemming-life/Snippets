@@ -95,7 +95,7 @@ void main(string[] args) {
         string destinationFile = destinationDrive ~ sourceFile[destinationDrive.length .. $];
         try {
             if (destinationFile.exists) {
-                if (sourceFile.isFile && timeLastModified(sourceFile) >= timeLastModified(destinationFile)) {
+                if (sourceFile.isFile && timeLastModified(sourceFile) > timeLastModified(destinationFile)) {
                     remove(destinationFile);
                     copy(sourceFile, destinationFile);
                     ++copyCount;
