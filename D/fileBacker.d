@@ -1,6 +1,6 @@
 /* Author: http://lemming.life
 Project: fileBacker.d
-Date: June 25, 2017
+Date: June 26, 2017
 Language: D
 Compile tool: rdmd from http://dlang.org
 Details:
@@ -94,19 +94,19 @@ void main(string[] args) {
     foreach(sourceFile; dirEntries(sourceDrive, SpanMode.breadth)) {
         string destinationFile = destinationDrive ~ sourceFile[destinationDrive.length .. $];
         try {
-            if ( sourceFile.isDir && !destinationFile.exists ) { destinationFile.mkdir; ++copyCount; }
-
-            if ( sourceFile.isFile ) {
-                if ( destinationFile.exists )  {
-                    if ( timeLastModified(sourceFile) >= timeLastModified(destinationFile) ) {
-                        remove(destinationFile);
-                        copy(sourceFile, destinationFile);
-                        ++copyCount;
-                    }
-                } else {
+            if (destinationFile.exists) {
+                if (sourceFile.isFile && timeLastModified(sourceFile) >= timeLastModified(destinationFile)) {
+                    remove(destinationFile);
                     copy(sourceFile, destinationFile);
                     ++copyCount;
                 }
+            } else {
+                if (sourceFile.isFile) {
+                    copy(sourceFile, destinationFile);
+                } else {
+                    destinationFile.mkdir;
+                }
+                ++copyCount;
             }
         } catch (Exception e) {
             logOffloadMessages;
@@ -119,8 +119,13 @@ void main(string[] args) {
         string sourceFile = sourceDrive ~ destinationFile[sourceDrive.length .. $];
         try {
             if ( !sourceFile.exists ) {
-                if ( destinationFile.isFile ) { remove(destinationFile); ++removedFileCount; }
-                if ( destinationFile.isDir ) { rmdirRecurse(destinationFile); ++removedFolderCount; }
+                if (destinationFile.isFile) {
+                    remove(destinationFile);
+                    ++removedFileCount;
+                } else {
+                    rmdirRecurse(destinationFile);
+                    ++removedFolderCount;
+                }
             }
         } catch (Exception e) {
             logOffloadMessages;
