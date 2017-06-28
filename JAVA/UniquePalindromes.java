@@ -29,12 +29,11 @@ class UniquePalindromes {
         final int MAX_SIZE = 10000;
         String[] uniqueStrings = new String[MAX_SIZE];
         String[] allSubstrings = new String[MAX_SIZE];
-        int length = 1;
         
         // Get all possible substrings
         int subStringCount = 0;
         for (int pos = 0; pos < s.length(); ++pos) {
-            for (int l = 0; l <= s.length() - pos; ++l) {
+            for (int l = 0; l <= s.length()-pos; ++l) {
                 if (pos != pos+l) {
                     allSubstrings[subStringCount++] = s.substring(pos, pos+l);
                 }
@@ -46,7 +45,7 @@ class UniquePalindromes {
              // isPalidrome check
             boolean isPalindrome = true;
             String s1 = allSubstrings[c];
-            for (int i=0; i < s1.length() / 2; ++i) {
+            for (int i=0; i < s1.length()/2; ++i) {
                 if (s1.charAt(i) != s1.charAt(s1.length()-(1+i))) {
                     isPalindrome = false;
                     break;
