@@ -77,6 +77,7 @@ class UniquePalindromes {
         System.out.print("Please, type the string: ");
         Scanner in = new Scanner(System.in);
         String s = in.nextLine();
+        in.close();
         System.out.println("Count: " + UniquePalindromesInStringCount(s));
     }
 }
