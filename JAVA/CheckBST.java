@@ -24,21 +24,34 @@ class CheckBST {
 
     public static boolean checkBST(Node root) {
         if (root.left == null && root.right == null) { return true; };
-        
-        boolean leftResult = false;
-        boolean rightResult = false;
-        
+        if (root.left != null && root.right != null && root.left.data == root.right.data ) { return false; }
+
+        boolean leftValid = true;
+        boolean rightValid = true;
+
         if (root.left != null) {
-            if (root.left.data >= root.data) { return false; }
-            leftResult = checkBST(root.left);
+            Node leftNode = root.left;
+            while (leftNode != null) {
+                if (leftNode.data >= root.data) { return false; }
+                if (leftNode.right != null && leftNode.right.data >= root.data) { return false; }
+                leftNode = leftNode.left;
+            }
+            leftValid = checkBST(root.left);
         }
         
         if (root.right != null) {
-            if (root.right.data <= root.data) { return false; }
-            rightResult = checkBST(root.right);
+            Node rightNode = root.right;
+            while (rightNode != null) {
+                if (rightNode.data <= root.data) { return false; }
+                if (rightNode.left != null && rightNode.left.data <= root.data) { return false; }
+                rightNode = rightNode.left;
+            }
+            rightValid = checkBST(root.right);
         }
         
-        if (leftResult == false || rightResult == false) { return false; }
+        if (leftValid == false) { return false; }
+        if (rightValid == false) { return false;}
+
         return true;
     }
 }
