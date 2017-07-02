@@ -4,6 +4,10 @@
     <title>Test: resizeMedia.js</title>
     <meta charset="UTF-8"> 
     <script src="resizeMedia.js"></script>
+    <script>
+        var media = new Media();
+        window.addEventListener('load', function() { initResize(media); });
+    </script>
 </head>
 <body style="text-align:center; width:100%;">
     <div class="container" style="width:75%; display:inline-block; background-color: aliceblue;">

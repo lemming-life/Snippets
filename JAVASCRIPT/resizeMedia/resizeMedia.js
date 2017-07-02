@@ -6,10 +6,11 @@
 // 1. Store the media and the original ratios
 // 2. When browser resizes, resize media to fit parent container.
 
-// Create a data bank
+// How to use it:
+/*
 var media = new Media();
-window.addEventListener('load', initResize);    // Step 1
-window.addEventListener('resize', resizeMedia); // Step 2
+window.addEventListener('load', function() { initResize(media); });
+*/
 
 function Media() {
     this.elements = [];
@@ -19,12 +20,13 @@ function Media() {
     this.externalFilter = [ 'youtube' ]; // For vimeo and youtube [ 'vimeo', 'youtube' ]
 }
 
-function initResize() {
-    storeMedia();
-    resizeMedia();
+function initResize(media) {
+    storeMedia(media);
+    resizeMedia(media);
+    window.addEventListener('resize', function() { resizeMedia(media); });
 }
 
-function storeMedia() {
+function storeMedia(media) {
     for (var containerClassNameIndex = 0; containerClassNameIndex < media.containerClassNames.length; ++containerClassNameIndex) {
         var containers = document.getElementsByClassName(media.containerClassNames[containerClassNameIndex]);
 
@@ -67,7 +69,7 @@ function inFilter(url, filter) {
     return found;
 } // End inFilter()
 
-function resizeMedia() {
+function resizeMedia(media) {
     for (var elementIndex = 0; elementIndex < media.elements.length; ++elementIndex) {
         var element = media.elements[elementIndex];
         var parent = element.handle.parentElement;
