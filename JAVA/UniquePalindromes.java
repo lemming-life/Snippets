@@ -11,7 +11,7 @@
 
 // Example input: aabaa
 // All strings:
-// a, aa, ab, aab, aaba, aabaa
+// a, aa, aab, aaba, aabaa
 // a, ab, aba, abaa
 // b, ba, baa
 // a, aa
