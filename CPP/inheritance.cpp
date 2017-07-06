@@ -1,6 +1,11 @@
 // Author: http://lemming.life
 // Language: C++
-// Purpose: Shows inheritance principles
+// Purpose: Shows inheritance in C++
+
+/* At terminal do:
+    g++ inheritance.cpp
+    ./a.out
+*/
 
 #include <iostream>
 using namespace std;
