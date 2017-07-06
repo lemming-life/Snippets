@@ -2,6 +2,11 @@
 // Language: C++
 // Description: Shows how to implement an interface in C++
 
+/* At terminal do:
+    g++ interface.cpp
+    ./a.out
+*/
+
 #include <iostream>
 using namespace std;
 
