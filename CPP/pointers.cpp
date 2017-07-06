@@ -2,9 +2,10 @@
 // Language: C++
 // Description: Example of creating and using an object.
 
-// At terminal:
-// g++ pointers.cpp
-// ./a.out
+/* At terminal do:
+    g++ pointers.cpp
+    ./a.out
+*/
 
 #include <iostream>
 
