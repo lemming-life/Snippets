@@ -67,6 +67,16 @@ int main() {
     // Other languages have garbage collection -- cleans memory automatically.
     // C++ 11 has shared pointers that can be used for automatically doing clean up.
 
+
+    /*
+    // Dangling pointers (avoid these)
+    Shape* someShapePtr = new Shape(++id);
+    Shape* anotherShapePtr = someShapePtr;
+    delete someShapePtr;
+    someShapePtr = nullptr;
+    // What does anotherShapePtr point to? Something that is not valid anymore.
+    */
+
     return 0;
 }
 
