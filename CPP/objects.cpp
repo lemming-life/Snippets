@@ -2,6 +2,11 @@
 // Language: C++
 // Description: Example of creating and using an object.
 
+/* At terminal do:
+    g++ objects.cpp
+    ./a.out
+*/
+
 #include <iostream>
 
 class Shape {
