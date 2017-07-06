@@ -1,4 +1,5 @@
 // Author: http://lemming.life
+// Language: D
 // Description: Small example on how D interfaces with C++ and C.
 // - There is also a small description on how to compile the files.
 
