@@ -9,6 +9,8 @@
     dmd main.o foo.o bar.o
 */
 
+// Run the final product: ./main
+
 extern(C++) int foo(int a, int b);
 extern(C) char bar(char c);
 
