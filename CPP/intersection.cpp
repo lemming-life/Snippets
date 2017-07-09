@@ -1,5 +1,6 @@
 // Author: http://lemming.life
 // Language: C++
+// Title: T-Intersection
 /* Challenge Description:
     Write C++ code for a controller for a stop light at a T-Intersection according to
     the following rules. The straight part of the intersection runs East-West and receives the heaviest
