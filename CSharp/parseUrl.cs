@@ -42,8 +42,7 @@ namespace Snippets {
             Console.WriteLine("Domain: " + getDomain(url));
             Console.WriteLine("Query: " + getQuery(url));
         }
-
-
+        
     }
 }
 
