@@ -40,13 +40,12 @@ namespace Snippet {
         // 2. Parse the input, ensure non-negative integer.
         // 3. Return true if non-negative integer, false otherwise.
         /*
-            //Using it:
+            //Example of how to use it:
             int n = 0;
             while (Input.requestPositiveInteger("\nPlease, enter positive integer: ", ref n)) {
                 // Do work with n;
             }
          */
-
 
         public static bool requestPositiveInteger(string prompt, ref int n) {
             Console.Write(prompt);
@@ -57,6 +56,23 @@ namespace Snippet {
             return false;
         }
 
+        public static void executeDriver() {
+            int n;
+            string s;
+
+            Console.Write("Input a string: ");
+            s = getAsString();
+        
+            Console.Write("\nInput a number: ");
+            n = getAsInt();
+
+            Console.WriteLine("Type in as many positive integers as you like, quit by typing anything else.");
+
+            while(requestPositiveInteger("\nNext positive integer: ", ref n)) {
+                Console.WriteLine("You entered {0}", n);
+            }
+            Console.WriteLine("Finished inputting positive integers.");
+        }
 
 
 
