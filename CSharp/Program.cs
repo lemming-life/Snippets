@@ -34,8 +34,10 @@ namespace ConsoleApplication
             Console.WriteLine("\nTEST: Reverse");
             Reverse.executeDriver();
 
-            Console.WriteLine("\nTEST: Input");
-            Input.executeDriver();
+            // Since user input is required,
+            // it is best to keep commented for now.
+            //Console.WriteLine("\nTEST: Input");
+            //Input.executeDriver();
         }
     }
 }
