@@ -6,7 +6,7 @@
 using System;
 using System.IO;
 
-namespace Snippet {
+namespace Snippets {
 
 
     // Gets value from standard in.

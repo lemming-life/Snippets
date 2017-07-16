@@ -33,6 +33,9 @@ namespace ConsoleApplication
 
             Console.WriteLine("\nTEST: Reverse");
             Reverse.executeDriver();
+
+            Console.WriteLine("\nTEST: Input");
+            Input.executeDriver();
         }
     }
 }
