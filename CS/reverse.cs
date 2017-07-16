@@ -23,7 +23,6 @@ namespace Snippets {
             return reversed;
         }
 
-
         public static void executeDriver() {
             string str = "Hello, World";
             Console.WriteLine("The reverse of '{0}' is '{1}'", str, reverseStr(str));
@@ -32,5 +31,5 @@ namespace Snippets {
             Console.WriteLine("The reverse of {0} is {1}", n, reverseInt(n));
         }
     }
-    
+
 }
