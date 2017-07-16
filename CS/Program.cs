@@ -3,15 +3,15 @@
 // Purpose: Tests my C# snippets
 // Date: July 16, 2017
 
-
 using System;
 using Snippets;
 
 // To setup in console do:
-// dotnet new
-// dotnet restore
-// (You can paste the code on this file onto Program.cs)
-// dotnet run
+/*
+dotnet new
+dotnet restore
+dotnet run
+ */
 
 namespace ConsoleApplication
 {
