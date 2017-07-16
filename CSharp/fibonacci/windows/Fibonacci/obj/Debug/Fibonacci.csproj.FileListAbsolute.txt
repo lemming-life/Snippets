@@ -1,6 +1,0 @@
-C:\Users\Jesse\Desktop\Fibonacci\Fibonacci\bin\Debug\Fibonacci.exe.config
-C:\Users\Jesse\Desktop\Fibonacci\Fibonacci\bin\Debug\Fibonacci.exe
-C:\Users\Jesse\Desktop\Fibonacci\Fibonacci\bin\Debug\Fibonacci.pdb
-C:\Users\Jesse\Desktop\Fibonacci\Fibonacci\obj\Debug\Fibonacci.csprojResolveAssemblyReference.cache
-C:\Users\Jesse\Desktop\Fibonacci\Fibonacci\obj\Debug\Fibonacci.exe
-C:\Users\Jesse\Desktop\Fibonacci\Fibonacci\obj\Debug\Fibonacci.pdb

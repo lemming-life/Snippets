@@ -1,0 +1,4 @@
+project.json
+project.lock.json
+bin/
+obj/
