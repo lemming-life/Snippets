@@ -34,6 +34,10 @@ namespace ConsoleApplication
             Console.WriteLine("\nTEST: Reverse");
             Reverse.executeDriver();
 
+            Console.WriteLine("\nTEST: Challenge1 (sum of n and reverse n, is palindrome check, repeat if not)");
+            Console.WriteLine("Output the iteration count and the resulting sum.");
+            Challenges.Challenge1.executeDriver();
+
             // Since user input is required,
             // it is best to keep commented for now.
             //Console.WriteLine("\nTEST: Input");
