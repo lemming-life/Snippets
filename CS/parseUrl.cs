@@ -6,8 +6,8 @@
 using System;
 
 namespace Snippets {
-    class UrlParser {
 
+    class UrlParser {
         static string getProtocol(string url) {
             string lookFor = "://";
             int indexOf = url.IndexOf(lookFor);
@@ -42,7 +42,7 @@ namespace Snippets {
             Console.WriteLine("Domain: " + getDomain(url));
             Console.WriteLine("Query: " + getQuery(url));
         }
-        
     }
+    
 }
 
