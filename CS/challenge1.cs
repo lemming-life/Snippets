@@ -37,7 +37,6 @@ using System;
 namespace Challenges {
     
     class Challenge1 {
-
         public static void perform(int n) {
             int count = 0;
             string line;
@@ -47,11 +46,15 @@ namespace Challenges {
                 line = n.ToString();
             } while (!Snippets.Palindrome.isPalindrome(line));
 
-            Console.WriteLine("{0} {1}", count, line);
+            Console.WriteLine("Output: {0} {1}", count, line);
         }
         
         public static void executeDriver() {
-            perform(195); // Expect 9339 a palindrome.
+            Console.WriteLine("Output the iteration count and the resulting sum.");
+
+            int n = 195;
+            Console.WriteLine("Input: {0}", n);
+            perform(n); // Expect 4 9339 (a palindrome)
 
             // For standard input
             /*
