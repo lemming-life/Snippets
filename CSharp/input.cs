@@ -8,7 +8,6 @@ using System.IO;
 
 namespace Snippets {
 
-
     // Gets value from standard in.
     class Input {
 
@@ -57,23 +56,26 @@ namespace Snippets {
         }
 
         public static void executeDriver() {
-            int n;
-            string s;
+            int n = 0;
+            string s = "";
 
             Console.Write("Input a string: ");
             s = getAsString();
+            Console.WriteLine("Your input is: {0}", s);
         
             Console.Write("\nInput a number: ");
-            n = getAsInt();
-
-            Console.WriteLine("Type in as many positive integers as you like, quit by typing anything else.");
-
-            while(requestPositiveInteger("\nNext positive integer: ", ref n)) {
-                Console.WriteLine("You entered {0}", n);
+            try {
+                n = getAsInt();
+                Console.WriteLine("Your input is: {0}", n);
+            } catch (Exception e) {
+                Console.WriteLine("That is not a number! Exception message: \n{0}", e);
             }
-            Console.WriteLine("Finished inputting positive integers.");
+            
+            while(requestPositiveInteger("\nInput a positive integer: ", ref n)) {
+                Console.WriteLine("Your input is {0}", n);
+            }
+            Console.WriteLine("Finished input of positive integers.");
         }
-
 
 
     }
