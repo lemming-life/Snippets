@@ -7,8 +7,8 @@
 using System;
 
 namespace Snippets {
-    public class Fibonacci {
 
+    public class Fibonacci {
         // Purpose: Computes the nth fibonacci number.
         // Conditions: non-negative integer as input.
         // Details: Uses iteration to ensure fast evaluation and to conserve stack space.
@@ -34,4 +34,5 @@ namespace Snippets {
             }
         }
     }
+    
 }
