@@ -1,6 +1,6 @@
 // Partial-Author: http://lemming.life
 // Language: C#
-// Purpose: Collection of code challenges.
+// Purpose: Challenge 1.
 // Notes: The challenge descriptions are not mine, but the solutions are.
 // Date: July 16, 2017
 
