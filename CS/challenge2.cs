@@ -14,7 +14,19 @@ Your program should read lines from standard input. Each line contains a positiv
 Output:
 For each line of input, print to standard output the sum of the numbers from 1 through n, 
 disregarding those divisible by 5 and 7. Print out each result on a new line.
+
+EXAMPLE 1
+Input: n = 4
+Evaluation: 1 + 2 + 3 + 4 = 10
+Output: 10
+
+EXAMPLE 2:
+Input: n = 8
+Evaluation: 1 + 2 + 3 + 4 + 6 + 8 = 24
+Output: 24
  */
+
+
 
 using System;
 
