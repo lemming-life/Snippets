@@ -7,9 +7,9 @@ using System;
 using Snippets;
 
 // To setup in console do:
-// dotnet run
+// dotnet new
 // dotnet restore
-// (now paste the code onto the Program.cs file)
+// (You can paste the code on this file onto Program.cs)
 // dotnet run
 
 namespace ConsoleApplication
