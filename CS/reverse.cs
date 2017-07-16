@@ -7,8 +7,8 @@ using System;
 using System.Text;
 
 namespace Snippets {
+
     class Reverse {
-        
         public static string reverseStr(string s) {
             StringBuilder reversed = new StringBuilder();
             for (int i = s.Length-1; i > -1; --i) {
@@ -31,6 +31,6 @@ namespace Snippets {
             int n = 12345;
             Console.WriteLine("The reverse of {0} is {1}", n, reverseInt(n));
         }
-
     }
+    
 }
