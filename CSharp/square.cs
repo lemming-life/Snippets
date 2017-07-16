@@ -14,15 +14,13 @@ namespace Snippets {
         }
 
         public static void executeDriver() {
-            using (StreamReader reader = new StreamReader(Console.OpenStandardInput()))
-            while (!reader.EndOfStream) {
-                Console.Write("Input to square: ");
-                string line = reader.ReadLine();
-                int n;
-                if (Int32.TryParse(line, out n)) {
-                    Console.WriteLine("The square of {0} is {1}", n, Square.square(n));
-                }
-            }
+            int n;
+
+            n = 2;
+            Console.WriteLine("The square of {0} is {1}", n, Square.square(n));
+
+            n = 6;
+            Console.WriteLine("The square of {0} is {1}", n, Square.square(n));
         }
     }
 
