@@ -29,7 +29,6 @@ namespace Snippets {
             line = "aabbaa";
             Console.WriteLine("Is {0} a palindrome? {1}", line, isPalindrome(line));
         } 
-
-
     }
+    
 }
