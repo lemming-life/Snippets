@@ -21,8 +21,8 @@ namespace ConsoleApplication
             //Fibonacci.executeDriver();
             //Square.executeDriver();
             //UrlParser.executeDriver();
-            Reverse.executeDriver();
-
+            //Reverse.executeDriver();
+            Palindrome.executeDriver();
             
         }
     }
