@@ -19,6 +19,9 @@ namespace ConsoleApplication
     {
         public static void Main(string[] args)
         {
+            Square.executeDriver();
+            Fibonacci.executeDriver();
+            
             //Fibonacci.executeDriver();
             //Square.executeDriver();
             //UrlParser.executeDriver();

@@ -8,6 +8,7 @@ using System;
 
 namespace Snippets {
     public class Fibonacci {
+
         // Purpose: Computes the nth fibonacci number.
         // Conditions: non-negative integer as input.
         // Details: Uses iteration to ensure fast evaluation and to conserve stack space.
@@ -27,22 +28,22 @@ namespace Snippets {
             return result;
         }
 
-        // Purpose: Ensures user enters non-negative integer as input.
-        // Notes:
-        // 1. Prompts the user for input.
-        // 2. Parse the input, ensure non-negative integer.
-        // 3. Return true if non-negative integer, false otherwise.
-        public static bool UserInput(string prompt, ref int n) {
-            Console.Write(prompt);
+    
+        public static void executeDriver() {
+            //int n;
 
-            if (Int32.TryParse(Console.ReadLine(), out n)) {
-                if (n > -1) { return true; }
+            for (int n = 0; n < 7; ++n) {
+                Console.WriteLine("Fibonacci({0}) = {1}", n, fib(n));
             }
 
-            return false;
-        } // End UserInput()
+            /*
+            n = 2;
+            
 
-        public static void executeDriver() {
+            n = 4;
+
+
+
             Console.WriteLine("Let's determine the nth Fibonacci number.");
             Console.WriteLine("To quit, type anything other than a non-negative integer.");
             int n = 0;
@@ -50,6 +51,8 @@ namespace Snippets {
                 Console.WriteLine("Fibonacci({0}) = {1}", n, Fibonacci.fib(n));
             }
             Console.WriteLine("Bye!");
+
+             */
         }
     }
 }
