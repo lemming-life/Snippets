@@ -3,6 +3,7 @@
 // Purpose: Tests my C# snippets
 // Date: July 15, 2017
 
+
 using System;
 using Snippets;
 
@@ -23,7 +24,6 @@ namespace ConsoleApplication
             //UrlParser.executeDriver();
             //Reverse.executeDriver();
             Palindrome.executeDriver();
-            
         }
     }
 }
