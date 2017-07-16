@@ -20,6 +20,7 @@ namespace ConsoleApplication
         {
             //Fibonacci.executeDriver();
             //Square.executeDriver();
+            UrlParser.executeDriver();
 
             
         }
