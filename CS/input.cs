@@ -10,7 +10,6 @@ namespace Snippets {
 
     // Gets value from standard in.
     class Input {
-
         public static string getAsString() {
             using (StreamReader reader = new StreamReader(Console.OpenStandardInput()))
 
@@ -45,7 +44,6 @@ namespace Snippets {
                 // Do work with n;
             }
          */
-
         public static bool requestPositiveInteger(string prompt, ref int n) {
             Console.Write(prompt);
             if (Int32.TryParse(Console.ReadLine(), out n)) {
@@ -76,8 +74,6 @@ namespace Snippets {
             }
             Console.WriteLine("Finished input of positive integers.");
         }
-
-
     }
 
 }
