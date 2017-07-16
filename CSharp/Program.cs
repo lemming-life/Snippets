@@ -1,7 +1,7 @@
 ﻿// Author: http://lemming.life
 // Language: C#
 // Purpose: Tests my C# snippets
-// Date: July 15, 2017
+// Date: July 16, 2017
 
 
 using System;
@@ -19,14 +19,20 @@ namespace ConsoleApplication
     {
         public static void Main(string[] args)
         {
+            Console.WriteLine("\nTEST: Square");
             Square.executeDriver();
+
+            Console.WriteLine("\nTEST: Fibonacci");
             Fibonacci.executeDriver();
-            
-            //Fibonacci.executeDriver();
-            //Square.executeDriver();
-            //UrlParser.executeDriver();
-            //Reverse.executeDriver();
+
+            Console.WriteLine("\nTEST: Palindrome");
             Palindrome.executeDriver();
+
+            Console.WriteLine("\nTEST: UrlParser");
+            UrlParser.executeDriver();
+
+            Console.WriteLine("\nTEST: Reverse");
+            Reverse.executeDriver();
         }
     }
 }
