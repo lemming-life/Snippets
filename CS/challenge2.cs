@@ -43,6 +43,7 @@ using System;
         }
         
         public static void executeDriver() {
+            Console.WriteLine("Do the inclusive sum of numbers from 1 to n, excluding numbers divisible by 5 and 7");
             int n;
             int[] excludeDivisibleBy = {5, 7};
 
@@ -59,6 +60,5 @@ using System;
             Console.WriteLine("Input: {0}, Output: ", n, doSum(n, excludeDivisibleBy)); // 24
         }
     }
-
 
  }
