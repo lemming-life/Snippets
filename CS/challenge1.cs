@@ -50,6 +50,7 @@ namespace Challenges {
         }
         
         public static void executeDriver() {
+            Console.WriteLine("Sum n and its reverse, if result isPalindrome quit, else n is result and repeat.");
             Console.WriteLine("Output the iteration count and the resulting sum.");
 
             int n = 195;

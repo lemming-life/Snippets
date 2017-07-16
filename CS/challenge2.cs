@@ -23,6 +23,7 @@ using System;
     class Challenge2 {
         static int doSum(int n, int[] excludeDivisibleBy) {
             int sum = 0;
+
             for (int i=0; i<n; ++i) {
                 int eval = i + 1;
 
@@ -48,16 +49,16 @@ using System;
             int[] excludeDivisibleBy = {5, 7};
 
             n = 5;
-            Console.WriteLine("Input: {0}, Output: ", n, doSum(n, excludeDivisibleBy)); // 10
+            Console.WriteLine("Input: {0}, Output: {1}", n, doSum(n, excludeDivisibleBy)); // 10
 
             n = 6;
-            Console.WriteLine("Input: {0}, Output: ", n, doSum(n, excludeDivisibleBy)); // 16
+            Console.WriteLine("Input: {0}, Output: {1}", n, doSum(n, excludeDivisibleBy)); // 16
 
             n = 7;
-            Console.WriteLine("Input: {0}, Output: ", n, doSum(n, excludeDivisibleBy)); // 16
+            Console.WriteLine("Input: {0}, Output: {1}", n, doSum(n, excludeDivisibleBy)); // 16
 
             n = 8;
-            Console.WriteLine("Input: {0}, Output: ", n, doSum(n, excludeDivisibleBy)); // 24
+            Console.WriteLine("Input: {0}, Output: {1}", n, doSum(n, excludeDivisibleBy)); // 24
         }
     }
 

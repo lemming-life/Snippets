@@ -37,6 +37,9 @@ namespace ConsoleApplication
             Console.WriteLine("\nTEST: Challenge1");
             Challenges.Challenge1.executeDriver();
 
+            Console.WriteLine("\nTEST: Challenge2");
+            Challenges.Challenge2.executeDriver();
+
             // Since user input is required,
             // it is best to keep commented for now.
             //Console.WriteLine("\nTEST: Input");
