@@ -23,9 +23,9 @@ namespace Snippets {
             return url.Substring(0, indexOf2);
         }
 
-        static string getQuery(string url) {
-            string lookFor = "/";
-            int indexOf = url.LastIndexOf(lookFor) + 1;
+        static string getQuery(string url, bool path = false) {
+            string lookFor = path ? getDomain(url) + "/" : "/";
+            int indexOf = lookFor.Length + (path ? url.IndexOf(lookFor) : url.LastIndexOf(lookFor));
             return url.Substring(indexOf, url.Length - indexOf);
         }
 
@@ -34,13 +34,15 @@ namespace Snippets {
             Console.WriteLine("Url1 is: " + url);
             Console.WriteLine("Protocol: " + getProtocol(url));
             Console.WriteLine("Domain: " + getDomain(url));
-            Console.WriteLine("Query: " + getQuery(url));
+            Console.WriteLine("Query no path: " + getQuery(url, false));
+            Console.WriteLine("Query with path: " + getQuery(url, true));
 
             url = "http://google.com/some/stuff/in/between/theQuery123";
             Console.WriteLine("\nUrl2 is: " + url);
             Console.WriteLine("Protocol: " + getProtocol(url));
             Console.WriteLine("Domain: " + getDomain(url));
-            Console.WriteLine("Query: " + getQuery(url));
+            Console.WriteLine("Query no path: " + getQuery(url, false));
+            Console.WriteLine("Query with path: " + getQuery(url, true));
         }
     }
     
