@@ -1,6 +1,8 @@
 // Author: http://lemming.life
 // Language: D
 // Purpose: A variety of ways to manipulate functions in D.
+// Testing: rdmd -unittest -main functions.d
+// - Expect blank console if success. Otherwise unittest failure
 
 import std.stdio : writeln;
 
@@ -15,8 +17,8 @@ T executeFunction2(alias func, T)(T a, T b) {
 }
 
 // Combines functions when evaluating
-void combiFunc(alias funcA, alias funcB, T)(T a) {
-    funcB( funcA(a) );
+auto combiFunc(alias funcA, alias funcB, T)(T a) {
+    return funcB( funcA(a) );
 }
 
 // Construct a function from other functions, but waits for some input.
@@ -28,18 +30,18 @@ auto combineFunctions(T)(T function(T)[] funcs) {
 
 auto square(T)(T a) { return a * a; }
 
-void main(string[] args) {
+unittest { 
     alias aMul = (a, b) => a * b;
     alias aSum = (a, b) => a + b;
     alias aDiv = (a, b) => a / b;
-    alias aPrint = (a) => a.writeln;
+    //alias aPrint = (a) => a.writeln;
     alias aSquare = square!(int);
 
-    aMul(2, 3).writeln;                             // 6
-    executeFunction!(aSum)(6, 3).writeln;           // 9
-    executeFunction2!(aDiv, double)(5, 2).writeln;  // 2.5
-    combiFunc!( aSquare, aPrint )(5);               // 25
+    assert(aMul(2, 3) == 6);       
+    assert(executeFunction!(aSum)(6, 3) == 9);
+    assert(executeFunction2!(aDiv, double)(5, 2) == 2.5);
+    assert(combiFunc!( aSquare, aSquare )(5) == 625);
 
     auto combinedFuncs = combineFunctions([ (int a) => a + a, &square!(int) ]);
-    combinedFuncs(3).writeln; // 36 b/c  3+3 = 6, then 6*6 = 36
+    assert(combinedFuncs(3) == 36); // 36 b/c  3+3 = 6, then 6*6 = 36
 }

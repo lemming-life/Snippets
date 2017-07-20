@@ -2,6 +2,11 @@
 // Language: D
 // Description: a function to get an array of strings containing
 //              the names or pathNames of file and folder/directories.
+// Testing:
+// - rdmd -unittest -main listFiles.d
+// - dmd -unittest -main listFiles.d
+
+
 
 string[] listFiles(alias isFunc)(string path, bool onlyBaseName = true) {
     import std.algorithm: filter, map;
@@ -17,11 +22,10 @@ string[] listFiles(alias isFunc)(string path, bool onlyBaseName = true) {
 
 
 // Test Driver
-void main() {
+unittest{
     import std.algorithm: each;
     import std.file: getcwd, isDir, isFile;
-    import std.stdio: writeln;
-    
+    import std.stdio: writeln; 
 
     "\nList base names of files:".writeln;
     listFiles!(a => a.isFile)(getcwd).each!(s => s.writeln);
