@@ -3,6 +3,7 @@
 // Purpose: Demonstrates what could be an error in the D language.
 // - It looks as it is reusing the same spot in memory without initializing the x member.
 // - At the moment it seems that if we have an object in class we got to initialize it at the constructor.
+// Test: rdmd -unittest -main error1.d
 
 import std.stdio : write, writeln;
 import std.conv : to;
@@ -28,7 +29,7 @@ class C {
     }
 }
 
-void main(string[] args) {
+unittest {
     const int ITERATIONS = 4;
 
     writeln("Outputs: 2 4 6 8");
@@ -43,4 +44,5 @@ void main(string[] args) {
         write(to!string(c.a.x) ~ " ");
     }
 
+    "\nTest completed".writeln;
 }
