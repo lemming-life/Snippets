@@ -3,9 +3,10 @@
 // Description: A class with access to clipboard features.
 // Last Updated: July 21, 2017
 
-// For Testing: rdmd -unittest -main clipboard.d
-// - Expect: nothing if success.
-// - So far tested in Windows, and OSX.
+// For testing: rdmd -unittest -main clipboard.d
+// - Expect if success: 
+// - Expect if fail:  unittest failure
+// - Platforms tested: Windows, OSX.
 
 // Info:
 // Linux xclip : http://linux.softpedia.com/get/Text-Editing-Processing/Others/xclip-42705.shtml
@@ -125,7 +126,6 @@ class Clipboard {
 
 
 unittest {
-    import std.stdio : writeln;
     auto testString = "Test String"w;
     
     Clipboard.clear();
