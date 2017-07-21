@@ -1,8 +1,9 @@
 // Author: http://lemming.life
 // Language: D
 // Description: A class with access to clipboard features.
-// Testing:
-// rdmd -unittest -main clipboard.d
+// For Testing: rdmd -unittest -main clipboard.d
+// - Expect: nothing if success.
+// - So far tested in Windows, and OSX.
 
 // Info:
 // Linux xclip : http://linux.softpedia.com/get/Text-Editing-Processing/Others/xclip-42705.shtml
@@ -10,22 +11,21 @@
 // Windows Clipboard : https://msdn.microsoft.com/en-us/library/windows/desktop/ms648709(v=vs.85).aspx
 
 module clipboard;
+
+// Global imports
 import std.conv : to;
 
 // Import platform specific
 version ( Windows ) {
     import core.sys.windows.windows;
     import core.stdc.wchar_ : wcslen;
+    import core.stdc.string : memcpy;
     import std.utf : toUTF16z;
 
     extern ( Windows ) {
         bool OpenClipboard(void*);
         bool CloseClipboard();
-        
-        // For Reading
         void* GetClipboardData(uint);
-
-        // For Writing
         bool EmptyClipboard();
         void* SetClipboardData(uint, void*);
         void* GlobalLock(void*);
@@ -45,14 +45,22 @@ version ( Windows ) {
 
 class Clipboard {
     static wstring readText() {
+
         version( Windows ) {
             if (!OpenClipboard(null)) { return ""w; } 
             scope(exit) { CloseClipboard(); }
-            
-            wchar* data = cast(wchar*) GetClipboardData(CF_UNICODETEXT);
-            if (data) {
-                return to!wstring(data[0 .. wcslen(data)]);
+
+            // Get the clipboard data.
+            void* hData = GetClipboardData(CF_UNICODETEXT);
+            wchar* bPtr = cast(wchar*) GlobalLock(hData);
+
+            // If there is clipboard data convert it and return
+            if (bPtr && wcslen(bPtr)>0) {
+                wstring result = to!wstring( bPtr[0 .. wcslen(bPtr)] );
+                GlobalUnlock(hData);
+                return result;
             }
+
         } else {
             ProcessPipes pipes;
             scope(exit) { wait(pipes.pid); }
@@ -64,12 +72,11 @@ class Clipboard {
             }
 
             auto data = pipes.stdout.byChunk(4096).joiner.array;
-
             if (data.length > 0) {
-                //return reduce!( (soFar,b) => soFar ~= b ) (data.map!( a=> to!dstring( to!dchar(a) )));
                 auto wdata = data.map!( a=> to!wchar(a));
                 return to!wstring( wdata[0 .. $] );
             }
+
         }
 
         return ""w;
@@ -77,25 +84,21 @@ class Clipboard {
 
     static void writeText(wstring text) {
         version( Windows ) {
-            if (!OpenClipboard(null)) { return ""w; } 
+            if (!OpenClipboard(null)) { return; } 
             scope(exit) { CloseClipboard(); }
             EmptyClipboard();
 
-            //const wchar* data = toUTF16z(text);
-
             // Allocate global memory
             const int dataLength = (text.length + 1) * wstring.sizeof;
-            void* handleGlobal = GlobalAlloc(GMEM_FIXED, dataLength);
-            void* memPtr = GlobalLock(handleGlobal);
+            void* hData = GlobalAlloc(GMEM_FIXED, dataLength);
+            void* bPtr = GlobalLock(hData);
 
             // Copy the text to the buffer
-            memcpy(memPtr, toUTF16z(text), dataSize);
-
-            // Unlock
-            GlobalUnlock(handleGlobal);
+            memcpy(bPtr, toUTF16z(text), dataLength);
+            GlobalUnlock(hData);
 
             // Place the handle on the clipboard
-            SetClipboardData(CF_UNICODETEXT, handleGlobal);  
+            SetClipboardData(CF_UNICODETEXT, hData);  
         } else {
             ProcessPipes pipes;
             scope(exit) { wait(pipes.pid); }
@@ -115,11 +118,7 @@ class Clipboard {
     }
 
     static void clear() {
-        version( Windows ) {
-            EmptyClipboard();
-        } else {
-            writeText(""w);
-        }
+        writeText(""w);
     }
 }
 
@@ -129,7 +128,8 @@ unittest {
     auto testString = "Test String"w;
     
     Clipboard.clear();
-    assert( Clipboard.readText().length == 0 );
+    auto newString = Clipboard.readText();
+    assert( newString.length == 0 );
 
     Clipboard.writeText(testString);
     assert( Clipboard.readText() == testString);
