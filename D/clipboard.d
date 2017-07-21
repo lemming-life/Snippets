@@ -1,6 +1,8 @@
 // Author: http://lemming.life
 // Language: D
 // Description: A class with access to clipboard features.
+// Last Updated: July 21, 2017
+
 // For Testing: rdmd -unittest -main clipboard.d
 // - Expect: nothing if success.
 // - So far tested in Windows, and OSX.
@@ -12,7 +14,7 @@
 
 module clipboard;
 
-// Global imports
+// All platform imports
 import std.conv : to;
 
 // Import platform specific
@@ -76,7 +78,6 @@ class Clipboard {
                 auto wdata = data.map!( a=> to!wchar(a));
                 return to!wstring( wdata[0 .. $] );
             }
-
         }
 
         return ""w;
