@@ -14,26 +14,45 @@ import std.conv : to;
 
 // Import platform specific
 version ( Windows ) {
+    import core.sys.windows.windows;
+    import core.stdc.wchar_ : wcslen;
+    import std.utf : toUTF16z;
+
     extern ( Windows ) {
         bool OpenClipboard(void*);
-        bool EmptyClipboard();
         bool CloseClipboard();
-        // todo
+        
+        // For Reading
+        void* GetClipboardData(uint);
+
+        // For Writing
+        bool EmptyClipboard();
+        void* SetClipboardData(uint, void*);
+        void* GlobalLock(void*);
+        bool GlobalUnlock(void*);
+        void* GlobalAlloc(uint, size_t);
     }
+
+    const int CF_UNICODETEXT = 13;
+    const uint GMEM_FIXED = 0;      // Fixed memory
+
 } else {
     // Linux and OSX
-    import std.algorithm : joiner, map, reduce;
+    import std.algorithm : joiner, map;
     import std.array;
     import std.process : pipeProcess, ProcessPipes, Redirect, wait;
 }
 
 class Clipboard {
-    static dstring readText() {
+    static wstring readText() {
         version( Windows ) {
-            if (!OpenClipboard(null)) { return ""d; } 
+            if (!OpenClipboard(null)) { return ""w; } 
             scope(exit) { CloseClipboard(); }
-            // todo
             
+            wchar* data = cast(wchar*) GetClipboardData(CF_UNICODETEXT);
+            if (data) {
+                return to!wstring(data[0 .. wcslen(data)]);
+            }
         } else {
             ProcessPipes pipes;
             scope(exit) { wait(pipes.pid); }
@@ -44,18 +63,39 @@ class Clipboard {
                 pipes = pipeProcess(["pbpaste"], Redirect.stdout);
             }
 
-            auto message = pipes.stdout.byChunk(4096).joiner.array;
-            return message.length == 0 ? ""
-                    : reduce!( (soFar,b) => soFar ~= b ) (message.map!( a=> to!dstring( to!dchar(a) )));
+            auto data = pipes.stdout.byChunk(4096).joiner.array;
+
+            if (data.length > 0) {
+                //return reduce!( (soFar,b) => soFar ~= b ) (data.map!( a=> to!dstring( to!dchar(a) )));
+                auto wdata = data.map!( a=> to!wchar(a));
+                return to!wstring( wdata[0 .. $] );
+            }
         }
+
+        return ""w;
     }
 
-    static void writeText(dstring text) {
+    static void writeText(wstring text) {
         version( Windows ) {
-            if (!OpenClipboard(null)) { return ""d; } 
+            if (!OpenClipboard(null)) { return ""w; } 
             scope(exit) { CloseClipboard(); }
-            // todo
+            EmptyClipboard();
 
+            //const wchar* data = toUTF16z(text);
+
+            // Allocate global memory
+            const int dataLength = (text.length + 1) * wstring.sizeof;
+            void* handleGlobal = GlobalAlloc(GMEM_FIXED, dataLength);
+            void* memPtr = GlobalLock(handleGlobal);
+
+            // Copy the text to the buffer
+            memcpy(memPtr, toUTF16z(text), dataSize);
+
+            // Unlock
+            GlobalUnlock(handleGlobal);
+
+            // Place the handle on the clipboard
+            SetClipboardData(CF_UNICODETEXT, handleGlobal);  
         } else {
             ProcessPipes pipes;
             scope(exit) { wait(pipes.pid); }
@@ -78,7 +118,7 @@ class Clipboard {
         version( Windows ) {
             EmptyClipboard();
         } else {
-            writeText(""d);
+            writeText(""w);
         }
     }
 }
@@ -86,7 +126,7 @@ class Clipboard {
 
 unittest {
     import std.stdio : writeln;
-    auto testString = "Test String"d;
+    auto testString = "Test String"w;
     
     Clipboard.clear();
     assert( Clipboard.readText().length == 0 );
