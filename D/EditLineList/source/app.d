@@ -14,7 +14,6 @@
 // - caret blinking.
 
 module app;
-
 import dlangui;
 
 mixin APP_ENTRY_POINT;
@@ -68,6 +67,7 @@ class View {
 	} // End this(dstring aTitle)
 
 } // End class View
+
 
 // SLIGHTLY MODIFIED WIDGETS
 class TListWidget(T) : ListWidget {
