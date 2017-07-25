@@ -95,6 +95,7 @@ class TListWidget(T) : ListWidget {
 
         if (navigationDelta != 0) {
             moveSelection(navigationDelta);
+			item = cast(T) _adapter.itemWidget(_selectedItemIndex); // because the item changed
 			item.allAndFocus(); // Do a select all on the EditLine
             return true;
         }
@@ -139,13 +140,32 @@ class EditLineForList : EditLine {
 	}
 
 	override bool onKeyEvent(KeyEvent event) {
+		import std.stdio : writeln;
 		bool focused = true;
 		bool receivedFocusFromKeyboard = false;
 		handleFocusChange(focused, receivedFocusFromKeyboard);
 
+		// Move the cursor to the left or right of selection.
+		if (_selectionRange.end.pos - _selectionRange.start.pos > 0) {
+			if (event.keyCode == KeyCode.LEFT) {
+				_caretPos.pos = _selectionRange.start.pos;
+				_selectionRange.start.pos = _caretPos.pos;
+				_selectionRange.end.pos = _caretPos.pos;
+				ensureCaretVisible();
+				return true;
+			} else if (event.keyCode == KeyCode.RIGHT) {
+				_caretPos.pos = _selectionRange.end.pos;
+				_selectionRange.start.pos = _caretPos.pos;
+				_selectionRange.end.pos = _caretPos.pos;
+				ensureCaretVisible();
+				return true;
+			}
+		}
+
 		super.onKeyEvent(event);
 		return true;
 	}
+
 
 	dstring idAsDstring() {
 		import std.conv : to;
