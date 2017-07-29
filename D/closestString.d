@@ -3,7 +3,7 @@
 // Description: Given a list of strings and a string
 // identify the closest matching string in the list
 
-/// Hll
+
 class ClosestString {
     private:
         class StringScore {
