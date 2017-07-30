@@ -1,10 +1,9 @@
 // Author: http://lemming.life
 // Language: D
-// Purpose: Get members of Enum E and convert them to items of an array of type T
+// Purpose: Get members of Enum E and convert the members to array of type T
 
 // Test: rdmd -unittest -main enumToArray.d
 // - Expected: Passed
-
 
 module enumtoarray;
 
