@@ -16,7 +16,7 @@
 module app;
 import dlangui;
 
-// Get at https://github.com/lemming-life/Snippets/tree/master/D/lemmingwidgets
+// Get at https://github.com/lemming-life/Snippets/tree/master/D/dlangui/lemmingwidgets
 // Also modify the dub.json to match whererever you placed the file at.
 import lemmingwidgets; 
 
