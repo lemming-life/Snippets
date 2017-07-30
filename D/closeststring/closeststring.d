@@ -5,6 +5,8 @@
 
 // Note: It supports strings, wstrings, and dstrings.
 
+module closeststring;
+
 class ClosestString (T) {
     private:
         class StringScore (T) {
