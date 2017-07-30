@@ -16,6 +16,10 @@
 module app;
 import dlangui;
 
+// Get at https://github.com/lemming-life/Snippets/tree/master/D/lemmingwidgets
+// Also modify the dub.json to match whererever you placed the file at.
+import lemmingwidgets; 
+
 mixin APP_ENTRY_POINT;
 
 /// Entry point for dlangui based application
@@ -67,108 +71,3 @@ class View {
 	} // End this(dstring aTitle)
 
 } // End class View
-
-
-// SLIGHTLY MODIFIED WIDGETS
-class TListWidget(T) : ListWidget {
-	override bool onKeyEvent(KeyEvent event) {
-        if (itemCount == 0)
-            return false;
-        int navigationDelta = 0;
-		
-        if (event.action == KeyAction.KeyDown) {
-            if (orientation == Orientation.Vertical) {
-                if (event.keyCode == KeyCode.DOWN)
-                    navigationDelta = 1;
-                else if (event.keyCode == KeyCode.UP)
-                    navigationDelta = -1;
-            } else {
-                if (event.keyCode == KeyCode.RIGHT)
-					navigationDelta = 1;  
-                else if (event.keyCode == KeyCode.LEFT)
-            	    navigationDelta = -1;
-            }
-        }
-
-		// Get the item and cast it to the T type.
-		auto item = cast(T) _adapter.itemWidget(_selectedItemIndex);
-
-        if (navigationDelta != 0) {
-            moveSelection(navigationDelta);
-			item = cast(T) _adapter.itemWidget(_selectedItemIndex); // because the item changed
-			item.allAndFocus(); // Do a select all on the EditLine
-            return true;
-        }
-
-		// Send the key events, and render the list
-		if (item.onKeyEvent(event)) {
-			invalidate();
-			return true;
-		}
-		
-		return super.onKeyEvent(event);
-	}
-
-	
-	// Modify the behavior of the mouse on the list slightly.
-	override bool onMouseEvent(MouseEvent event) {
-		super.onMouseEvent(event);
-		if (_selectedItemIndex == -1) { return false; }
-		_adapter.itemWidget(_selectedItemIndex).onMouseEvent(event);
-		return true;
-	}
-
-} // End TListWidget
-
-// Adapter that can use keys and mouse events.
-class WidgetListAdapterKeysMouse : WidgetListAdapter {
-	override @property bool wantKeyEvents() {
-		return true;
-	}
-
-	override @property bool wantMouseEvents() {
-		return true;
-	}
-}
-
-// EditLine with slight modifications for list environment.
-class EditLineForList : EditLine {
-	void allAndFocus() {
-		bool focused = true;
-		bool receivedFocusFromKeyboard = true;
-		handleFocusChange(focused, receivedFocusFromKeyboard);
-	}
-
-	override bool onKeyEvent(KeyEvent event) {
-		import std.stdio : writeln;
-		bool focused = true;
-		bool receivedFocusFromKeyboard = false;
-		handleFocusChange(focused, receivedFocusFromKeyboard);
-
-		// Move the cursor to the left or right of selection.
-		if (_selectionRange.end.pos - _selectionRange.start.pos > 0) {
-			if (event.keyCode == KeyCode.LEFT) {
-				_caretPos.pos = _selectionRange.start.pos;
-				_selectionRange.start.pos = _caretPos.pos;
-				_selectionRange.end.pos = _caretPos.pos;
-				ensureCaretVisible();
-				return true;
-			} else if (event.keyCode == KeyCode.RIGHT) {
-				_caretPos.pos = _selectionRange.end.pos;
-				_selectionRange.start.pos = _caretPos.pos;
-				_selectionRange.end.pos = _caretPos.pos;
-				ensureCaretVisible();
-				return true;
-			}
-		}
-
-		super.onKeyEvent(event);
-		return true;
-	}
-
-
-	dstring idAsDstring() {
-		import std.conv : to;
-		return to!dstring(id);
-	}
-} // End EditLineForList
