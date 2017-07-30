@@ -2,8 +2,9 @@
 // Language: D
 // Description: Given a list of strings and a string
 // identify the closest matching string in the list
-
 // Note: It supports strings, wstrings, and dstrings.
+
+// Test: rdmd -unittest -main closeststring.d
 
 module closeststring;
 
@@ -91,7 +92,7 @@ class ClosestString (T) {
 unittest {
     import std.stdio : writeln;
 
-    // Using a string
+    // USING string
     auto list = ["red", "green", "blue", "black", "Black"];
     auto closestString = new ClosestString!string(list);
 
@@ -100,7 +101,6 @@ unittest {
         assert(closestString.getByIndex(s) == i);
     }
 
-    
     // Test the value
     foreach(i, s; list) {
         assert(closestString.getByValue(s) == s);
@@ -111,8 +111,7 @@ unittest {
     assert(closestString.getByValue("true") == "green"); // You might have expected blue but the r gives it a very high score.
 
 
-
-    // Using a dstring
+    // USING dstring
     auto list2 = ["red"d, "green"d, "blue"d, "black"d, "Black"d];
     auto closestString2 = new ClosestString!dstring(list2);
 
