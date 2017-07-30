@@ -158,7 +158,11 @@ class ListWidgetNav : StringListWidget {
             return true;
         }
 
+
+
+		
 		// Lemming modification
+		/*
 		import std.conv;
 		if (event.action == KeyAction.Text) {
 			auto c = to!dchar(event.text.toUTF8);
@@ -173,6 +177,7 @@ class ListWidgetNav : StringListWidget {
 				return true;				
 			}
 		}
+		*/
 
         return super.onKeyEvent(event);
     }

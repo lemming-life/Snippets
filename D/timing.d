@@ -4,9 +4,8 @@
 
 // Test: rdmd -unittest -main timing.d
 
-import std.datetime : StopWatch;
 import std.concurrency : spawn;
-import std.datetime;
+import std.datetime; // StopWatch and to
 
 void worker(int seconds, ref StopWatch sw) {
     sw.start();
