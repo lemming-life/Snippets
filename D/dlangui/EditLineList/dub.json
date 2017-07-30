@@ -9,7 +9,7 @@
 	"license": "The Unlicense",
 
 	"dependencies": {
-		"dlangui": "~>0.9.82",
+		"dlangui": "~>0.9.83",
 		"editlinelist:lemmingwidgets": "*"
 	},
 
@@ -19,7 +19,7 @@
 			"importPaths": ["./../lemmingwidgets"],
 			"sourcePaths": ["./../lemmingwidgets"],
 			"dependencies": {
-				"dlangui": "~>0.9.82"
+				"dlangui": "~>0.9.83"
 			}
 		}
 	]
