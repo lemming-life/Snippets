@@ -27,8 +27,6 @@ class ClosestString (T) {
                 map[i] = new StringScore!T(arrayOfStrings[i], i);
             }
         }
-
-
         
         int getByIndex(T strLookFor) {
             if (map.length == 0) { return -1; }
@@ -39,7 +37,6 @@ class ClosestString (T) {
                 return -1;
             }
         }
-
     
         T getByValue(T strLookFor) {
             if (map.length == 0) { return cast(T)""; }
@@ -50,7 +47,6 @@ class ClosestString (T) {
                 return cast(T)"";
             }
         }
-        
 
         StringScore!T assignScores(T strLookFor) {
             // Reset the scores
@@ -60,12 +56,12 @@ class ClosestString (T) {
             }
 
             // Determine the score
-            // - Reduce the score by each one wrong.
+            // - Reduce the score by each character that doesn't match.
             foreach (k, ref v; map) {
                 foreach(i, c; strLookFor) {
                     if (i < v.value.length) {
                         if (v.value[i] != strLookFor[i]) {
-                            v.score -= int.max/ (8+i); // int.max / (8+i); // Use the 
+                            v.score -= int.max/ (8+i); // Decrease the score
                         }
                     }
                 }
@@ -87,7 +83,7 @@ class ClosestString (T) {
             return highestStringScore;
         } // End assignScores
         
-}
+} // End class ClosestString
 
 
 unittest {
@@ -131,4 +127,4 @@ unittest {
     assert(closestString2.getByValue("Red"d) == "red"d);
     assert(closestString2.getByValue("track"d) == "black"d); // Black would be the second one because of the index
     assert(closestString2.getByValue("true"d) == "green"d); // You might have expected blue but the r gives it a very high score.
-}
+} // End unittest
