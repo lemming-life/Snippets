@@ -18,4 +18,3 @@
      10|        i = i + 1;
        |    }
        |}
-coverageTesting.d is 100% covered

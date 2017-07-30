@@ -18,19 +18,3 @@ void main() {
         i = i + 1;
     }
 }
-
-// The .lst file
-// (number of times ran) | (line details)
-
-// coverageTesting.lst file
-/*
-       |import std.stdio;
-       |
-       |void main() {
-      1|    int i = 0;
-     11|    while(i < 10) {
-     10|        i = i + 1;
-       |    }
-       |}
-coverageTesting.d is 100% covered
-*/
