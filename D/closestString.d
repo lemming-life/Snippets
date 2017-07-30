@@ -23,8 +23,8 @@ class ClosestString {
 
     public:
         this(dstring[] arrayOfStrings) {
-            foreach(int index; 0 .. cast(int)arrayOfStrings.length) {
-                map[index] = new StringScore(arrayOfStrings[index], index);
+            for(int i=0; i<arrayOfStrings.length; ++i) {
+                map[i] = new StringScore(arrayOfStrings[i], i);
             }
         }
 
@@ -76,7 +76,7 @@ class ClosestString {
             import std.algorithm : sort;
 
             foreach(k; sort(map.keys)) {
-                auto v = map[k];
+                immutable auto v = map[k];
                 if (v.score > highestScore) {
                     highestScore = v.score;
                     highestStringScore = v;
