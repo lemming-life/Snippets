@@ -162,20 +162,22 @@ class ListWidgetNav : StringListWidget {
 		import std.conv;
 		if (event.action == KeyAction.Text) {
 			auto c = to!dchar(event.text.toUTF8);
+			
+			// TODO:
+			// Consider a timer for input
+			// If the timer is active then add to a search string
+			// If the timer is inactive activate timer and initiate search string
 
-			findItemAndSelect("example 5"d);
-
-
-
-			//if (findItemAndSelect(c)) {
-			//	return true;				
-			//}
+			// For now
+			if (findItemAndSelect(c)) {
+				return true;				
+			}
 		}
 
         return super.onKeyEvent(event);
     }
 
-	/*
+	// To be replaced
 	bool findItemAndSelect(dchar c) {
 		auto myItems = (cast(StringListAdapter)adapter).items;
 		
@@ -187,10 +189,11 @@ class ListWidgetNav : StringListWidget {
 			}
 		}
 		return false;
-	}*/
+	}
 
 
-
+	/*
+	// Discard function and make a new one
 	bool findItemAndSelect(dstring lookFor) {
 		if (lookFor.length == 0) { return false; }
 
@@ -237,42 +240,10 @@ class ListWidgetNav : StringListWidget {
 		selectItem(highestIndex);
 		invalidate();
 
-	/*
-		import std.stdio: writeln;
-		"candidates".writeln;
-		foreach(k, v; map) {
-			v.value.writeln;
-		}
-*/
-
-
-
-		
-		// Look for those that begin with c0
-		// Look at those that follow with c1
-		// Look at those that follow with c2...
-		// The first in the list that meets the closes.
-
-		/*
-		int bestMatch = -1;
-		foreach (i; 0 .. myItems.length) {
-			foreach (j; 0 .. lookFor.length) {
-				//if (myItems.get(i)[i])
-			}
-
-			if (myItems.get(i)[0] == c) {
-				//return true;
-			}
-		}
-
-		selectItem(bestMatch);
-		invalidate();
-
-		*/
 		return true;
-		//return false;
-	}
+	}*/
 
+	/*
 	struct StringScore {
 		dstring value;
 		int score;
@@ -280,6 +251,7 @@ class ListWidgetNav : StringListWidget {
 
 
 	dstring _track;
+	*/
 
 
 }
