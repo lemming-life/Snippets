@@ -4,9 +4,6 @@
 //              the names or pathNames of file and folder/directories.
 // Testing:
 // - rdmd -unittest -main listFiles.d
-// - dmd -unittest -main listFiles.d
-
-
 
 string[] listFiles(alias isFunc)(string path, bool onlyBaseName = true) {
     import std.algorithm: filter, map;
