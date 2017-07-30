@@ -1,14 +1,14 @@
 // Author: http://lemming.life
 // Language: D
 // Purpose: Get members of Enum E and convert them to items of an array of type T
-// Date: July 17, 2017
+
 // Test: rdmd -unittest -main enumToArray.d
 // - Expected: Passed
 
-enum Colors {Red, Green, Blue}
-enum Numbers : int { One = 1, Two, Three }
 
-auto enumToArray(E, T)() {
+module enumtoarray;
+
+auto enumMemberToArray(E, T)() {
     import std.traits : EnumMembers;
     import std.conv : to;
 
@@ -19,16 +19,34 @@ auto enumToArray(E, T)() {
     return tempArray;
 }
 
+auto enumValuesToArray(E, T)() {
+    import std.traits : EnumMembers;
+    import std.conv : to;
 
-auto printArray(T)(T[] array) {
-    import std.stdio : writeln;
-    foreach (item ; array) { item.writeln; }
+    T[] tempArray;
+    foreach(member; EnumMembers!E) {
+        T value = member;
+        tempArray ~= value;
+    }
+    
+    return tempArray;
 }
 
 unittest {
-    assert( enumToArray!(Colors, string) == ["Red", "Green", "Blue"] ); // a string[]
-    assert(enumToArray!(Numbers, dstring) == ["One"d, "Two"d, "Three"d] ); // a dstring[]
-    assert( enumToArray!(Numbers, int) == [1, 2, 3] ); // a int[]
+    enum Colors {Red, Green, Blue}
+    enum Numbers : int { One = 1, Two, Three }
+    enum Titles { Doctor = "Doctor", SupremeLeader = "Supreme Leader" }
+
+    // Members
+    assert( enumMemberToArray!(Colors, string) == ["Red", "Green", "Blue"] ); // a string[]
+    assert( enumMemberToArray!(Numbers, dstring) == ["One"d, "Two"d, "Three"d] ); // a dstring[]
+    assert( enumMemberToArray!(Numbers, Numbers) == [Numbers.One, Numbers.Two, Numbers.Three] ); // a Numbers[]
+    assert( enumMemberToArray!(Numbers, int) == [1, 2, 3] ); // a int[]
+
+    // Values
+    assert( enumValuesToArray!(Titles, string) == ["Doctor", "Supreme Leader"] ); // a string[]
+    assert( enumValuesToArray!(Numbers, int) == [1, 2, 3] ); // a int[]
+
     import std.stdio : writeln;
     "Passed".writeln;
 }
