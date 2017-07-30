@@ -1,0 +1,36 @@
+       |// Author: http://lemming.life
+       |// Language: D
+       |// Description: an example of D's coverage analysis and unittesting
+       |
+       |/* At terminal do:
+       |    rdmd -unittest -cov -main test.d
+       |*/
+       |
+       |// Now open test.lst to view results. Format: (times ran)|(line details)
+       |
+       |class Test {
+       |    string getString() {
+      2|        return "meow";
+       |    }   
+       |
+       |    unittest {
+      1|        auto test = new Test();
+      1|        assert(test.getString() == "meow");
+       |
+     22|        for(int i=0; i<10; ++i) {
+       |            // nothing
+       |        }
+       |
+      1|        int x = 0;
+     11|        while (x<10) {
+     10|            ++x;
+       |        }
+       |    } 
+       |}
+       |
+       |// More unit testing
+       |unittest {
+      1|    auto test = new Test();
+      1|    assert(test.getString() == "meow");
+       |}
+test.d is 100% covered
