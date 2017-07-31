@@ -32,7 +32,6 @@ by a single space character)
 
 
 using System;
-//using Snippets;
 
 namespace Challenges {
     
@@ -49,7 +48,7 @@ namespace Challenges {
             Console.WriteLine("Output: {0} {1}", count, line);
         }
         
-        public static void executeDriver() {
+        public static void executeDriver(bool standardIn = false) {
             Console.WriteLine("Sum n and its reverse, if result isPalindrome quit, else n is result and repeat.");
             Console.WriteLine("Output the iteration count and the resulting sum.");
 
@@ -58,14 +57,12 @@ namespace Challenges {
             perform(n); // Expect 4 9339 (a palindrome)
 
             // For standard input
-            /*
-            int n = 0;
-            while(Snippets.Input.requestPositiveInteger("\nInput: ", ref n) ) {
-                perform(n);
+            if (standardIn) {
+                while(Snippets.Input.requestPositiveInteger("\nInput: ", ref n) ) {
+                    perform(n);
+                }
             }
-            */
         }
     }
-
 
 }

@@ -7,7 +7,6 @@ using System;
 using System.Text;
 
 namespace Snippets {
-
     class Reverse {
         public static string reverseStr(string s) {
             StringBuilder reversed = new StringBuilder();

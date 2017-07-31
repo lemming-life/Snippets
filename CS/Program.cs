@@ -19,11 +19,19 @@ namespace ConsoleApplication
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("\nTEST: Square");
-            Square.executeDriver();
+            const Boolean CONSOLE_INPUT = false;
 
-            Console.WriteLine("\nTEST: Fibonacci");
-            Fibonacci.executeDriver();
+            Console.WriteLine("\nTEST: C# Language");
+            CsLanguage.executeDriver(CONSOLE_INPUT);
+
+            Console.WriteLine("\nTEST: Maths");
+            Maths.executeDriver();
+
+            Console.WriteLine("\nTEST: Geometry");
+            Geometry.executeDriver();
+
+            //Console.WriteLine("\nTEST: Fibonacci");
+            //Fibonacci.executeDriver();
 
             Console.WriteLine("\nTEST: Palindrome");
             Palindrome.executeDriver();
@@ -42,8 +50,11 @@ namespace ConsoleApplication
 
             // Since user input is required,
             // it is best to keep commented for now.
-            //Console.WriteLine("\nTEST: Input");
-            //Input.executeDriver();
+            if (CONSOLE_INPUT) {
+                Console.WriteLine("\nTEST: Input");
+                Input.executeDriver();
+            }
+           
         }
     }
 }

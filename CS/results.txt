@@ -1,0 +1,9 @@
+Project CS (.NETCoreApp,Version=v1.1) will be compiled because Input items removed from last build
+Compiling CS for .NETCoreApp,Version=v1.1
+
+Compilation failed.
+    0 Warning(s)
+    1 Error(s)
+
+Time elapsed 00:00:00.4159697
+
