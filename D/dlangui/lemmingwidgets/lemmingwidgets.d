@@ -109,10 +109,13 @@ class EditLineForList : EditLine {
 
 
 
-// Need a list widget that responds to keystrokes so
-// that we can quickly get to the item.
 
+// Widget that allows selection of item via keys
 class ListWidgetNav : StringListWidget {
+	import std.datetime : StopWatch;
+	private dstring _searchString = "";
+	private StopWatch _sw;
+
 	override bool onKeyEvent(KeyEvent event) {
         if (itemCount == 0)
             return false;
@@ -158,105 +161,78 @@ class ListWidgetNav : StringListWidget {
             return true;
         }
 
-
-
-		
 		// Lemming modification
-		/*
-		import std.conv;
+		// - Accept user input and try to find a match in the list.
 		if (event.action == KeyAction.Text) {
-			auto c = to!dchar(event.text.toUTF8);
-			
-			// TODO:
-			// Consider a timer for input
-			// If the timer is active then add to a search string
-			// If the timer is inactive activate timer and initiate search string
 
-			// For now
-			if (findItemAndSelect(c)) {
-				return true;				
+			if (!_sw.running) {
+				// If stop watch not running
+				import std.conv : to;
+				_sw.start;
+				_searchString = ""d ~ to!dchar(event.text.toUTF8);
+			} else {
+				import std.datetime : to;
+				auto timePassed = _sw.peek.to!("seconds", float)();
+
+				if (timePassed > 0.75) {
+					import std.conv : to;
+					_searchString = ""d ~ to!dchar(event.text.toUTF8);
+					_sw.reset;
+				} else {
+					import std.conv : to;
+					_searchString = _searchString ~ to!dchar(event.text.toUTF8);
+					_sw.reset;
+				}
 			}
-		}
-		*/
 
-        return super.onKeyEvent(event);
-    }
-
-	// To be replaced
-	bool findItemAndSelect(dchar c) {
-		auto myItems = (cast(StringListAdapter)adapter).items;
-		
-		foreach(i; 0 .. myItems.length) {
-			if (myItems.get(i)[0] == c) {
-				selectItem(i);
+			if ( selectClosestMatch(_searchString) ) {
 				invalidate();
 				return true;
 			}
 		}
-		return false;
-	}
 
+        return super.onKeyEvent(event);
 
-	/*
-	// Discard function and make a new one
-	bool findItemAndSelect(dstring lookFor) {
-		if (lookFor.length == 0) { return false; }
+    } // End onKeyEvent()
 
+	bool selectClosestMatch(dstring term) {
+		if (term.length == 0) { return false;}
+
+		int[int] scores;
 		auto myItems = (cast(StringListAdapter)adapter).items;
-		StringScore[int] map;
-		foreach (i; 0..myItems.length) {
-			StringScore stringScore;
-			stringScore.value = myItems.get(i);
-			stringScore.score = 0;
-			map[i] = stringScore;
-		}
 
-		// Must begin with the right character
-		foreach(k, ref v; map) {
-			if (v.value[0] != lookFor[0]) {
-				map.remove(k);
+		// Perfect match or best match
+		int[] indexes;
+		foreach(int itemIndex; 0 .. myItems.length) {
+			dstring item = myItems.get(itemIndex);
+			if (item == term) {
+				// Perfect match
+				selectItem(itemIndex);
+				return true;
 			} else {
-				++v.score;
-			}
-		}
-
-		if (map.length == 0) { return false; }
-
-		foreach(k, ref v; map) {
-			foreach(i, c; lookFor) {
-				if (i < v.value.length) {
-					if (v.value[i] == lookFor[i]) {
-						v.score += (int.max / (i+1));
+				// Not perfect, but maybe within term
+				bool addItem = true;
+				foreach(int termIndex; 0 .. cast(int)term.length) {
+					if (termIndex < item.length) {
+						if (term[termIndex] != item[termIndex]) {
+							addItem = false;
+							break;
+						}
 					}
 				}
+				if (addItem) { indexes ~= itemIndex; }
 			}
 		}
 
-		int highestScore = 0;
-		StringScore highestStringScore;
-		int highestIndex;
-		foreach(k, ref v; map) {
-			if (v.score > highestScore) {
-				highestScore = v.score;
-				highestIndex = k;
-			}
+		// Select the first item
+		if (indexes.length > 0) {
+			selectItem(indexes[0]);
+			return true;
 		}
 
-		selectItem(highestIndex);
-		invalidate();
+		// Did not find an item
+		return false;
+		
+	} // End selectClosestMatch()
 
-		return true;
-	}*/
-
-	/*
-	struct StringScore {
-		dstring value;
-		int score;
-	}
-
-
-	dstring _track;
-	*/
-
-
-}
+} // End class ListWidgetNav
