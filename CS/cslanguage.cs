@@ -49,7 +49,7 @@ namespace Snippets {
                 char aChar;         // has space for 16 bits
                 string aString;     
                 bool aBoolean;
-                
+
 
                 // Initializing and assigning
                 // left of = is called a variable, the right of = is a literal in this case.
@@ -75,6 +75,10 @@ namespace Snippets {
                 // Coersion: changes the right side type to match the left side type.
                 aDouble = aInt;     // ok because aDouble has enough space for the integer
                 //aInt = aDouble;   // error because the double is much bigger than the double.
+
+                // Constants: they cannot be changed
+                const int A_CONSTANT = 33; // Generally an all caps name is suitable for constants
+                // A_CONSTANT = 44; // If line uncommented, error because we cannot change an already defined constant.
 
                 // Binary Math operations
                 aInt = 2 + 3; // Sum
