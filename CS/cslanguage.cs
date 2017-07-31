@@ -417,6 +417,34 @@ namespace Snippets {
                 // 3 Dimensions
                 int [, ,] array3D = new int[1, 2, 3]; // this can be complicated :)
 
+
+                // String stuff
+                string nameOfPerson = "Isaac Newton";
+                string nameInAllLower = nameOfPerson.ToLower(); // isaac newton
+
+
+                // RANDOM NUMBERS and OBJECTS
+                // - This also shows how an object is created, and how to call a method of the object.
+                Random randomDiceNumber = new Random();
+                // Note that randomDiceNumber is a variable that holds the address to the object.
+                // The randomDiceNumber variable is in stack memory
+                // The object is in heap memory.
+
+                // An object is an "instance" of a class.
+                // A class is "template" of how an object is.
+                // - This includes member variables and methods.
+
+                // Memory management.
+                // - Objects are created and destroyed via C# garbage collection, therefore no memory leaks.
+                // - In other many other languages one has to manually free the memory.
+                
+                Console.WriteLine("A random dice number: {0}", randomDiceNumber.Next(1, 7) );   // This is a call to Next( <included>, <one less than this one>)
+                // Methods are functions that can be accessed via the object.
+                // Functions are procedures, which have blocks of instructions.
+                // - The term function is usually given to non-object attached.
+
+                
+
             }
         } // End class ManyDetails
 
