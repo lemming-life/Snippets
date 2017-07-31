@@ -1,4 +1,5 @@
 // Author: http://lemming.life
+// Language: C#
 // Description: Collection of classes related to string operations.
 
 

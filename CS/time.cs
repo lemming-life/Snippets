@@ -1,8 +1,12 @@
+// Author: http://lemming.life
+// Language: C#
+// Description: Soime time related functions.
+
 using System;
-using System.Text;
 
 namespace Snippets {
     class Time {
+        
 
         public static void executeDriver() {
             Console.WriteLine("\nSubTest: isLeapYear");

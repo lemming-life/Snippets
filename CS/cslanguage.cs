@@ -442,10 +442,10 @@ namespace Snippets {
                 // Methods are functions that can be accessed via the object.
                 // Functions are procedures, which have blocks of instructions.
                 // - The term function is usually given to non-object attached.
+            }  
 
-                
 
-            }
+
         } // End class ManyDetails
 
         class ConsoleOutputInput {

@@ -32,6 +32,9 @@ namespace ConsoleApplication {
             Console.WriteLine("\nTEST: Time");
             Time.executeDriver();
 
+            Console.WriteLine("\nTEST: Misc");
+            Misc.executeDriver();
+
             Console.WriteLine("\nTEST: Challenge1");
             Challenges.Challenge1.executeDriver();
 
