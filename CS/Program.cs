@@ -30,17 +30,6 @@ namespace ConsoleApplication
             Console.WriteLine("\nTEST: Geometry");
             Geometry.executeDriver();
 
-            //Console.WriteLine("\nTEST: Fibonacci");
-            //Fibonacci.executeDriver();
-
-            //Console.WriteLine("\nTEST: Palindrome");
-            //Palindrome.executeDriver();
-
-            Console.WriteLine("\nTEST: UrlParser");
-            UrlParser.executeDriver();
-
-            //Console.WriteLine("\nTEST: Reverse");
-            //Reverse.executeDriver();
             Console.WriteLine("\nTEST: String Operations");
             StringOperations.executeDriver();
 
