@@ -7,58 +7,36 @@ using System;
 namespace Snippets {
     class Maths {
         public static void executeDriver(bool standardIn = false) {
-            Console.WriteLine("\nSubTest: Square");
-            Square.executeDriver();
+            Console.WriteLine("\nnSubTest: fibonacciIterative");
+            for (int n = 0; n < 7; ++n) {
+                Console.WriteLine("fibonacciIterative({0}) = {1}", n, fibonacciIterative(n));
+            }
 
-            Console.WriteLine("\nnSubTest: Fibonacci");
-            Fibonacci.executeDriver();
+            Console.WriteLine("\nnSubTest: fibonacciRecursive");
+            for (int n = 0; n < 7; ++n) {
+                Console.WriteLine("fibonacciRecursive({0}) = {1}", n, fibonacciRecursive(n));
+            }
         }
 
-        public class Square {
-            // Purpose: Returns the square of a number.
-            public static int square(int x) {
-                return x * x;
+        public static int fibonacciIterative(int n) {
+            if (n == 0) { return n; }
+            
+            int fibLeft, fibRight, result;
+            fibLeft = 0;
+            result = 1;
+
+            for (int i=0; i<(n-1); ++i) {
+                fibRight = fibLeft;
+                fibLeft = result;
+                result = fibLeft + fibRight;
             }
+            
+            return result;
+        }
 
-            public static void executeDriver() {
-                int n;
-
-                n = 2;
-                Console.WriteLine("The square of {0} is {1}", n, square(n));
-
-                n = 6;
-                Console.WriteLine("The square of {0} is {1}", n, square(n));
-            }
-        } // End class Square
-
-
-        public class Fibonacci {
-            // Purpose: Computes the nth fibonacci number.
-            // Conditions: non-negative integer as input.
-            // Details: Uses iteration to ensure fast evaluation and to conserve stack space.
-            public static int fib(int n) {
-                if (n == 0) { return n; }
-                
-                int fibLeft, fibRight, result;
-                fibLeft = 0;
-                result = 1;
-
-                for (int i=0; i<(n-1); ++i) {
-                    fibRight = fibLeft;
-                    fibLeft = result;
-                    result = fibLeft + fibRight;
-                }
-                
-                return result;
-            }
-
-            public static void executeDriver() {
-                for (int n = 0; n < 7; ++n) {
-                    Console.WriteLine("Fibonacci({0}) = {1}", n, fib(n));
-                }
-            }
-        } // End class Fibonacci
-
-
+        public static int fibonacciRecursive(int n) {
+            if (n == 0 || n == 1) { return n; }
+            return fibonacciRecursive(n - 1) + fibonacciRecursive(n - 2);
+        }
     } // End class Maths
 }
