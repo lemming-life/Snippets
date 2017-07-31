@@ -50,6 +50,9 @@ namespace Snippets {
                 string aString;     
                 bool aBoolean;
 
+                // Multiple declaration
+                int someX, someY, someZ;
+
 
                 // Initializing and assigning
                 // left of = is called a variable, the right of = is a literal in this case.
@@ -65,6 +68,9 @@ namespace Snippets {
 
                 // Assign from variable to variable.
                 aInt = aInt;    // ok
+
+                // Multiple assignment
+                someX = someY = someZ = 5; // The 5 is assigned to someZ, then value of someZ is assigned to someY, etc.
 
                 // Casting: converting from one type to another
                 aInt = (int)aUint;  // ok because aInt supports both signed and unsigned
