@@ -14,8 +14,6 @@ namespace Snippets {
             Fibonacci.executeDriver();
         }
 
-
-
         public class Square {
             // Purpose: Returns the square of a number.
             public static int square(int x) {
@@ -31,7 +29,7 @@ namespace Snippets {
                 n = 6;
                 Console.WriteLine("The square of {0} is {1}", n, square(n));
             }
-        }
+        } // End class Square
 
 
         public class Fibonacci {
@@ -59,14 +57,8 @@ namespace Snippets {
                     Console.WriteLine("Fibonacci({0}) = {1}", n, fib(n));
                 }
             }
-        }
+        } // End class Fibonacci
 
 
-
-
-    }
-
-
-
-    
+    } // End class Maths
 }

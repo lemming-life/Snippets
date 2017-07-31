@@ -36,14 +36,19 @@ using System;
 namespace Challenges {
     
     class Challenge1 {
+
+
+
+
+
         public static void perform(int n) {
             int count = 0;
             string line;
             do {
                 ++count;
-                n = n + Snippets.Reverse.reverseInt(n);
+                n = n + Snippets.StringOperations.Reverse.reverseInt(n);
                 line = n.ToString();
-            } while (!Snippets.Palindrome.isPalindrome(line));
+            } while (!Snippets.StringOperations.Palindrome.isPalindrome(line));
 
             Console.WriteLine("Output: {0} {1}", count, line);
         }
