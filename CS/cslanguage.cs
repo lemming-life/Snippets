@@ -310,7 +310,25 @@ namespace Snippets {
                         // this line does not run
                         break;
                 }
-                
+
+                // switch statemetn 4
+                // - Using a goto
+                aInt = 0;
+                switch(aInt) {
+                    case 0:
+                        // this one
+                        goto case 2; // changes the control flow to case 2
+                    case 1:
+                        // not this one
+                        break;
+                    case 2:
+                        // this one runs.
+                        goto default; // and now change the flow to the default case
+                    default:
+                        // this one runs.
+                        break;
+                }
+
 
             }
         } // End class ManyDetails
