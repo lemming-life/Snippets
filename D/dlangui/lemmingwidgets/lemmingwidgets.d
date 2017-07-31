@@ -173,8 +173,7 @@ class ListWidgetNav : StringListWidget {
 		if (event.action == KeyAction.Text) {
 
 			if (!_sw.running) {
-				// If stop watch not running
-				
+				// If stopWatch not running
 				_sw.start;
 				_searchString = ""d ~ to!dchar(event.text.toUTF8);
 			} else {
