@@ -23,7 +23,7 @@ namespace Snippets {
 
         class ManyDetails {
             public static void executeDriver() {
-                // Comment
+                // Single line comment
 
                 /*
                     Multi
@@ -189,6 +189,15 @@ namespace Snippets {
 
                 if (false || true) {
                     // comes here
+                }
+
+                // Nested if
+                if (true) {
+                    if (true) {
+                        if (true) {
+                            // Wnat more?  This is completely valid code. :)
+                        }
+                    }
                 }
                 
 
@@ -445,5 +454,5 @@ namespace Snippets {
         
 
 
-    } // End class CsLanguages
+    } // End class CsLanguage
 }
