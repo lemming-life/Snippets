@@ -2,16 +2,71 @@ Project CS (.NETCoreApp,Version=v1.1) will be compiled because inputs were modif
 Compiling CS for .NETCoreApp,Version=v1.1
 
 Compilation succeeded.
-    1 Warning(s)
+    12 Warning(s)
     0 Error(s)
 
-Time elapsed 00:00:01.4458317
+Time elapsed 00:00:01.3824378
  
 
 
 TEST: C# Language
 
-SubTest: Simple Output and Input
+SubTest: ManyDetails
+A way to output to console.
+Writing with some value: 33
+Writing with some value: 33
+Writing with value: 33 and a second value 66
+do while loop
+0
+1
+2
+while loop
+0
+1
+2
+for loop
+0
+1
+2
+Nested for loops
+i: 0 j: 0
+i: 0 j: 1
+i: 0 j: 2
+i: 1 j: 0
+i: 1 j: 1
+i: 1 j: 2
+i: 2 j: 0
+i: 2 j: 1
+i: 2 j: 2
+Using continue
+i: 0 j: 0
+i: 0 j: 2
+i: 1 j: 0
+i: 1 j: 2
+i: 2 j: 0
+i: 2 j: 2
+Using break
+i: 0 j: 0
+i: 1 j: 0
+i: 2 j: 0
+Printing the values of the elements of anArrayOfStrings via index
+red
+orange
+yellow
+Printing the values of the elements of anArrayOfStrings via foreach
+red
+orange
+yellow
+Printing values from multiDimensionalSpecified
+Row 0 Col 0 Value 0
+Row 0 Col 1 Value 1
+Row 0 Col 2 Value 2
+Row 1 Col 0 Value 3
+Row 1 Col 1 Value 4
+Row 1 Col 2 Value 5
+A random dice number: 6
+
+SubTest: ConsoleOutputInput
 My name is Jack
 Jack is my name.
 Format 1234.5678 with 4 decimal places: 1234.5678
@@ -20,7 +75,9 @@ Format 1234.5678 as currency with two decimal places: $1,234.57
 Format 1234.5678 as exponential: 1.234568e+003
 Format 12 with leading zeros: 0012
 Format 0.33 as percent: 33.000%
-Format 12.3 with 4 zeros and 2 decimal places 0012.30
+Format 12.3 with 4 leading digits a period and 2 decimal places 0012.30
+
+SubTest: ChangeConsole
 
 TEST: Maths
 
@@ -45,6 +102,9 @@ Radius of circle 5 and length of square 10
 Area of circle: 78.5398
 Area of square: 100.0000
 Sum of corners area: 21.4602
+
+SubTest: getHypothenuse(2, 4)
+4.47213595499958
 
 TEST: String Operations
 

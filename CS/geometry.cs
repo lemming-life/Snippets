@@ -10,8 +10,15 @@ namespace Snippets {
 
         public static void executeDriver(bool standardInput = false) {
             Console.WriteLine("\nSubTest: CircleInSquare");
-            CircleInSquare circleInSquare = new CircleInSquare(5);
-            circleInSquare.showResults();
+                CircleInSquare circleInSquare = new CircleInSquare(5);
+                circleInSquare.showResults();
+
+            Console.WriteLine("\nSubTest: getHypothenuse(2, 4)");
+                Console.WriteLine(getHypothenuse(2, 4));
+        }
+
+        public static double getHypothenuse(double sideA, double sideB) {
+            return Math.Sqrt( (sideA*sideA) + (sideB*sideB) );
         }
 
         public class CircleInSquare {

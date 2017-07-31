@@ -29,6 +29,9 @@ namespace ConsoleApplication {
             Console.WriteLine("\nTEST: String Operations");
             StringOperations.executeDriver();
 
+            Console.WriteLine("\nTEST: Time");
+            Time.executeDriver();
+
             Console.WriteLine("\nTEST: Challenge1");
             Challenges.Challenge1.executeDriver();
 
