@@ -1,16 +1,16 @@
 // Author: http://lemming.life
+// Language: C#
 // Description: Collection of Math classes and operations.
-
 
 using System;
 
 namespace Snippets {
     class Maths {
         public static void executeDriver(bool standardIn = false) {
-            Console.WriteLine("\n - TEST: Square");
+            Console.WriteLine("\nSubTest: Square");
             Square.executeDriver();
 
-            Console.WriteLine("\n - TEST: Fibonacci");
+            Console.WriteLine("\nnSubTest: Fibonacci");
             Fibonacci.executeDriver();
         }
 

@@ -1,9 +1,18 @@
 Project CS (.NETCoreApp,Version=v1.1) will be compiled because inputs were modified
 Compiling CS for .NETCoreApp,Version=v1.1
 
-Compilation failed.
-    1 Warning(s)
-    1 Error(s)
+Compilation succeeded.
+    0 Warning(s)
+    0 Error(s)
 
-Time elapsed 00:00:00.8546811
+Time elapsed 00:00:01.0204932
+ 
 
+
+TEST: C# Language
+
+SubTest: Simple Output and Input
+My name is Jack
+Jack is my name.
+Reading input.
+44

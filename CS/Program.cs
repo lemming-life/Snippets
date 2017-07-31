@@ -1,7 +1,6 @@
 ﻿// Author: http://lemming.life
 // Language: C#
-// Purpose: Tests my C# snippets
-// Date: July 16, 2017
+// Description: Tests C# snippets
 
 using System;
 using Snippets;
@@ -13,13 +12,10 @@ dotnet restore
 dotnet run
  */
 
-namespace ConsoleApplication
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            const Boolean CONSOLE_INPUT = false;
+namespace ConsoleApplication {
+    public class Program {
+        public static void Main(string[] args) {
+            const Boolean CONSOLE_INPUT = true;
 
             Console.WriteLine("\nTEST: C# Language");
             CsLanguage.executeDriver(CONSOLE_INPUT);
@@ -39,13 +35,13 @@ namespace ConsoleApplication
             Console.WriteLine("\nTEST: Challenge2");
             Challenges.Challenge2.executeDriver();
 
-            // Since user input is required,
-            // it is best to keep commented for now.
             if (CONSOLE_INPUT) {
                 Console.WriteLine("\nTEST: Input");
                 Input.executeDriver();
             }
            
-        }
-    }
-}
+        } // End Main()
+
+    } // End class Program
+
+} // End namespace ConsoleApplication

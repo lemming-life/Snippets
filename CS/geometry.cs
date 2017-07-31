@@ -1,4 +1,5 @@
 // Author: http://lemming.life
+// Language: C#
 // Description: Collection of geometry classes.
 
 using System;
@@ -8,7 +9,7 @@ namespace Snippets {
     class Geometry {
 
         public static void executeDriver(bool standardInput = false) {
-            Console.WriteLine("\nTEST: CircleInSquare");
+            Console.WriteLine("\nSubTest: CircleInSquare");
             CircleInSquare circleInSquare = new CircleInSquare(5);
             circleInSquare.showResults();
         }

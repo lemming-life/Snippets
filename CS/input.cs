@@ -1,6 +1,6 @@
 // Author: http://lemming.life
 // Language: C#
-// Purpose: Get input from standard in and output as type requested.
+// Description: Get input from standard in and output as type requested.
 
 using System;
 using System.IO;

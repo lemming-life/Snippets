@@ -27,7 +27,6 @@ Output: 24
  */
 
 
-
 using System;
 
  namespace Challenges {

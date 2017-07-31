@@ -1,19 +1,22 @@
+// Author: http://lemming.life
+// Language: C#
+// Description: Collection of C# language bits.
+
 
 using System;
-
 
 namespace Snippets {
     class CsLanguage {
 
         public static void executeDriver(bool standardInput = false) {
-            Console.WriteLine("\n - TEST: Simple Input and Output");
-            ConsoleInputOutput cio = new ConsoleInputOutput();
-                cio.output();
-                if (standardInput) { cio.input(); }
+            Console.WriteLine("\nSubTest: Simple Output and Input");
+            ConsoleOutputInput coi = new ConsoleOutputInput();
+                coi.output();
+                if (standardInput) { coi.input(); }
 
         }
 
-        class ConsoleInputOutput {
+        class ConsoleOutputInput {
 
             public void output() {
                 string name = "Jack";
@@ -26,12 +29,8 @@ namespace Snippets {
                 string input = Console.ReadLine();
                 Console.WriteLine("Your typed: " + input);
             }
-        }
-
-        
+        } // End class ConsoleOutputInput
 
 
-
-    }
-
+    } // End class CsLanguages
 }
