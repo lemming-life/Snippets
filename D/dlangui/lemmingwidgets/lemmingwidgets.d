@@ -179,7 +179,7 @@ class ListWidgetNav : StringListWidget {
 				import std.datetime : to;
 				auto timePassed = _sw.peek.to!("seconds", float)();
 
-				if (timePassed > 0.75) {
+				if (timePassed > 0.5) {
 					import std.conv : to;
 					_searchString = ""d ~ to!dchar(event.text.toUTF8);
 					_sw.reset;
