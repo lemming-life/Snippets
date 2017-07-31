@@ -80,6 +80,11 @@ namespace Snippets {
                 const int A_CONSTANT = 33; // Generally an all caps name is suitable for constants
                 // A_CONSTANT = 44; // If line uncommented, error because we cannot change an already defined constant.
 
+                // var
+                // var is a type defined when assigned
+                var anotherInt = 1234;
+
+
                 // Binary Math operations
                 aInt = 2 + 3; // Sum
                 aInt = 2 - 3; // Subtraction
@@ -333,6 +338,75 @@ namespace Snippets {
                         break;
                 }
 
+                // ARRAYS
+                // A variable that is treated as if it holds several elements of the same type
+
+                // Declaration, and separate initialization
+                int[] anArrayOfInts;                // Declaration
+                anArrayOfInts = new int[]{1, 2, 3}; // Initialization
+
+                // Declaration and initialization
+                string[] anArrayOfStrings = new string[]{"red", "green", "blue"};
+                
+                // To access an element of an array we can use the index of the element.
+                // The first element of an array is at index zero
+                string redColor = anArrayOfStrings[0]; // red
+
+                // Change the second element, index is one
+                anArrayOfStrings[1] = "orange";
+
+                // Change the last element, index would be 2 in this case, or the same as anArrayOfStrings.Length - 1
+                anArrayOfStrings[2] = "yellow";
+                anArrayOfStrings[anArrayOfStrings.Length - 1] = "yellow";
+
+                Console.WriteLine("Printing the values of the elements of anArrayOfStrings via index");
+                for(int index=0; index<anArrayOfStrings.Length; ++index) {
+                    Console.WriteLine( anArrayOfStrings[index] );
+                }
+
+                Console.WriteLine("Printing the values of the elements of anArrayOfStrings via foreach");
+                foreach(var color in anArrayOfStrings) {
+                    Console.WriteLine( color );
+                }
+
+                // Multi Dimensional Array
+                
+                // Dimensions determined automatically
+                int[,] multiDimensionalAuto = new int[,] { {1,2,3}, {4, 5, 6} };
+                // The above reads as an array that holds two arrays of which each can hold 3 elements.
+                // So we have a 2 x 3 array
+                // Doing the above also assigns values at the specified locations.
+                
+                
+                int[,] multiDimensionalSpecified = new int[2,3]; // We could also assign values via { {1,2,3}, {4, 5, 6} };
+                
+                // No values have been specified for multiDimsionalSpecified, so let's assign them via two for loops
+                int valueForArray = 0;
+                for (int row=0; row<multiDimensionalSpecified.GetLength(0); ++row) {
+                    for(int col=0; col<multiDimensionalSpecified.GetLength(1); ++col) {
+                        multiDimensionalSpecified[row, col] = valueForArray;
+                        ++valueForArray;
+                    }
+                }
+
+                Console.WriteLine("Printing values from multiDimensionalSpecified");
+                for (int row=0; row<multiDimensionalSpecified.GetLength(0); ++row) {
+                    for(int col=0; col<multiDimensionalSpecified.GetLength(1); ++col) {
+                        Console.WriteLine("Row {0} Col {1} Value {2}", row, col, multiDimensionalSpecified[row, col]);
+                    }
+                }
+                /*
+                Output is:
+                    Row 0 Col 0 Value 0
+                    Row 0 Col 1 Value 1
+                    Row 0 Col 2 Value 2
+                    Row 1 Col 0 Value 3
+                    Row 1 Col 1 Value 4
+                    Row 1 Col 2 Value 5
+                */
+
+                // 3 Dimensions
+                int [, ,] array3D = new int[1, 2, 3]; // this can be complicated :)
 
             }
         } // End class ManyDetails
