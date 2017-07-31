@@ -1,4 +1,11 @@
-// Needs cleanup.
+// Author: http://lemming.life
+// Language: D
+// Dependencies: dlangui
+// Description:
+// - TListWidget(T) for EditLineForList
+// - EditLineForList : text box that can be used in a list of widgets.
+// - WidgetListAdapterKeysMouse : an adapter that indicates that mouse and keys can be used.
+// - ListWidgetNav : A list that is meant to be used with StringListAdapter and finds item via keystrokes.
 
 module lemmingwidgets;
 import dlangui;
@@ -106,8 +113,6 @@ class EditLineForList : EditLine {
 		return to!dstring(id);
 	}
 } // End EditLineForList
-
-
 
 
 // Widget that allows selection of item via keys
