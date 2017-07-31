@@ -18,10 +18,6 @@ namespace Snippets {
             UrlParser.executeDriver();
         }
 
-
-
-
-        
         
 
         public class Reverse {
@@ -117,7 +113,7 @@ namespace Snippets {
                 Console.WriteLine("Query no path: " + getQuery(url, false));
                 Console.WriteLine("Query with path: " + getQuery(url, true));
             }
-            
+
         } // End class UrlParser
 
 

@@ -36,11 +36,6 @@ using System;
 namespace Challenges {
     
     class Challenge1 {
-
-
-
-
-
         public static void perform(int n) {
             int count = 0;
             string line;
@@ -68,6 +63,7 @@ namespace Challenges {
                 }
             }
         }
-    }
+        
+    } // End class Challenge1
 
 }

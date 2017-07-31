@@ -7,10 +7,10 @@ using System;
 namespace Snippets {
     class Maths {
         public static void executeDriver(bool standardIn = false) {
-            Console.WriteLine("TEST: Square");
+            Console.WriteLine("\n - TEST: Square");
             Square.executeDriver();
 
-            Console.WriteLine("TEST: Fibonacci");
+            Console.WriteLine("\n - TEST: Fibonacci");
             Fibonacci.executeDriver();
         }
 

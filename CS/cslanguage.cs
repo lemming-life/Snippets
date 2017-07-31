@@ -6,14 +6,11 @@ namespace Snippets {
     class CsLanguage {
 
         public static void executeDriver(bool standardInput = false) {
-            Console.WriteLine("TEST: Simple Input and Output");
+            Console.WriteLine("\n - TEST: Simple Input and Output");
             ConsoleInputOutput cio = new ConsoleInputOutput();
-            cio.output();
-            if (standardInput) { cio.input(); }
+                cio.output();
+                if (standardInput) { cio.input(); }
 
-            Console.WriteLine("\n");
-
-            
         }
 
         class ConsoleInputOutput {
