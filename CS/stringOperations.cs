@@ -8,13 +8,13 @@ using System.Text;
 namespace Snippets {
     class StringOperations {
         public static void executeDriver() {
-            Console.WriteLine("\n - TEST: Reverse");
+            Console.WriteLine("\nSubTest: Reverse");
             Reverse.executeDriver();
 
-            Console.WriteLine("\n - TEST: Palindrome");
+            Console.WriteLine("\nSubTest: Palindrome");
             Palindrome.executeDriver();
 
-            Console.WriteLine("\n - TEST: UrlParser");
+            Console.WriteLine("\nSubTest: UrlParser");
             UrlParser.executeDriver();
         }
 

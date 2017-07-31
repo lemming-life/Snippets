@@ -15,7 +15,7 @@ dotnet run
 namespace ConsoleApplication {
     public class Program {
         public static void Main(string[] args) {
-            const Boolean CONSOLE_INPUT = true;
+            const Boolean CONSOLE_INPUT = false;
 
             Console.WriteLine("\nTEST: C# Language");
             CsLanguage.executeDriver(CONSOLE_INPUT);

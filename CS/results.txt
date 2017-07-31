@@ -2,10 +2,10 @@ Project CS (.NETCoreApp,Version=v1.1) will be compiled because inputs were modif
 Compiling CS for .NETCoreApp,Version=v1.1
 
 Compilation succeeded.
-    0 Warning(s)
+    1 Warning(s)
     0 Error(s)
 
-Time elapsed 00:00:01.0204932
+Time elapsed 00:00:01.4458317
  
 
 
@@ -14,5 +14,71 @@ TEST: C# Language
 SubTest: Simple Output and Input
 My name is Jack
 Jack is my name.
-Reading input.
-44
+Format 1234.5678 with 4 decimal places: 1234.5678
+Format 1234.5678 as number with 3 decimal places: 1,234.568
+Format 1234.5678 as currency with two decimal places: $1,234.57
+Format 1234.5678 as exponential: 1.234568e+003
+Format 12 with leading zeros: 0012
+Format 0.33 as percent: 33.000%
+Format 12.3 with 4 zeros and 2 decimal places 0012.30
+
+TEST: Maths
+
+SubTest: Square
+The square of 2 is 4
+The square of 6 is 36
+
+nSubTest: Fibonacci
+Fibonacci(0) = 0
+Fibonacci(1) = 1
+Fibonacci(2) = 1
+Fibonacci(3) = 2
+Fibonacci(4) = 3
+Fibonacci(5) = 5
+Fibonacci(6) = 8
+
+TEST: Geometry
+
+SubTest: CircleInSquare
+Circle In Square Details
+Radius of circle 5 and length of square 10
+Area of circle: 78.5398
+Area of square: 100.0000
+Sum of corners area: 21.4602
+
+TEST: String Operations
+
+SubTest: Reverse
+The reverse of 'Hello, World' is 'dlroW ,olleH'
+The reverse of 12345 is 54321
+
+SubTest: Palindrome
+Is hello a palindrome? False
+Is 101 a palindrome? True
+Is aabbaa a palindrome? True
+
+SubTest: UrlParser
+Url1 is: http://google.com/theQuery123
+Protocol: http
+Domain: google.com
+Query no path: theQuery123
+Query with path: theQuery123
+
+Url2 is: http://google.com/some/stuff/in/between/theQuery123
+Protocol: http
+Domain: google.com
+Query no path: theQuery123
+Query with path: some/stuff/in/between/theQuery123
+
+TEST: Challenge1
+Sum n and its reverse, if result isPalindrome quit, else n is result and repeat.
+Output the iteration count and the resulting sum.
+Input: 195
+Output: 4 9339
+
+TEST: Challenge2
+Do the inclusive sum of numbers from 1 to n, excluding numbers divisible by 5 and 7
+Input: 5, Output: 10
+Input: 6, Output: 16
+Input: 7, Output: 16
+Input: 8, Output: 24
