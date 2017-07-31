@@ -117,7 +117,9 @@ class EditLineForList : EditLine {
 
 // Widget that allows selection of item via keys
 class ListWidgetNav : StringListWidget {
-	import std.datetime : StopWatch;
+	import std.conv : to;
+	import std.datetime : dto = to, StopWatch;
+
 	private dstring _searchString = "";
 	private StopWatch _sw;
 
@@ -172,20 +174,17 @@ class ListWidgetNav : StringListWidget {
 
 			if (!_sw.running) {
 				// If stop watch not running
-				import std.conv : to;
+				
 				_sw.start;
 				_searchString = ""d ~ to!dchar(event.text.toUTF8);
 			} else {
-				import std.datetime : to;
-				auto timePassed = _sw.peek.to!("seconds", float)();
+				immutable auto timePassed = _sw.peek.dto!("seconds", float)(); // dto is std.datetime.to
 
 				if (timePassed > 0.5) {
-					import std.conv : to;
 					_searchString = ""d ~ to!dchar(event.text.toUTF8);
 					_sw.reset;
 				} else {
-					import std.conv : to;
-					_searchString = _searchString ~ to!dchar(event.text.toUTF8);
+					_searchString ~= to!dchar(event.text.toUTF8);
 					_sw.reset;
 				}
 			}
