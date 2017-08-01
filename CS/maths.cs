@@ -19,7 +19,7 @@ namespace Snippets {
 
             Console.WriteLine("\nSubTest: breakByDenomination");
             {
-                int money = 99; // Think of it as $100!
+                int money = 99; // Think of it as $99!
                 const int DENOMINATION_FIFTY = 50;
                 const int DENOMINATION_TWENTY = 20;
                 const int DENOMINATION_TEN = 10;
@@ -41,12 +41,13 @@ namespace Snippets {
                 Console.WriteLine(" is {0}", getAverage(numbers));
             }
 
-            Console.WriteLine("\nSubTest: getHighest / getLowest");
+            Console.WriteLine("\nSubTest: getHighest / getLowest / getHighestByIndex / getLowestByIndex ");
             {
                 double[] numbers = new double[] {1, 2, 3, 5.5, 6.6, 7.7, 1.5, 4, 99, 64 };
                 Console.Write("Given ");
                 foreach(var number in numbers) { Console.Write(number + " "); }
                 Console.WriteLine("\nHighest is {0} and lowest is {1}", getHighest(numbers), getLowest(numbers));
+                Console.WriteLine("Index of highest is {0}, index of lowest is {1}", getHighestByIndex(numbers), getLowestByIndex(numbers));
             }
 
             
@@ -111,6 +112,32 @@ namespace Snippets {
                 }
             }
             return lowest;
+        }
+
+        public static int getHighestByIndex<T>(T[] array) where T : IComparable  {
+            T highest = array[0];
+            int index = 0;
+
+            for (int i=1; i<array.Length; ++i) {
+                if (array[i].CompareTo(highest)>0 ) {
+                    highest = array[i];
+                    index = i;
+                }
+            }
+            return index;
+        }
+
+        public static int getLowestByIndex<T>(T[] array) where T : IComparable  {
+            T lowest = array[0];
+            int index = 0;
+            
+            for (int i=1; i<array.Length; ++i) {
+                if (array[i].CompareTo(lowest) < 0 ) {
+                    lowest = array[i];
+                    index = 0;
+                }
+            }
+            return index;
         }
 
 
