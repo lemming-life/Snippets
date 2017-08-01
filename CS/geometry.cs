@@ -13,9 +13,42 @@ namespace Snippets {
                 CircleInSquare circleInSquare = new CircleInSquare(5);
                 circleInSquare.showResults();
 
-            Console.WriteLine("\nSubTest: getHypothenuse(2, 4)");
-                Console.WriteLine(getHypothenuse(2, 4));
-        }
+            Console.WriteLine("\nSubTest: getHypothenuse");
+            {
+                int sideA = 2;
+                int sideB = 4;
+                Console.WriteLine("sideA {0} and sideB{1}, hypothenuse is {2}", sideA, sideB, getHypothenuse(sideA, sideB));
+            }
+
+            Console.WriteLine("\nSubTest: getPolarCoordinates");
+                {
+                    Console.WriteLine("\nTesting quadrants");
+
+                    double x, y, angle, distance;
+                    x = y = 2; getPolarCoordinates(x, y, out angle, out distance);
+                    Console.WriteLine("x: {0} y: {1} | Polar coords, angle {2:f2}, distance {3:f4}", x, y, angle, distance);
+                    x = -2;y = 2; getPolarCoordinates(x, y, out angle, out distance);
+                    Console.WriteLine("x: {0} y: {1} | Polar coords, angle {2:f2}, distance {3:f4}", x, y, angle, distance);
+                    x = y = -2; getPolarCoordinates(x, y, out angle, out distance);
+                    Console.WriteLine("x: {0} y: {1} | Polar coords, angle {2:f2}, distance {3:f4}", x, y, angle, distance);
+                    x = 2; y = -2; getPolarCoordinates(x, y, out angle, out distance);
+                    Console.WriteLine("x: {0} y: {1} | Polar coords, angle {2:f2}, distance {3:f4}", x, y, angle, distance);
+
+                    Console.WriteLine("\nTesting when coords have zeros.");
+                    x = y = 0; getPolarCoordinates(x, y, out angle, out distance);
+                    Console.WriteLine("x: {0} y: {1} | Polar coords, angle {2:f2}, distance {3:f4}", x, y, angle, distance);
+                    x = 1; y = 0; getPolarCoordinates(x, y, out angle, out distance);
+                    Console.WriteLine("x: {0} y: {1} | Polar coords, angle {2:f2}, distance {3:f4}", x, y, angle, distance);
+                    x = -1; y = 0; getPolarCoordinates(x, y, out angle, out distance);
+                    Console.WriteLine("x: {0} y: {1} | Polar coords, angle {2:f2}, distance {3:f4}", x, y, angle, distance);
+                    x = 0; y = 1; getPolarCoordinates(x, y, out angle, out distance);
+                    Console.WriteLine("x: {0} y: {1} | Polar coords, angle {2:f2}, distance {3:f4}", x, y, angle, distance);
+                    x = 0; y = -1; getPolarCoordinates(x, y, out angle, out distance);
+                    Console.WriteLine("x: {0} y: {1} | Polar coords, angle {2:f2}, distance {3:f4}", x, y, angle, distance);
+                
+                } // End getPolarCoordinates subtest
+                
+        } // End executeDriver()
 
         public static double getHypothenuse(double sideA, double sideB) {
             return Math.Sqrt( (sideA*sideA) + (sideB*sideB) );
@@ -50,6 +83,26 @@ namespace Snippets {
             }
 
         } // End class CircleInSquare
+
+
+        public static void getPolarCoordinates(double x, double y, out double angle, out double distance) {
+            // Determines the distance and angle to the x and y location.
+            // Assumes origin coordinate is 0, 0.
+            // Angle goes from 0 counter-clockwise to 360.
+
+            distance = Math.Sqrt( (x*x) + (y*y) );
+            
+            if ( y==0 && x>0 ) { angle = 0; return; }
+            if ( y>0 && x==0 ) { angle = 90; return; }
+            if ( y==0 && x<0 ) { angle = 180; return; }
+            if ( y<0 && x==0 ) { angle = 270; return; }
+
+            const double RADS_TO_DEGREE_CONVERSION_FACTOR = 180 / Math.PI;
+            angle = Math.Atan(  y / x ) * RADS_TO_DEGREE_CONVERSION_FACTOR;
+
+            if ( x<0 ) { angle = 180 + angle; return; } 
+            if ( x>0 && y<0 ) { angle = 360 + angle; return; }
+        } // End getPolarCoordinates
 
     } // End class Geometry
 }

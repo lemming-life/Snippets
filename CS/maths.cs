@@ -17,7 +17,7 @@ namespace Snippets {
                     Console.WriteLine("fibonacciRecursive({0}) = {1}", n, fibonacciRecursive(n));
                 }
 
-            Console.WriteLine("\nSubTest: computeMoneyChange, breaking {0:f0}", 100);
+            Console.WriteLine("\nSubTest: computeMoneyChange");
                 {
                     int money = 99; // Think of it as $100!
                     const int DENOMINATION_FIFTY = 50;
@@ -32,6 +32,8 @@ namespace Snippets {
                     Console.WriteLine("How many {0:c}? {1}, remaining money: {2:f0}", DENOMINATION_FIVE, breakByDenomination(ref money, DENOMINATION_FIVE), money);
                     Console.WriteLine("How many {0:c}? {1}, remaining money: {2:f0}", DENOMINATION_ONE, breakByDenomination(ref money, DENOMINATION_ONE), money);
                 }
+
+            
 
         } // End executeDriver()
 

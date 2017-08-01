@@ -70,7 +70,6 @@ using System;
             return sum;
         } // End doSum()
         
-        
     } // End class
 
  }
