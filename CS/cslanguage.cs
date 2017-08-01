@@ -381,6 +381,9 @@ namespace Snippets {
 
                 // Declaration and initialization
                 string[] anArrayOfStrings = new string[]{"red", "green", "blue"};
+
+                // Also, another way to declare and initialize:
+                int[] anotherArrayOfInts = {4, 5, 6};
                 
                 // To access an element of an array we can use the index of the element.
                 // The first element of an array is at index zero
@@ -489,9 +492,6 @@ namespace Snippets {
 
                     //intOfDriver = varInScopeB; // If line uncommented: Error, cannot access varInScopeB, it belongs to an inner scope (scopeB)
                 }
-
-
-
 
             }  
 
