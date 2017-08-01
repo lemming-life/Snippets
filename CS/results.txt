@@ -2,10 +2,10 @@ Project CS (.NETCoreApp,Version=v1.1) will be compiled because inputs were modif
 Compiling CS for .NETCoreApp,Version=v1.1
 
 Compilation succeeded.
-    18 Warning(s)
+    21 Warning(s)
     0 Error(s)
 
-Time elapsed 00:00:01.6541880
+Time elapsed 00:00:02.1680303
  
 
 
@@ -64,7 +64,7 @@ Row 0 Col 2 Value 2
 Row 1 Col 0 Value 3
 Row 1 Col 1 Value 4
 Row 1 Col 2 Value 5
-A random dice number: 4
+A random dice number: 3
 
 SubTest: ConsoleOutputInput
 My name is Jack

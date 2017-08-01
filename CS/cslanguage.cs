@@ -56,6 +56,7 @@ namespace Snippets {
                 char aChar;         // has space for 16 bits
                 string aString;     
                 bool aBoolean;
+                // There are many more!
 
                 // Multiple declaration
                 int someX, someY, someZ;
@@ -107,7 +108,6 @@ namespace Snippets {
                 // var is a type defined when assigned
                 var anotherInt = 1234;
 
-
                 // Binary Math operations
                 aInt = 2 + 3; // Sum
                 aInt = 2 - 3; // Subtraction
@@ -150,6 +150,19 @@ namespace Snippets {
 
                 // The equivalent of aInt = aInt - 5 is:
                 aInt -= 5;
+
+
+                // ENVIRONMENT
+                //string theMyDocumentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments) + @"\";
+
+                // STRINGS
+                string aStringWithTab = "\t"; // the \ is an escape character, in this case \t means insert a tab when printing the string
+                string aStringWithNewLine = "\n";   // Insert a new line
+                string aStringEscapingSlash = "\\"; // Will have a \ in the string.
+                string aStringPath = "C:\\Program Files\\";          // This looks ugly for a path name right?
+                string aStringEscapeVerbatim = @"C:\Program Files\"; // Using @ can be useful.
+
+                aChar = aStringPath[0]; // Gets the character first character from aStringPath, which is C
 
 
                 // USING If, else, else if
@@ -530,6 +543,7 @@ namespace Snippets {
 
 
 
+                
 
             } // End executeDriver()
 
