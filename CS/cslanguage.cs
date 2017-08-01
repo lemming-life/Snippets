@@ -78,16 +78,26 @@ namespace Snippets {
 
                 // Multiple assignment
                 someX = someY = someZ = 5; // The 5 is assigned to someZ, then value of someZ is assigned to someY, etc.
-
-                // Casting: converting from one type to another
-                aInt = (int)aUint;  // ok because aInt supports both signed and unsigned
-                aUint = (uint)aInt; // this is only ok if the aInt is zero or positive, otherwise it's an error,
-                                    // because an unsigned integer cannot have a negative number.
-                                    // Note that casting can remove data if not done properly.
                 
                 // Coersion: changes the right side type to match the left side type.
                 aDouble = aInt;     // ok because aDouble has enough space for the integer
                 //aInt = aDouble;   // error because the double is much bigger than the double.
+
+                // Casting: converting how something is managed
+                aInt = (int)aUint;  // ok because aInt supports both signed and unsigned
+                aUint = (uint)aInt; // this is only ok if the aInt is zero or positive, otherwise it's an error,
+                                    // because an unsigned integer cannot have a negative number.
+                                    // Note that casting can remove data if not done properly.
+
+                // Conversion via Parse:
+                aString = "123"; // This is validly numeric.
+                aInt = int.Parse(aString); // Now aInt has 123
+
+                // Conversion via TryParse
+                // TryParse returns true if it can, otherwise false.
+                aBoolean = int.TryParse("123", out aInt); // true
+                aBoolean = int.TryParse("123Hello", out aInt); // false
+                
 
                 // Constants: they cannot be changed
                 const int A_CONSTANT = 33; // Generally an all caps name is suitable for constants
