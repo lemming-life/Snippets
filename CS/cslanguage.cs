@@ -127,8 +127,15 @@ namespace Snippets {
                     // equivalent of doing a = a + 1;
                 --aInt; // decrement the value of aInt by one, then give me the value.
 
+                // Adding/subtracting shortcut
+                // You can do aInt = aInt + 5 to add 5 to aInt, or you can do the following:
+                aInt += 5;
 
-                // If, else, else if
+                // The equivalent of aInt = aInt - 5 is:
+                aInt -= 5;
+
+
+                // USING If, else, else if
                 if (true) {
                     // comes here
                 }
@@ -197,7 +204,7 @@ namespace Snippets {
                     // comes here
                 }
 
-                // Nested if
+                // NESTED if
                 if (true) {
                     if (true) {
                         if (true) {
@@ -396,7 +403,7 @@ namespace Snippets {
                     Console.WriteLine( color );
                 }
 
-                // Multi Dimensional Array
+                // MULTI DIMENSIONAL ARRAY
                 
                 // Dimensions determined automatically
                 int[,] multiDimensionalAuto = new int[,] { {1,2,3}, {4, 5, 6} };
