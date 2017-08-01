@@ -32,9 +32,8 @@ namespace Snippets {
                     Console.WriteLine("How many {0:c}? {1}, remaining money: {2:f0}", DENOMINATION_FIVE, breakByDenomination(ref money, DENOMINATION_FIVE), money);
                     Console.WriteLine("How many {0:c}? {1}, remaining money: {2:f0}", DENOMINATION_ONE, breakByDenomination(ref money, DENOMINATION_ONE), money);
                 }
-                
 
-        }
+        } // End executeDriver()
 
         public static int fibonacciIterative(int n) {
             if (n == 0) { return n; }
