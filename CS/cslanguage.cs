@@ -478,15 +478,16 @@ namespace Snippets {
                     // We'll call this scopeA
 
                     // From here we can access the anything from an outer scope, like this:
-                    intOfDriver = 7; // ok
+                    int varInScopeA = intOfDriver; // ok
                     
                     {
                         // We'll call this scopeB
 
-                        int innerInt = intOfDriver; // We can still access stuff from an outer scope.
+                        int varInScopeB = varInScopeA; // We can still access stuff from an outer scope.
+                        varInScopeB = intOfDriver; // an even more outer scope
                     }
 
-                    //intOfDriver = innerInt; // If line uncommented: Error, cannot access innerInt belongs to an inner scope (scopeB)
+                    //intOfDriver = varInScopeB; // If line uncommented: Error, cannot access varInScopeB, it belongs to an inner scope (scopeB)
                 }
 
 
