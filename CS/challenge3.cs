@@ -1,4 +1,4 @@
-// Partial-Author: http://lemming.life
+// Author: http://lemming.life
 // Language: C#
 
 using System;

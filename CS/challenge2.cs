@@ -1,4 +1,4 @@
-// Partial-Author: http://lemming.life
+// Author: http://lemming.life
 // Language: C#
 // Note: The challenge descriptions are not mine, but the solutions are.
 
