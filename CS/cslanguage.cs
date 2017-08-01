@@ -4,6 +4,7 @@
 
 
 using System;
+using System.IO;
 
 namespace Snippets {
     class CsLanguage {
@@ -19,6 +20,12 @@ namespace Snippets {
 
             Console.WriteLine("\nSubTest: ChangeConsole");
                 ChangeConsole.executeDriver();
+
+            Console.WriteLine("\nSubTest: WriteRead");
+                WriteRead wr = new WriteRead();
+                wr.write();
+                wr.read();
+                wr.remove();
         }
 
         class ManyDetails {
@@ -598,6 +605,47 @@ namespace Snippets {
                 Console.ForegroundColor = ConsoleColor.White;
             }
         }
+
+        class WriteRead {
+            // Demonstrates how to to write and read from file.
+            // It utilizes: using System.IO;
+
+            private static string fileName = "tempFile.txt";
+            public void write() {
+                Console.WriteLine("Writing file " + fileName);
+                using (StreamWriter writer = File.CreateText(fileName) ) {
+                    for (int i=0; i<5; ++i) {
+                        writer.WriteLine("\tLine " + i);
+                    }
+                } // calls writer.Dispose()
+                Console.WriteLine("Finished writing file.");
+            }
+
+            public void read() {
+                Console.WriteLine("Reading file " + fileName);
+                if (!File.Exists(fileName)) { Console.WriteLine("File {0} doesn't exist.", fileName); return; }
+                using (StreamReader reader = File.OpenText(fileName)) {
+                    string line;
+                    while ( (line = reader.ReadLine()) != null) {
+                        Console.WriteLine(line);
+                    }
+                } // calls reader.Dispose()
+                Console.WriteLine("Finished reading file.");
+            }
+
+            public void remove() {
+                if ( File.Exists(fileName) ) {
+                    File.Delete(fileName);
+                    if (File.Exists(fileName)) {
+                        Console.WriteLine("Could not remove {0}", fileName);
+                    } else {
+                        Console.WriteLine("Removed file {0}", fileName);
+                    }
+                } else {
+                    Console.WriteLine("File {0} doesn't exist.", fileName);
+                }
+            }
+        } // End class WriteRead
 
         
 
