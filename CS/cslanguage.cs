@@ -525,6 +525,9 @@ namespace Snippets {
 
                 // Having a public getter, but an internal to class only setter
                 public int Y { get; internal set; }
+
+                // Having a private getter, and a public setter
+                public int Z { private get; set;}
             }
 
 
