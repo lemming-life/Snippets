@@ -207,10 +207,17 @@ namespace Snippets {
                 }
                 
 
-                // Tertiary operator
-                // Identical to if else
+                // TERNARY OPERATOR
+                // Similar to if else
                 // Evaluates a condition if so return left of : otherwise return right
-                aString = ( 1 == 1 ? "true" : "false");  
+                aString = ( 1 == 1 ? "James" : "Jane"); 
+
+                // The equivalent using if/else
+                if (1 == 1) {
+                    aString = "James";
+                } else {
+                    aString = "Jane";
+                }
 
                 Console.WriteLine("do while loop");
                 // Notice the semi-colon at the end of while()
@@ -258,6 +265,8 @@ namespace Snippets {
                     i: 2 j: 2
                 */
 
+                // USING continue AND break
+
                 // continue
                 // A way to change the control flow of the program.
                 // In this case the second for loop skips and goes to the second for loop evaluation
@@ -278,7 +287,7 @@ namespace Snippets {
                     i: 2 j: 2
                  */
 
-                 // break
+                // break
                 // A way to change the control flow of the program.
                 // In this case the second for loop is skipped, and control is given to the first for loop evaluation
                 Console.WriteLine("Using break");
@@ -295,7 +304,9 @@ namespace Snippets {
                     i: 2 j: 0
                 */
 
-                // switch statement
+                // THE switch STATEMENT
+
+                // switch statement 1
                 // - When value is found.
                 aInt = 1;
                 switch(aInt) {
@@ -352,6 +363,7 @@ namespace Snippets {
                         // this one runs.
                         break;
                 }
+
 
                 // ARRAYS
                 // A variable that is treated as if it holds several elements of the same type
@@ -424,7 +436,7 @@ namespace Snippets {
                 int [, ,] array3D = new int[1, 2, 3]; // this can be complicated :)
 
 
-                // String stuff
+                // STRING STUFF
                 string nameOfPerson = "Isaac Newton";
                 string nameInAllLower = nameOfPerson.ToLower(); // isaac newton
 
@@ -448,6 +460,31 @@ namespace Snippets {
                 // Methods are functions that can be accessed via the object.
                 // Functions are procedures, which have blocks of instructions.
                 // - The term function is usually given to non-object attached.
+
+
+
+                // SCOPE
+                int intOfDriver = 5; // This exists in the executeDriver method scope.
+
+                {
+                    // This is a scope inside of the executeDriver method
+                    // We'll call this scopeA
+
+                    // From here we can access the anything from an outer scope, like this:
+                    intOfDriver = 7; // ok
+                    
+                    {
+                        // We'll call this scopeB
+
+                        int innerInt = intOfDriver; // We can still access stuff from an outer scope.
+                    }
+
+                    //intOfDriver = innerInt; // If line uncommented: Error, cannot access innerInt belongs to an inner scope (scopeB)
+                }
+
+
+
+
             }  
 
 
