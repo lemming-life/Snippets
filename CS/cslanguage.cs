@@ -513,7 +513,13 @@ namespace Snippets {
                 Simple.e = 5;   // Notice that it is capital S on Simple.
 
                 // ARRAY of OBJECTS
-                Simple[] simpleObjects = {new Simple(), new Simple()}; // two simple objects in array.
+                Simple[] simpleObjects = { new Simple(), new Simple() }; // two simple objects in array.
+
+                // Calling a member method
+                int theSum = Sum.doTheSum(5, 7); // doTheSum is a static member of the Sum class
+
+
+
 
             } // End executeDriver()
 
@@ -521,11 +527,12 @@ namespace Snippets {
                 // Structs are similar to a Class
                 // I would use the philosophy of the D programming language with these.
                 // - Structs should be used as a collection of values.
+                // - But this is not the definition in C#
                 public int a;
                 public int b;
 
                 public int c, d; // multiple in a single line.
-            }
+            } // End struct SimpleStruct
 
             
             class Simple {
@@ -540,7 +547,7 @@ namespace Snippets {
                 public static int e;       // static member means only one per all instances of Simple
 
                 // Note that Simple has a default constructor
-            }
+            } // End class Simple
 
             class Properties {
                 // Shows C# properties
@@ -565,6 +572,25 @@ namespace Snippets {
                     // It's wise to initialize anything with private/internal setters.
                     // Otherwise a call to the getter will try to return but instead we'll have an error.
                     this.Y = 0;
+                }
+            } // End class Properties
+
+            class Sum {
+                public static int doTheSum(int a, int b) {
+                    return a + b;
+                }
+            }
+
+            class HasConstructor {
+                public HasConstructor(int a, int b) {
+                    // This is a parametized constructor
+                    // Notice that it does not have an explicit return type.
+                    // - The return type is implicit and it is of HasConstructor.
+                }
+
+                public HasConstructor(int a, char b, string c) {
+                    // Overloading: The same method name with a different signature.
+                    // The signature is the argument types: int, char , string
                 }
             }
 
