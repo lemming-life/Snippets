@@ -19,7 +19,17 @@ namespace Snippets {
                 Console.WriteLine("Is {0} leap? {1}", year, isLeapYear(year++));
                 Console.WriteLine("Is {0} leap? {1}", year, isLeapYear(year++));
                 Console.WriteLine("Is {0} leap? {1}", year, isLeapYear(year++));
-        }
+            Console.WriteLine("\nSubTest: timeAsMinutes");
+                string hhmm = "00:33";
+                Console.WriteLine("{0} is {1} minutes", hhmm, timeAsMinutes(hhmm));
+                hhmm = "01:00";
+                Console.WriteLine("{0} is {1} minutes", hhmm, timeAsMinutes(hhmm));
+                hhmm = "01:33";
+                Console.WriteLine("{0} is {1} minutes", hhmm, timeAsMinutes(hhmm));
+                hhmm = "24:00";
+                Console.WriteLine("{0} is {1} minutes", hhmm, timeAsMinutes(hhmm));
+
+        } // End executeDriver()
 
         public static bool isLeapYear(int year) {
             if (year < 1582) { return false;} // https://en.wikipedia.org/wiki/Leap_year
