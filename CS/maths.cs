@@ -8,30 +8,38 @@ namespace Snippets {
     class Maths {
         public static void executeDriver(bool standardIn = false) {
             Console.WriteLine("\nnSubTest: fibonacciIterative");
-                for (int n = 0; n < 7; ++n) {
-                    Console.WriteLine("fibonacciIterative({0}) = {1}", n, fibonacciIterative(n));
-                }
+            for (int n = 0; n < 7; ++n) {
+                Console.WriteLine("fibonacciIterative({0}) = {1}", n, fibonacciIterative(n));
+            }
 
             Console.WriteLine("\nnSubTest: fibonacciRecursive");
-                for (int n = 0; n < 7; ++n) {
-                    Console.WriteLine("fibonacciRecursive({0}) = {1}", n, fibonacciRecursive(n));
-                }
+            for (int n = 0; n < 7; ++n) {
+                Console.WriteLine("fibonacciRecursive({0}) = {1}", n, fibonacciRecursive(n));
+            }
 
-            Console.WriteLine("\nSubTest: computeMoneyChange");
-                {
-                    int money = 99; // Think of it as $100!
-                    const int DENOMINATION_FIFTY = 50;
-                    const int DENOMINATION_TWENTY = 20;
-                    const int DENOMINATION_TEN = 10;
-                    const int DENOMINATION_FIVE = 5;
-                    const int DENOMINATION_ONE = 1;
-                    Console.WriteLine("Initial money: {0:c0}", money);
-                    Console.WriteLine("How many {0:c}? {1}, remaining money: {2:f0}", DENOMINATION_FIFTY, breakByDenomination(ref money, DENOMINATION_FIFTY), money);
-                    Console.WriteLine("How many {0:c}? {1}, remaining money: {2:f0}", DENOMINATION_TWENTY, breakByDenomination(ref money, DENOMINATION_TWENTY), money);
-                    Console.WriteLine("How many {0:c}? {1}, remaining money: {2:f0}", DENOMINATION_TEN, breakByDenomination(ref money, DENOMINATION_TEN), money);
-                    Console.WriteLine("How many {0:c}? {1}, remaining money: {2:f0}", DENOMINATION_FIVE, breakByDenomination(ref money, DENOMINATION_FIVE), money);
-                    Console.WriteLine("How many {0:c}? {1}, remaining money: {2:f0}", DENOMINATION_ONE, breakByDenomination(ref money, DENOMINATION_ONE), money);
-                }
+            Console.WriteLine("\nSubTest: breakByDenomination");
+            {
+                int money = 99; // Think of it as $100!
+                const int DENOMINATION_FIFTY = 50;
+                const int DENOMINATION_TWENTY = 20;
+                const int DENOMINATION_TEN = 10;
+                const int DENOMINATION_FIVE = 5;
+                const int DENOMINATION_ONE = 1;
+                Console.WriteLine("Initial money: {0:c0}", money);
+                Console.WriteLine("How many {0:c}? {1}, remaining money: {2:f0}", DENOMINATION_FIFTY, breakByDenomination(ref money, DENOMINATION_FIFTY), money);
+                Console.WriteLine("How many {0:c}? {1}, remaining money: {2:f0}", DENOMINATION_TWENTY, breakByDenomination(ref money, DENOMINATION_TWENTY), money);
+                Console.WriteLine("How many {0:c}? {1}, remaining money: {2:f0}", DENOMINATION_TEN, breakByDenomination(ref money, DENOMINATION_TEN), money);
+                Console.WriteLine("How many {0:c}? {1}, remaining money: {2:f0}", DENOMINATION_FIVE, breakByDenomination(ref money, DENOMINATION_FIVE), money);
+                Console.WriteLine("How many {0:c}? {1}, remaining money: {2:f0}", DENOMINATION_ONE, breakByDenomination(ref money, DENOMINATION_ONE), money);
+            }
+
+            Console.WriteLine("\nSubTest: computeAverage");
+            {
+                double[] numbers = new double[] {1, 2, 3, 5.5, 6.6, 7.7 };
+                Console.Write("The average of ");
+                foreach(var number in numbers) { Console.Write(number + " "); }
+                Console.WriteLine(" is {0}", getAverage(numbers));
+            }
 
             
 
@@ -65,6 +73,19 @@ namespace Snippets {
             amount = amount % denomination;
             return numberOfDenominations;
         }
+
+        public static double getAverage(double[] array) {
+            if (array.Length == 0) { return 0; }
+            double sum = 0;
+            for (int i=0; i<array.Length; ++i) {
+                sum += (double) array[i];
+            }
+            return sum / array.Length;
+        }
+
+        
+
+
 
     } // End class Maths
 }
