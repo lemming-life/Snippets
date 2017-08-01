@@ -6,7 +6,6 @@ using System;
 
 namespace Snippets {
     class Time {
-        
 
         public static void executeDriver() {
             Console.WriteLine("\nSubTest: isLeapYear");
