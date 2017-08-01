@@ -5,7 +5,7 @@ Compilation succeeded.
     18 Warning(s)
     0 Error(s)
 
-Time elapsed 00:00:01.4740028
+Time elapsed 00:00:01.1638641
  
 
 
@@ -64,7 +64,7 @@ Row 0 Col 2 Value 2
 Row 1 Col 0 Value 3
 Row 1 Col 1 Value 4
 Row 1 Col 2 Value 5
-A random dice number: 5
+A random dice number: 4
 
 SubTest: ConsoleOutputInput
 My name is Jack
@@ -119,8 +119,12 @@ How many $10.00? 0, remaining money: 9
 How many $5.00? 1, remaining money: 4
 How many $1.00? 4, remaining money: 0
 
-SubTest: computeAverage
+SubTest: getAverage
 The average of 1 2 3 5.5 6.6 7.7  is 4.3
+
+SubTest: getHighest / getLowest
+Given 1 2 3 5.5 6.6 7.7 1.5 4 99 64 
+Highest is 99 and lowest is 1
 
 TEST: Geometry
 

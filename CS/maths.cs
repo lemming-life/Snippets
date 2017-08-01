@@ -33,12 +33,20 @@ namespace Snippets {
                 Console.WriteLine("How many {0:c}? {1}, remaining money: {2:f0}", DENOMINATION_ONE, breakByDenomination(ref money, DENOMINATION_ONE), money);
             }
 
-            Console.WriteLine("\nSubTest: computeAverage");
+            Console.WriteLine("\nSubTest: getAverage");
             {
                 double[] numbers = new double[] {1, 2, 3, 5.5, 6.6, 7.7 };
                 Console.Write("The average of ");
                 foreach(var number in numbers) { Console.Write(number + " "); }
                 Console.WriteLine(" is {0}", getAverage(numbers));
+            }
+
+            Console.WriteLine("\nSubTest: getHighest / getLowest");
+            {
+                double[] numbers = new double[] {1, 2, 3, 5.5, 6.6, 7.7, 1.5, 4, 99, 64 };
+                Console.Write("Given ");
+                foreach(var number in numbers) { Console.Write(number + " "); }
+                Console.WriteLine("\nHighest is {0} and lowest is {1}", getHighest(numbers), getLowest(numbers));
             }
 
             
@@ -83,7 +91,27 @@ namespace Snippets {
             return sum / array.Length;
         }
 
-        
+        public static T getHighest<T>(T[] array) where T : IComparable  {
+            T highest = array[0];
+            
+            for (int i=1; i<array.Length; ++i) {
+                if (array[i].CompareTo(highest)>0 ) {
+                    highest = array[i];
+                }
+            }
+            return highest;
+        }
+
+        public static T getLowest<T>(T[] array) where T : IComparable  {
+            T lowest = array[0];
+            
+            for (int i=1; i<array.Length; ++i) {
+                if (array[i].CompareTo(lowest) < 0 ) {
+                    lowest = array[i];
+                }
+            }
+            return lowest;
+        }
 
 
 
