@@ -488,16 +488,51 @@ namespace Snippets {
 
                         int varInScopeB = varInScopeA; // We can still access stuff from an outer scope.
                         varInScopeB = intOfDriver; // an even more outer scope
-                    }
+                    } // End scopeB
 
                     //intOfDriver = varInScopeB; // If line uncommented: Error, cannot access varInScopeB, it belongs to an inner scope (scopeB)
+                } // End scopeA
+
+            } // End executeDriver()
+
+            
+            class Simple {
+                // Shows access modifiers, static member, and default constructor
+
+                int a;              // Access in C# is private by default.
+
+                public int b;       // Allows access from anywhere
+                private int c;      // Access in the same class
+                protected int d;    // Access in the same class and derived
+
+                public static int e;       // static member means only one per all instances of Simple
+
+                // Note that Simple has a default constructor
+            }
+
+            class Properties {
+                // Shows C# properties
+
+                // Automatic properties
+                public int AutoSetGet { get; set; }
+
+                // using a member variable and public properties
+                private int _x;
+                public int X {
+                    get{ return _x; }
+                    set{ _x = value; }
                 }
 
-            }  
+                // Having a public getter, but an internal to class only setter
+                public int Y { get; internal set; }
+            }
 
 
 
         } // End class ManyDetails
+
+
+
 
         class ConsoleOutputInput {
 
