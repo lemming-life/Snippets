@@ -493,18 +493,43 @@ namespace Snippets {
                     //intOfDriver = varInScopeB; // If line uncommented: Error, cannot access varInScopeB, it belongs to an inner scope (scopeB)
                 } // End scopeA
 
+                // Struct, is similar to a 
+                SimpleStruct aStruct;
+                aStruct.a = 5;  // a is a member of aStruct
+
+                // OBJECTS
+                Simple simple = new Simple(); // Notice the new keyword.
+                //simple.a = 1; // Can't do it because it's private.
+                //simple.b = 2; // Can't do it because it's private.
+                //simple.c = 3; // Can't do it because it's protected.
+                simple.d = 4;   // ok, because it's public
+                Simple.e = 5;   // Notice that it is capital S on Simple.
+
+                // ARRAY of OBJECTS
+                Simple[] simpleObjects = {new Simple(), new Simple()}; // two simple objects in array.
+
             } // End executeDriver()
+
+            struct SimpleStruct {
+                // Structs are similar to a Class
+                // I would use the philosophy of the D programming language with these.
+                // - Structs should be used as a collection of values.
+                public int a;
+                public int b;
+
+                public int c, d; // multiple in a single line.
+            }
 
             
             class Simple {
                 // Shows access modifiers, static member, and default constructor
 
                 int a;              // Access in C# is private by default.
+                private int b;      // Access in the same class.
+                protected int c;    // Access in the same class and derived
 
-                public int b;       // Allows access from anywhere
-                private int c;      // Access in the same class
-                protected int d;    // Access in the same class and derived
-
+                public int d;       // Allows access from anywhere
+                
                 public static int e;       // static member means only one per all instances of Simple
 
                 // Note that Simple has a default constructor
@@ -528,6 +553,12 @@ namespace Snippets {
 
                 // Having a private getter, and a public setter
                 public int Z { private get; set;}
+
+                public Properties() {
+                    // It's wise to initialize anything with private/internal setters.
+                    // Otherwise a call to the getter will try to return but instead we'll have an error.
+                    this.Y = 0;
+                }
             }
 
 
