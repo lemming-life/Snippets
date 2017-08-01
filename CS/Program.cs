@@ -45,6 +45,10 @@ namespace ConsoleApplication {
                 Console.WriteLine("\nTEST: Input");
                 Input.executeDriver();
             }
+
+            Console.WriteLine("\nTEST: Sorting");
+                Sorting.executeDriver();
+
            
         } // End Main()
 

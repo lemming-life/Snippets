@@ -22,7 +22,7 @@ namespace Snippets {
         }
 
 
-        static void Swap<T>(ref T left, ref T right) {
+        public static void Swap<T>(ref T left, ref T right) {
             // Generic swap via reference.
             T temp;
             temp = left;
