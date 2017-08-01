@@ -41,6 +41,10 @@ namespace ConsoleApplication {
             Console.WriteLine("\nTEST: Challenge2");
             Challenges.Challenge2.executeDriver();
 
+            Console.WriteLine("\nTEST: Challenge3");
+            Challenges.Challenge3.executeDriver();
+
+
             if (CONSOLE_INPUT) {
                 Console.WriteLine("\nTEST: Input");
                 Input.executeDriver();

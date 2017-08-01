@@ -384,7 +384,7 @@ namespace Snippets {
 
                 // Declaration, and separate initialization
                 int[] anArrayOfInts;                // Declaration
-                anArrayOfInts = new int[]{1, 2, 3}; // Initialization
+                anArrayOfInts = new int[3]{1, 2, 3}; // Initialization
 
                 // Declaration and initialization
                 string[] anArrayOfStrings = new string[]{"red", "green", "blue"};

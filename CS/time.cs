@@ -29,6 +29,12 @@ namespace Snippets {
             return true;
         }
 
+        public static int timeAsMinutes(string hhmm) {
+            // Input: hhmm must be in hh:mm
+            const int MINUTES_IN_HOUR = 60;
+            return (int.Parse(hhmm.Substring(0, 2)) * MINUTES_IN_HOUR) + int.Parse(hhmm.Substring(3, 2));
+        }
+
     } // End class Time
 
 }

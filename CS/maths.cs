@@ -26,11 +26,11 @@ namespace Snippets {
                     const int DENOMINATION_FIVE = 5;
                     const int DENOMINATION_ONE = 1;
                     Console.WriteLine("Initial money: {0:c0}", money);
-                    Console.WriteLine("How many {0:c}? {1}, remaining money: {2:f0}", DENOMINATION_FIFTY, computeMoneyChange(ref money, DENOMINATION_FIFTY), money);
-                    Console.WriteLine("How many {0:c}? {1}, remaining money: {2:f0}", DENOMINATION_TWENTY, computeMoneyChange(ref money, DENOMINATION_TWENTY), money);
-                    Console.WriteLine("How many {0:c}? {1}, remaining money: {2:f0}", DENOMINATION_TEN, computeMoneyChange(ref money, DENOMINATION_TEN), money);
-                    Console.WriteLine("How many {0:c}? {1}, remaining money: {2:f0}", DENOMINATION_FIVE, computeMoneyChange(ref money, DENOMINATION_FIVE), money);
-                    Console.WriteLine("How many {0:c}? {1}, remaining money: {2:f0}", DENOMINATION_ONE, computeMoneyChange(ref money, DENOMINATION_ONE), money);
+                    Console.WriteLine("How many {0:c}? {1}, remaining money: {2:f0}", DENOMINATION_FIFTY, breakByDenomination(ref money, DENOMINATION_FIFTY), money);
+                    Console.WriteLine("How many {0:c}? {1}, remaining money: {2:f0}", DENOMINATION_TWENTY, breakByDenomination(ref money, DENOMINATION_TWENTY), money);
+                    Console.WriteLine("How many {0:c}? {1}, remaining money: {2:f0}", DENOMINATION_TEN, breakByDenomination(ref money, DENOMINATION_TEN), money);
+                    Console.WriteLine("How many {0:c}? {1}, remaining money: {2:f0}", DENOMINATION_FIVE, breakByDenomination(ref money, DENOMINATION_FIVE), money);
+                    Console.WriteLine("How many {0:c}? {1}, remaining money: {2:f0}", DENOMINATION_ONE, breakByDenomination(ref money, DENOMINATION_ONE), money);
                 }
                 
 
@@ -57,8 +57,7 @@ namespace Snippets {
             return fibonacciRecursive(n - 1) + fibonacciRecursive(n - 2);
         }
 
-
-        public static int computeMoneyChange(ref int amount, int denomination) {
+        public static int breakByDenomination(ref int amount, int denomination) {
             // Purpose: Determine how many denominations fit into the amount based on the denomination
             // Postcondition: amount will change to reflect the value removed by possible denominations returned
             int numberOfDenominations = amount / denomination;
