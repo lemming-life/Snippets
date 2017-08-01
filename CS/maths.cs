@@ -17,12 +17,20 @@ namespace Snippets {
                     Console.WriteLine("fibonacciRecursive({0}) = {1}", n, fibonacciRecursive(n));
                 }
 
-            Console.WriteLine("\nSubTest: computeMoneyChange");
+            Console.WriteLine("\nSubTest: computeMoneyChange, breaking {0:f0}", 100);
                 {
-                    int money = 100; // between 1 and 99 inclusive.
-                    const int DENOMINATION_QUARTER = 25;
-                    Console.WriteLine("Initial money: {0:f0}", money);
-                    Console.WriteLine("Quarters: {0}, remaining money: {1:f0}", computeMoneyChange(ref money, DENOMINATION_QUARTER), money);
+                    int money = 99; // Think of it as $100!
+                    const int DENOMINATION_FIFTY = 50;
+                    const int DENOMINATION_TWENTY = 20;
+                    const int DENOMINATION_TEN = 10;
+                    const int DENOMINATION_FIVE = 5;
+                    const int DENOMINATION_ONE = 1;
+                    Console.WriteLine("Initial money: {0:c0}", money);
+                    Console.WriteLine("How many {0:c}? {1}, remaining money: {2:f0}", DENOMINATION_FIFTY, computeMoneyChange(ref money, DENOMINATION_FIFTY), money);
+                    Console.WriteLine("How many {0:c}? {1}, remaining money: {2:f0}", DENOMINATION_TWENTY, computeMoneyChange(ref money, DENOMINATION_TWENTY), money);
+                    Console.WriteLine("How many {0:c}? {1}, remaining money: {2:f0}", DENOMINATION_TEN, computeMoneyChange(ref money, DENOMINATION_TEN), money);
+                    Console.WriteLine("How many {0:c}? {1}, remaining money: {2:f0}", DENOMINATION_FIVE, computeMoneyChange(ref money, DENOMINATION_FIVE), money);
+                    Console.WriteLine("How many {0:c}? {1}, remaining money: {2:f0}", DENOMINATION_ONE, computeMoneyChange(ref money, DENOMINATION_ONE), money);
                 }
                 
 
@@ -51,11 +59,11 @@ namespace Snippets {
 
 
         public static int computeMoneyChange(ref int amount, int denomination) {
-            // Purpose: Determine how many coins fit into the amount based on the denomination
-            // Postcondition: amount will change to reflect the value removed by possible coins returned
-            int coins = amount / denomination;
+            // Purpose: Determine how many denominations fit into the amount based on the denomination
+            // Postcondition: amount will change to reflect the value removed by possible denominations returned
+            int numberOfDenominations = amount / denomination;
             amount = amount % denomination;
-            return coins;
+            return numberOfDenominations;
         }
 
     } // End class Maths
