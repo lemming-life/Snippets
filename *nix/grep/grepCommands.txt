@@ -1,0 +1,7 @@
+
+// Look for "Name" in all files of the current directory
+grep -i "Name" *
+
+// Look for "Name" in all files recursively in the subdirectories
+grep -d recurse "Name" *
+

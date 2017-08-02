@@ -30,4 +30,4 @@ namespace Snippets {
             right = temp;
         }
     } // End class Misc
-}
+} 
