@@ -8,7 +8,7 @@ using System.IO;
 using System.Collections.Generic;
 
 namespace Snippets {
-    class CsLanguage {
+    class Language {
 
         public static void executeDriver(bool standardInput = false) {
             Console.WriteLine("\nSubTest: ManyDetails");
