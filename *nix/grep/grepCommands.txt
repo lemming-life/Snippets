@@ -1,7 +1,27 @@
 
-// Look for "Name" in all files of the current directory
+EXAMPLE: Look for "Name" in all files of the current directory
 grep -i "Name" *
 
-// Look for "Name" in all files recursively in the subdirectories
+Output:
+file1.txt:Name: Kanye
+file2.txt:Name: George
+file3.txt:Name: Fred
+
+
+EXAMPLE: Look for "Name" in all files recursively in the subdirectories
 grep -d recurse "Name" *
 
+Output:
+grepCommands.txt:        Name: Kanye
+grepCommands.txt:        Name: George
+grepCommands.txt:        Name: Fred
+
+
+FOLDERS/FILES LOOK AS FOLLOWS:
+files
+    file1.txt
+        Name: Kanye
+    file2.txt
+        Name: George
+    file3.txt
+        Name: Fred
