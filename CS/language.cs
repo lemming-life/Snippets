@@ -524,11 +524,12 @@ namespace Snippets {
                     //intOfDriver = varInScopeB; // If line uncommented: Error, cannot access varInScopeB, it belongs to an inner scope (scopeB)
                 } // End scopeA
 
-                // Struct, is similar to a 
+                // Struct should probably be treated as a container for members
+                // But the definitions aren't always so clear.
                 SimpleStruct aStruct;
                 aStruct.a = 5;  // a is a member of aStruct
 
-                // OBJECTS
+                // OBJECTS (brief)
                 Simple simple = new Simple(); // Notice the new keyword.
                 //simple.a = 1; // Can't do it because it's private.
                 //simple.b = 2; // Can't do it because it's private.
@@ -542,6 +543,13 @@ namespace Snippets {
                 // Calling a member method
                 int theSum = Sum.doTheSum(5, 7); // doTheSum is a static member of the Sum class
 
+                // TUPLE
+                // - A tuple contains one or more elements.
+                Tuple<int> intTuple = new Tuple<int>(5); // An int Tuple containing the value 5
+                int valueFromIntTuple = intTuple.Item1; // Getting the value from the tuple.
+
+                Tuple<int, string> intStringTuple = new Tuple<int, string>(1, "string value"); // A tuple that has an int and a string.
+                string stringFromIntStringTuple = intStringTuple.Item2;
 
                 // LISTS
                 // - Lists allow you to store items, and the numbers of them can grow.
@@ -572,6 +580,9 @@ namespace Snippets {
                 foreach(var item in myList) { Console.Write(item + " "); }
 
                 myList.Clear(); // Remove all elements from myList
+
+                
+                Dictionary<int, string> myDictionary = new Dictionary<int, string>(); // 
 
                 
                 Console.WriteLine("\n\n\n");
