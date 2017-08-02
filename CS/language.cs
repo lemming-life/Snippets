@@ -581,10 +581,33 @@ namespace Snippets {
 
                 myList.Clear(); // Remove all elements from myList
 
-                
-                Dictionary<int, string> myDictionary = new Dictionary<int, string>(); // 
+                // DICTIONARY / MAP
+                // - A dictionary uses key and value pairs.
+                // -- <key, value>
+                Dictionary<int, string> myDictionary = new Dictionary<int, string>();
+                myDictionary.Add(0, "value0"); // Adding, key is 0, value is value0
+                myDictionary[1] = "value1"; // Adding, key is 1, value is value1
+                string myValueFromMyDictionary = myDictionary[0]; // Getting the value from myDictionary given key 0
+                int keyValueCount = myDictionary.Count;
+                var allKeysFromDictionary = myDictionary.Keys;
+                var allValuesFromDictionary = myDictionary.Values;
 
-                
+                // Going through the dictionary
+                foreach( var keyValue in myDictionary) {
+                    int theKey = keyValue.Key;
+                    string theValue = keyValue.Value;
+                }
+
+                bool hasKeyOne = myDictionary.ContainsKey(1);   // Returns whether key exists in dictionary
+                bool hasValue1 = myDictionary.ContainsValue("value1");
+                myDictionary.Clear();
+
+                // The more complex the key or value the harder it is to deal with the dictionary.
+                Dictionary<int, Tuple<int, bool, string>> dictionaryWithTupleValues = new Dictionary<int, Tuple<int, bool, string>>();
+
+                // You can simplify the left side of the equal sign with var
+                var dictionaryWithMoreStuffInTuple = new Dictionary<int,  Tuple<int, bool, string, char>>();
+                            
                 Console.WriteLine("\n\n\n");
             } // End executeDriver()
 
