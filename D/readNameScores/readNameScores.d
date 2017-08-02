@@ -21,10 +21,22 @@ void main(string[] args) {
         string name = line[0 .. index];
 
         string scoreString = line[index+2 .. line.length];
-        int score = parse!int(scoreString);
+        int score = parse!int(scoreString); // the parsing does not allow a range
 
         if (score >= A_SCORE) {
             writeln(name ~ " - " ~ to!string(score));
         }
     }
 }
+
+/* If Input is:
+Leo, 55
+Einstein, 99
+Newton, 95
+Obama, 70
+Edison, 33
+
+Expect output as:
+Einstein - 99
+Newton - 95
+*/
