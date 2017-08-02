@@ -5,6 +5,7 @@
 
 using System;
 using System.IO;
+using System.Collections.Generic;
 
 namespace Snippets {
     class CsLanguage {
@@ -496,7 +497,7 @@ namespace Snippets {
                 // - Objects are created and destroyed via C# garbage collection, therefore no memory leaks.
                 // - In other many other languages one has to manually free the memory.
                 
-                Console.WriteLine("A random dice number: {0}", randomDiceNumber.Next(1, 7) );   // This is a call to Next( <included>, <one less than this one>)
+                Console.WriteLine("\nA random dice number: {0}", randomDiceNumber.Next(1, 7) );   // This is a call to Next( <included>, <one less than this one>)
                 // Methods are functions that can be accessed via the object.
                 // Functions are procedures, which have blocks of instructions.
                 // - The term function is usually given to non-object attached.
@@ -542,9 +543,38 @@ namespace Snippets {
                 int theSum = Sum.doTheSum(5, 7); // doTheSum is a static member of the Sum class
 
 
+                // LISTS
+                // - Lists allow you to store items, and the numbers of them can grow.
+                List<int> myList = new List<int>(); // A list of ints.
+                myList.Add(1);  // One way to add items to the list.
+                myList.Add(4);
+                myList.Add(2);
+                myList.Add(3);
+                myList.Add(2);
+
+                int myIntFromList = myList[0]; // Get the first element from myList
+
+                myList.Sort();  // A neat sorting method, default is ascending
+                Console.WriteLine("\nNumbers of the list sorted.");
+                foreach(var item in myList) {
+                    Console.Write(item + " ");
+                }
+
+                int[] myIntsFromList = myList.ToArray(); // A method to convert to array.
+
+                myList.Remove(2);
+                Console.WriteLine("\nRemoved a 2 from myList, here are the results.");
+                foreach(var item in myList) { Console.Write(item + " "); }
+
+
+                myList.RemoveAt(0); // Remove the first element from myList
+                Console.WriteLine("\nRemoved element at 0 index from myList, here are the results.");
+                foreach(var item in myList) { Console.Write(item + " "); }
+
+                myList.Clear(); // Remove all elements from myList
 
                 
-
+                Console.WriteLine("\n\n\n");
             } // End executeDriver()
 
             struct SimpleStruct {
