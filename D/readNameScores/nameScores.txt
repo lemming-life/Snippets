@@ -1,0 +1,5 @@
+Leo, 55
+Einstein, 99
+Newton, 95
+Obama, 70
+Edison, 33
