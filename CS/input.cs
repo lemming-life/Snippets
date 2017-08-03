@@ -76,8 +76,6 @@ namespace Snippets {
             return false;
         }
 
-        
-
     } // End class Input
 
 }

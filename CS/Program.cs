@@ -15,8 +15,9 @@ dotnet run
 namespace ConsoleApplication {
     public class Program {
         public static void Main(string[] args) {
-            const Boolean CONSOLE_INPUT = false;
+            const Boolean CONSOLE_INPUT = true;
             Language.executeDriver(CONSOLE_INPUT);
+            
             Maths.executeDriver();
             Geometry.executeDriver();
             StringOperations.executeDriver();
@@ -26,11 +27,7 @@ namespace ConsoleApplication {
 
             if (CONSOLE_INPUT) Input.executeDriver();
 
-            Challenges.Challenge1.executeDriver();
-            Challenges.Challenge2.executeDriver();
-            Challenges.Challenge3.executeDriver();
-            Challenges.Challenge4.executeDriver();
-
+            Challenges.AllChallenges.executeDriver(CONSOLE_INPUT);
         } // End Main()
 
     } // End class Program

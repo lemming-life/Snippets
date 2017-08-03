@@ -28,6 +28,7 @@ namespace Snippets {
                 WriteRead wr = new WriteRead();
                 wr.write();
                 wr.read();
+                //if (standardInput) wr.read2();
                 wr.remove();
         }
 
@@ -610,8 +611,76 @@ namespace Snippets {
                 // You can simplify the left side of the equal sign with var
                 var dictionaryWithMoreStuffInTuple = new Dictionary<int,  Tuple<int, bool, string, char>>();
 
+                // INTERFACE
+                // - An interface is a promise that there will be implementations.
+
+                // Principle: Program to an interface, not an implementation.
+                DoorInterface woodenDoor = new WoodDoor();
+                woodenDoor.unlockDoor();
+                woodenDoor.openDoor(); woodenDoor.lockDoor();
+
+                Console.WriteLine("\nChecking woodenDoor is");
+                Console.WriteLine("woodenDoor is Object {0}", woodenDoor is Object);    // true, everything derives from object
+                Console.WriteLine("woodenDoor is DoorInterface {0}", woodenDoor is DoorInterface); // true
+                Console.WriteLine("woodenDoor is WoodDoor {0}", woodenDoor is WoodDoor);      // true
+                
+
+
+                // OBJECTS:
+                // Instantiation, Abstract class, Implementation, and Inheritance
+
+                // Programming to an implementation.
+                Circle smallCircle = new Circle();
+                Console.WriteLine("smallCircle.ToString() " + smallCircle);
+                smallCircle.changeName("smallCircle"); // will call Circle.changeName()
+                Console.WriteLine("\nChecking smallCircle is");
+                Console.WriteLine("smallCircle is Circle {0}", smallCircle is RedCircle); // false
+                Console.WriteLine("smallCircle is Circle {0}", smallCircle is Circle); // true
+                Console.WriteLine("smallCircle is Shape {0}", smallCircle is Shape);   // true
+                Console.WriteLine("smallCircle is Position {0}", smallCircle is Position); // true 
+                ChangePositionViaFunction( smallCircle, 99, 99); 
+                Console.WriteLine("Changed position, doing smallCircle.ToString() " + smallCircle);
+
+                // Using the abstract class
+                //Shape myShape = new Shape(); // Error, one cannot instantitate an abstract class
+                Shape bigCircle = new Circle(10, 2, 3); // ok
+                Console.WriteLine("bigCircle.ToString() " + bigCircle);
+                bigCircle.changeName("bigCircle"); // will call Shape.changeName()
+                Console.WriteLine("\nChecking bigCircle is");
+                Console.WriteLine("bigCircle is Circle {0}", bigCircle is RedCircle); // false
+                Console.WriteLine("bigCircle is Circle {0}", bigCircle is Circle); // true
+                Console.WriteLine("bigCircle is Shape {0}", bigCircle is Shape);   // true
+                Console.WriteLine("bigCircle is Position {0}", bigCircle is Position); // true
+                ChangePositionViaFunction( bigCircle, 99, 99); 
+                Console.WriteLine("Changed position, doing bigCircle.ToString() " + bigCircle);
+
+                RedCircle redCircle1 = new RedCircle();
+                Console.WriteLine("\nChecking redCircle1 is");
+                Console.WriteLine("redCircle1 is RedCircle {0}", redCircle1 is RedCircle); // true
+                Console.WriteLine("redCircle1 is Circle {0}", redCircle1 is Circle); // true
+                Console.WriteLine("redCircle1 is Shape {0}", redCircle1 is Shape);   // true
+                Console.WriteLine("redCircle1 is Position {0}", redCircle1 is Position); // true
+                ChangePositionViaFunction( redCircle1, 99, 99); 
+                Console.WriteLine("Changed position, doing redCircle1.ToString() " + redCircle1);
+
+                Circle redCircle2 = new RedCircle();
+                Console.WriteLine("\nChecking redCircle1 is");
+                Console.WriteLine("redCircle2 is RedCircle {0}", redCircle2 is RedCircle); // true
+                Console.WriteLine("redCircle2 is Circle {0}", redCircle2 is Circle); // true
+                Console.WriteLine("redCircle2 is Shape {0}", redCircle2 is Shape);   // true
+                Console.WriteLine("redCircle2 is Position {0}", redCircle2 is Position); // true
+
+                Shape redCircle3 = new RedCircle();
+                Console.WriteLine("\nChecking redCircle1 is");
+                Console.WriteLine("redCircle2 is RedCircle {0}", redCircle3 is RedCircle); // true
+                Console.WriteLine("redCircle2 is Circle {0}", redCircle3 is Circle); // true
+                Console.WriteLine("redCircle2 is Shape {0}", redCircle3 is Shape);   // true
+                Console.WriteLine("redCircle2 is Position {0}", redCircle3 is Position); // true
+
+
                 Console.WriteLine("\n\n\n");
             } // End executeDriver()
+
 
             struct SimpleStruct {
                 // Structs are similar to a Class
@@ -684,7 +753,86 @@ namespace Snippets {
                 }
             }
 
+            // INTERFACE
+            // - A promise that whoever uses the interface will have implementation.
+            // - The methods are public.
+            interface DoorInterface {
+                bool openDoor();
+                void closeDoor();
 
+                bool isDoorLocked();
+
+                void lockDoor();
+                void  unlockDoor();
+            }
+
+            // WoodDoor uses the DoorInterface, therefore it must implement the methods defined by DoorInterface
+            class WoodDoor : DoorInterface {
+                private bool _locked;
+                public WoodDoor(bool lockStatus = true) { _locked = lockStatus; }
+                
+                public bool openDoor() { return _locked ? false : true; }
+                public void closeDoor() { }
+                public bool isDoorLocked() { return _locked; }
+                public void lockDoor() { _locked = true; }
+                public void unlockDoor() { _locked = false; }
+
+            }
+
+            interface Position {
+                void changePosition(int x, int y);
+                int getX();
+                int getY();
+            }
+
+            abstract class Shape : Position {
+                // One cannot instantiate an abstract class.
+                private int x, y;      // Accessible to Shape
+                protected string name; // Accessible to Shape, and Derived
+                public Shape(int x, int y) {
+                    this.x = x; this.y = y;
+                }
+
+                public void changePosition(int x, int y) { this.x = x; this.y = y; }
+                public int getX() { return x; }
+                public int getY() { return y; }
+                
+                override public string ToString() { return "x: " + x + ", y: " + y; }
+
+                public void changeName(string name) {
+                    Console.WriteLine("Called Shape.changeName()");
+                    this.name = name;
+                }
+                
+            }
+
+            class Circle : Shape {
+                int radius;
+                public Circle(int radius = 1, int x = 0, int y = 0) : base(x, y) { this.radius = radius; }
+
+                // Override: the derived object method takes precedence over the base
+                override public string ToString() { return base.ToString() + ", radius: " + radius; }
+
+                public void changeName(string name) {
+                    Console.WriteLine("Called Circle.changeName()");
+                    this.name = name;
+                }
+            }
+
+
+            // Regular Inheritance
+            // - Gets everything from Circle.
+            class RedCircle : Circle {
+                int color = 1;
+                public RedCircle() : base(2, -2, -2)  {
+                    base.changeName("Red Circle");
+                }
+            }
+
+            // Objects passed to a function are passed by a value, the value being a reference to the object.
+            static void ChangePositionViaFunction(Position position, int x, int y) {
+                position.changePosition(x, y);
+            }
 
         } // End class ManyDetails
 
@@ -709,7 +857,7 @@ namespace Snippets {
             }
 
             public void input() {
-                Console.WriteLine("Reading input.");
+                Console.Write("Reading input. (anythying is ok)");
                 string input = Console.ReadLine();
                 Console.WriteLine("Your typed: " + input);
             }
@@ -747,6 +895,16 @@ namespace Snippets {
                     }
                 } // calls reader.Dispose()
                 Console.WriteLine("Finished reading file.");
+            }
+
+            public void read2() {
+                // reads from standard input
+                using (StreamReader reader = new StreamReader(Console.OpenStandardInput())) {
+                    while (!reader.EndOfStream) {
+                        string line = reader.ReadLine();
+                        Console.WriteLine(line);
+                    }
+                }
             }
 
             public void remove() {
