@@ -15,7 +15,7 @@ dotnet run
 namespace ConsoleApplication {
     public class Program {
         public static void Main(string[] args) {
-            const Boolean CONSOLE_INPUT = true;
+            const Boolean CONSOLE_INPUT = false;
             Language.executeDriver(CONSOLE_INPUT);
             
             Maths.executeDriver();

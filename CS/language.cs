@@ -500,11 +500,11 @@ namespace Snippets {
                 // - Objects are created and destroyed via C# garbage collection, therefore no memory leaks.
                 // - In other many other languages one has to manually free the memory.
                 
-                Console.WriteLine("\nA random dice number: {0}", randomDiceNumber.Next(1, 7) );   // This is a call to Next( <included>, <one less than this one>)
+                // This is a call to Next( <included>, <one less than this one>)
+                Console.WriteLine("\nA random dice number: {0}", randomDiceNumber.Next(1, 7) );   
                 // Methods are functions that can be accessed via the object.
                 // Functions are procedures, which have blocks of instructions.
                 // - The term function is usually given to non-object attached.
-
 
 
                 // SCOPE
@@ -678,8 +678,24 @@ namespace Snippets {
                 Console.WriteLine("redCircle2 is Position {0}", redCircle3 is Position); // true
 
 
+                // Delegate, closure, and lambda.
+                int someIntHere = 5;
+                ReturnsIntDelegate someDelegate = (a, b) => someIntHere + a + b;  // Lamda expression is an anonymous function
+                // Notice how "someIntHere" is inside the lambda expression, the lambda has access to it.
+
+                Console.WriteLine("Invoking the delegate, expecting 10, got back {0}", someDelegate(2, 3) ); // 10
+
+                // A delegate that takes an int, squares, and returns a string.
+                Func<int, string> myFunc = (a) => { int x = a*a; return x.ToString(); };
+                //Invoke
+                Console.WriteLine("Invoking another delegate: giving {0}, expecting {1}, getting {2}", 5, 25, myFunc(5));
+                
+
                 Console.WriteLine("\n\n\n");
             } // End executeDriver()
+
+            // Define the delegate, it returns an int, takes two ints.
+            public delegate int ReturnsIntDelegate(int a, int b);
 
 
             struct SimpleStruct {
