@@ -5,7 +5,7 @@
 using System;
 
 namespace Snippets {
-    delegate bool CompareDelegate<T>(T a, T b);
+    //delegate bool CompareDelegate<T>(T a, T b);
 
     class Sorting {
 
@@ -31,12 +31,15 @@ namespace Snippets {
         }
         
         static void bubbleSortArray<T>(T[] array, bool descending = true) where T : IComparable {
-            CompareDelegate<T> compareOperator;
+            Func<T, T, bool> compareOperator;
+            //CompareDelegate<T> compareOperator;
             
             if (descending) {
-                compareOperator = new CompareDelegate<T>(lessThan);
+                compareOperator = new Func<T, T, bool>(lessThan);
+                //compareOperator = new CompareDelegate<T>(lessThan);
             } else {
-                compareOperator = new CompareDelegate<T>(greaterThan);
+                compareOperator = new Func<T, T, bool>(greaterThan);
+                //compareOperator = new CompareDelegate<T>(greaterThan);
             }
             
             for (int i=0; i<array.Length; ++i) {
