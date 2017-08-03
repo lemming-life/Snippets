@@ -11,37 +11,7 @@ using System.Linq;
 namespace Snippets {
     class Language {
 
-        class LinqExample {
-            public static void executeDriver() {
-                List<int> numbers = new List<int>();
-                for (int i=0; i<10; ++i) {
-                    numbers.Add(i);
-                }
-
-                var queryEvens = 
-                    from num in numbers
-                    where (num % 2) == 0
-                    select num;
-
-                var queryDescending =
-                    from number in queryEvens
-                    orderby number descending
-                    select number;
-                
-                //List<int> evens = new List<int>();
-                //evens = queryEvens.ToList();  // You could foreach(var num in queryEvens) { evens.Add(num);}
-
-                Console.WriteLine("List of numbers: ");
-                foreach(var number in numbers) { Console.Write(number + " "); }
-
-                Console.WriteLine("\nEvens: ");
-                foreach(var number in queryEvens) { Console.Write(number + " "); }
-
-                Console.WriteLine("\nEvens Descending: ");
-                foreach(var number in queryDescending) { Console.Write(number + " "); }
-
-            }
-        }
+        
 
         public static void executeDriver(bool standardInput = false) {
             Console.WriteLine("\nTEST: C# Language");
@@ -792,10 +762,10 @@ namespace Snippets {
                 // ANONYMOUS OBJECT
                 var anonObject = new {
                     Name="AnonymousObject",
-                    Description="I don't do anything, lol."
+                    Description="I don't do anything, lol!"
                 };
-                Console.WriteLine("Writing out anonymous object. Name {0}, Description {1}", anonObject.Name, anonObject.Description);
-
+                Console.WriteLine("Writing out anonymous object. Name {0}", anonObject.Name);
+                Console.WriteLine($"Another way of writing the name of object {anonObject.Name}");
 
                 Console.WriteLine("\n\n\n");
             } // End executeDriver()
@@ -968,6 +938,36 @@ namespace Snippets {
 
 
             
+            // Operator overloading
+            class SumNumberStrings {
+                public string value;
+                public List<string> previousValues;
+
+                SumNumberStrings(string value) {
+                    this.value = value;
+                    previousValues.Add(value);
+                }
+
+                public void add(string newValue) {
+                    value = newValue;
+                    previousValues.Add(newValue);
+                }
+                
+
+                // Other operators: +, -, *, /
+                public static SumNumberStrings operator +(SumNumberStrings first, SumNumberStrings second) {
+                    return new SumNumberStrings( (int.Parse(first.value) + int.Parse(first.value)).ToString() ); 
+                }
+
+                // If someone was to call sumNumberStrings[0] which is the first value inserted.
+                // - If it was multidimensional: string this[int i, int j]
+                public string this[int index]
+                {
+                    get { return previousValues[index]; }
+                }
+
+                
+            }
 
 
 
@@ -1059,6 +1059,50 @@ namespace Snippets {
             }
         } // End class WriteRead
 
+
+        class LinqExample {
+            public static void executeDriver() {
+                List<int> numbers = new List<int>();
+                for (int i=0; i<10; ++i) {
+                    numbers.Add(i);
+                }
+
+                var queryEvens = 
+                    from num in numbers
+                    where (num % 2) == 0
+                    select num;
+
+                var queryDescending =
+                    from number in queryEvens
+                    orderby number descending
+                    select number;
+
+                int[] someNumbers = new int[]{1, 2, 3};
+                char[] someLetters = new char[] {'a', 'b', 'c'};
+
+                var queryConcat =
+                    from num in someNumbers
+                    from aChar in someLetters
+                    select new {VALUE = (num.ToString() + aChar)};
+
+                Console.WriteLine("List of numbers: ");
+                foreach(var number in numbers) { Console.Write(number + " "); }
+
+                Console.WriteLine("\nEvens: ");
+                foreach(var number in queryEvens) { Console.Write(number + " "); }
+
+                Console.WriteLine("\nEvens Descending: ");
+                foreach(var number in queryDescending) { Console.Write(number + " "); }
+
+                Console.WriteLine("\nqueryConcat {1, 2, 3} and {'a', 'b', 'c'} ");
+                foreach(var element in queryConcat) {
+                    Console.Write($"{element.VALUE} ");
+                }
+
+                Console.WriteLine("\n\n");
+
+            } // End executeDriver
+        } // End class LinqExample
         
 
 
