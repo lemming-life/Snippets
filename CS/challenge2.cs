@@ -31,7 +31,9 @@ using System;
         */
 
         public static void executeDriver() {
+            Console.WriteLine("\nTEST: Challenge2");
             Console.WriteLine("Do the inclusive sum of numbers from 1 to n, excluding numbers divisible by 5 and 7");
+            
             int n;
             int[] excludeDivisibleBy = {5, 7};
 
@@ -47,6 +49,20 @@ using System;
             n = 8;
             Console.WriteLine("Input: {0}, Output: {1}", n, doSum(n, excludeDivisibleBy)); // 24
         }
+
+
+        /*
+        static void Main(string[] args) {
+        int[] exclude = new int[]{5, 7};
+        
+        using (StreamReader reader = new StreamReader(Console.OpenStandardInput()))
+        while (!reader.EndOfStream) {
+            string line = reader.ReadLine();
+            Console.WriteLine(doSum(int.Parse(line), exclude));
+        }
+    }
+        
+         */
 
         static int doSum(int n, int[] excludeDivisibleBy) {
             int sum = 0;

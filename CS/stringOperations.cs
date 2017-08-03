@@ -5,10 +5,12 @@
 
 using System;
 using System.Text;
+using System.Collections.Generic;
 
 namespace Snippets {
     class StringOperations {
         public static void executeDriver() {
+            Console.WriteLine("\nTEST: String Operations");
             Console.WriteLine("\nSubTest: Reverse");
             Reverse.executeDriver();
 
@@ -17,6 +19,12 @@ namespace Snippets {
 
             Console.WriteLine("\nSubTest: UrlParser");
             UrlParser.executeDriver();
+
+            Console.WriteLine("\nSubTest: IsWellFormed1");
+            IsWellFormed1.executeDriver();
+
+            Console.WriteLine("\nSubTest: IsWellFormed2");
+            IsWellFormed2.executeDriver();
         }
 
         public class Reverse {
@@ -49,14 +57,12 @@ namespace Snippets {
         public class Palindrome {
             // Purpose: Given a string determine if it is a palindrome.
             public static bool isPalindrome(string line) {
-                bool palindrome = true;
                 for (int i=0; i < line.Length/2; ++i) {
                     if (line[i] != line[line.Length - (i+1)]) {
-                        palindrome = false;
-                        break;
+                        return false;
                     }
                 }
-                return palindrome;
+                return true;
             }
 
             public static void executeDriver() {
@@ -97,23 +103,160 @@ namespace Snippets {
                 return url.Substring(indexOf, url.Length - indexOf);
             }
 
+            static string getQueryWithQuestionMark(string url) {
+                string lookFor = "?";
+                int indexOf = url.IndexOf(lookFor);
+                if (indexOf == -1) {return "";}
+                ++indexOf;
+                return url.Substring(indexOf, url.Length - indexOf);
+            }
+
             public static void executeDriver() {
                 string url = "http://google.com/theQuery123";
-                Console.WriteLine("Url1 is: " + url);
+                Console.WriteLine("Url is: " + url);
                 Console.WriteLine("Protocol: " + getProtocol(url));
                 Console.WriteLine("Domain: " + getDomain(url));
                 Console.WriteLine("Query no path: " + getQuery(url, false));
                 Console.WriteLine("Query with path: " + getQuery(url, true));
 
                 url = "http://google.com/some/stuff/in/between/theQuery123";
-                Console.WriteLine("\nUrl2 is: " + url);
+                Console.WriteLine("\nUrl is: " + url);
                 Console.WriteLine("Protocol: " + getProtocol(url));
                 Console.WriteLine("Domain: " + getDomain(url));
                 Console.WriteLine("Query no path: " + getQuery(url, false));
                 Console.WriteLine("Query with path: " + getQuery(url, true));
+
+
+                url = "http://www.somewebsitewithnoqueryline.com/index.html";
+                Console.WriteLine("\nUrl is: " + url);
+                Console.WriteLine("Protocol: " + getProtocol(url));
+                Console.WriteLine("Domain: " + getDomain(url));
+                Console.WriteLine("Query?: " + getQueryWithQuestionMark(url));
+
+                url = "http://www.somewebsitewithquestionmarkquery.com/index.html?aquery=123";
+                Console.WriteLine("\nUrl is: " + url);
+                Console.WriteLine("Protocol: " + getProtocol(url));
+                Console.WriteLine("Domain: " + getDomain(url));
+                Console.WriteLine("Query?: " + getQueryWithQuestionMark(url));
             }
 
         } // End class UrlParser
+
+        public class IsWellFormed1 {
+            // Considers only strings that have characters: (,),{,},[,]
+            // Example1: () is well formed
+            // Example2: ([}) is not well formed.
+            public static void executeDriver() {
+                string line = "()";
+                Console.WriteLine("Is {0} well formed? {1}", line, isWellFormed(line));
+                line = "([)]";
+                Console.WriteLine("Is {0} well formed? {1}", line, isWellFormed(line));
+            }
+            
+
+            public static bool isWellFormed(string line) {
+                if (line.Length % 2 != 0) { return false; } 
+
+                for (int i=0; i<line.Length/2; ++i) {
+                    if (line[i] != oppositeChar( line[line.Length - (1+i)]) ) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            private static char oppositeChar(char aChar) {
+                if (aChar == '(') return ')';
+                if (aChar == '{') return '}';
+                if (aChar == '[') return ']';
+                if (aChar == ')') return '(';
+                if (aChar == '}') return '{';
+                if (aChar == ']') return '[';
+                return ' ';
+            }
+        } // End class IsWellFormed1
+
+
+        public class IsWellFormed2 {
+            // Considers strings that have (,),{,},[,]
+            // but also characters in between those.
+            // Example1: (hello) is well formed.
+            // Example2: (he[llo]) is well formed.
+            // Example3: (he[llo) is not well formed.
+            // Example4: hell}o is not well formed.
+
+            public static void executeDriver() {
+                string line;
+                line = "hello";
+                Console.WriteLine("Is {0} well formed? {1}", line, isWellFormed(line)); // true
+                line = "(hello)";
+                Console.WriteLine("Is {0} well formed? {1}", line, isWellFormed(line)); // true
+                line = "(he[llo])";
+                Console.WriteLine("Is {0} well formed? {1}", line, isWellFormed(line)); // true
+                line = "hell{}";
+                Console.WriteLine("Is {0} well formed? {1}", line, isWellFormed(line)); // true
+                line = "(he[llo)";
+                Console.WriteLine("Is {0} well formed? {1}", line, isWellFormed(line)); // false
+                line = "hell}o";
+                Console.WriteLine("Is {0} well formed? {1}", line, isWellFormed(line)); // false
+                line = "]hello";
+                Console.WriteLine("Is {0} well formed? {1}", line, isWellFormed(line)); // false
+                line = "he(ll]o";
+                Console.WriteLine("Is {0} well formed? {1}", line, isWellFormed(line)); // false
+            }
+
+            public static bool isWellFormed(string line) {
+                Stack<char> charStack = new Stack<char>();
+
+                foreach (var c in line) {
+                    if ( !isBracketType(c) ) { continue; }
+
+                    if (isCharOpener(c)) {
+                        charStack.Push(c);
+                    } else {
+                        if (charStack.Count == 0) return false;
+
+                        if (c == oppositeChar(charStack.Peek())) {
+                            charStack.Pop();
+                        } else {
+                            return false;
+                        }
+                    }
+                }
+
+                if (charStack.Count>0) { return false;}
+
+                return true;
+            }
+
+            private static bool isBracketType(char aChar) {
+                if (aChar == '(') return true;
+                if (aChar == '{') return true;
+                if (aChar == '[') return true;
+                if (aChar == ')') return true;
+                if (aChar == '}') return true;
+                if (aChar == ']') return true;
+                return false;
+            }
+
+            private static bool isCharOpener(char aChar) {
+                if (aChar == '(') return true;
+                if (aChar == '{') return true;
+                if (aChar == '[') return true;
+                return false;
+            }
+
+            private static char oppositeChar(char aChar) {
+                if (aChar == '(') return ')';
+                if (aChar == '{') return '}';
+                if (aChar == '[') return ']';
+                if (aChar == ')') return '(';
+                if (aChar == '}') return '{';
+                if (aChar == ']') return '[';
+                return ' ';
+            }
+
+        }
 
 
     } // End class StringOperations

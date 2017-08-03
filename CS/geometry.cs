@@ -9,6 +9,8 @@ namespace Snippets {
     class Geometry {
 
         public static void executeDriver(bool standardInput = false) {
+            Console.WriteLine("\nTEST: Geometry");
+            
             Console.WriteLine("\nSubTest: CircleInSquare");
                 CircleInSquare circleInSquare = new CircleInSquare(5);
                 circleInSquare.showResults();

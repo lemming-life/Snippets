@@ -11,6 +11,8 @@ namespace Challenges {
         */
 
         public static void executeDriver() {
+            Console.WriteLine("\nTEST: Challenge3");
+
             string departureTime, arrivalTime, delayPercent;
             Console.WriteLine("Subtest1");
                 departureTime = "01:00";

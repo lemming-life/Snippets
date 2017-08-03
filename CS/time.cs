@@ -8,6 +8,8 @@ namespace Snippets {
     class Time {
 
         public static void executeDriver() {
+            Console.WriteLine("\nTEST: Time");
+
             Console.WriteLine("\nSubTest: isLeapYear");
                 Console.WriteLine("Is {0} leap? {1}", 4, isLeapYear(4));
                 Console.WriteLine("Is {0} leap? {1}", 100, isLeapYear(100));
@@ -19,6 +21,7 @@ namespace Snippets {
                 Console.WriteLine("Is {0} leap? {1}", year, isLeapYear(year++));
                 Console.WriteLine("Is {0} leap? {1}", year, isLeapYear(year++));
                 Console.WriteLine("Is {0} leap? {1}", year, isLeapYear(year++));
+                
             Console.WriteLine("\nSubTest: timeAsMinutes");
                 string hhmm = "00:33";
                 Console.WriteLine("{0} is {1} minutes", hhmm, timeAsMinutes(hhmm));

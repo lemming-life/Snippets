@@ -16,45 +16,21 @@ namespace ConsoleApplication {
     public class Program {
         public static void Main(string[] args) {
             const Boolean CONSOLE_INPUT = false;
-
-            Console.WriteLine("\nTEST: C# Language");
             Language.executeDriver(CONSOLE_INPUT);
-
-        
-            Console.WriteLine("\nTEST: Maths");
             Maths.executeDriver();
-
-            Console.WriteLine("\nTEST: Geometry");
             Geometry.executeDriver();
-
-            Console.WriteLine("\nTEST: String Operations");
             StringOperations.executeDriver();
-
-            Console.WriteLine("\nTEST: Time");
             Time.executeDriver();
-
-            Console.WriteLine("\nTEST: Misc");
             Misc.executeDriver();
+            Sorting.executeDriver();
 
-            Console.WriteLine("\nTEST: Challenge1");
+            if (CONSOLE_INPUT) Input.executeDriver();
+
             Challenges.Challenge1.executeDriver();
-
-            Console.WriteLine("\nTEST: Challenge2");
             Challenges.Challenge2.executeDriver();
-
-            Console.WriteLine("\nTEST: Challenge3");
             Challenges.Challenge3.executeDriver();
+            Challenges.Challenge4.executeDriver();
 
-
-            if (CONSOLE_INPUT) {
-                Console.WriteLine("\nTEST: Input");
-                Input.executeDriver();
-            }
-
-            Console.WriteLine("\nTEST: Sorting");
-                Sorting.executeDriver();
-             
-           
         } // End Main()
 
     } // End class Program

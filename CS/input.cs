@@ -9,6 +9,30 @@ namespace Snippets {
     class Input {
         // Gets value from standard in.
 
+        public static void executeDriver() {
+            Console.WriteLine("\nTEST: Input");
+
+            int n = 0;
+            string s = "";
+
+            Console.Write("Input a string: ");
+            s = getAsString();
+            Console.WriteLine("Your input is: {0}", s);
+        
+            Console.Write("\nInput a number: ");
+            try {
+                n = getAsInt();
+                Console.WriteLine("Your input is: {0}", n);
+            } catch (Exception e) {
+                Console.WriteLine("That is not a number! Exception message: \n{0}", e);
+            }
+            
+            while(requestPositiveInteger("\nInput a positive integer: ", ref n)) {
+                Console.WriteLine("Your input is {0}", n);
+            }
+            Console.WriteLine("Finished input of positive integers.");
+        } // End executeDriver
+
         public static string getAsString() {
             using (StreamReader reader = new StreamReader(Console.OpenStandardInput()))
 
@@ -52,27 +76,7 @@ namespace Snippets {
             return false;
         }
 
-        public static void executeDriver() {
-            int n = 0;
-            string s = "";
-
-            Console.Write("Input a string: ");
-            s = getAsString();
-            Console.WriteLine("Your input is: {0}", s);
         
-            Console.Write("\nInput a number: ");
-            try {
-                n = getAsInt();
-                Console.WriteLine("Your input is: {0}", n);
-            } catch (Exception e) {
-                Console.WriteLine("That is not a number! Exception message: \n{0}", e);
-            }
-            
-            while(requestPositiveInteger("\nInput a positive integer: ", ref n)) {
-                Console.WriteLine("Your input is {0}", n);
-            }
-            Console.WriteLine("Finished input of positive integers.");
-        }
 
     } // End class Input
 

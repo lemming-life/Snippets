@@ -7,6 +7,8 @@ using System;
 namespace Snippets {
     class Misc {
         public static void executeDriver(bool standardIn = false) {
+            Console.WriteLine("\nTEST: Misc");
+
             Console.WriteLine("\nSubTest generic Swap");
                 int anIntA = 3;
                 int anIntB = 5;

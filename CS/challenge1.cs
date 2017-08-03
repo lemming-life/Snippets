@@ -36,22 +36,24 @@ namespace Challenges {
         */
 
         public static void executeDriver(bool standardIn = false) {
+            Console.WriteLine("\nTEST: Challenge1");
+            
             Console.WriteLine("Sum n and its reverse, if result isPalindrome quit, else n is result and repeat.");
             Console.WriteLine("Output the iteration count and the resulting sum.");
 
             int n = 195;
             Console.WriteLine("Input: {0}", n);
-            perform(n); // Expect 4 9339 (a palindrome)
+            performChallenge(n); // Expect 4 9339 (a palindrome)
 
             // For standard input
             if (standardIn) {
                 while(Snippets.Input.requestPositiveInteger("\nInput: ", ref n) ) {
-                    perform(n);
+                    performChallenge(n);
                 }
             }
         }
 
-        public static void perform(int n) {
+        public static void performChallenge(int n) {
             int count = 0;
             string line;
             do {
