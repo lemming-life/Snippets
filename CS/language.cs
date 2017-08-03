@@ -686,15 +686,20 @@ namespace Snippets {
                 // Another way of writing it
                 // Note Func<argType1, argType2, returnType>
                 Func<int, int, int> someDelegate2 = delegate(int a, int b) { return someIntHere + a + b; }; // it determines return type implicitly
-
                 Console.WriteLine("Invoking a delegate, expecting 10, got back {0}", someDelegate(2, 3) ); // 10
 
+
+                someDelegate = new ReturnsIntDelegate(returnsIntFunction); // Like a function pointer
+                int intValue = someDelegate(1, 2); // invoking
+                
 
                 Console.WriteLine("\n\n\n");
             } // End executeDriver()
 
             // Define the delegate, it returns an int, takes two ints.
             public delegate int ReturnsIntDelegate(int a, int b);
+
+            public static int returnsIntFunction(int a, int b) { return a + b; }
 
 
             struct SimpleStruct {
