@@ -6,9 +6,42 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Snippets {
     class Language {
+
+        class LinqExample {
+            public static void executeDriver() {
+                List<int> numbers = new List<int>();
+                for (int i=0; i<10; ++i) {
+                    numbers.Add(i);
+                }
+
+                var queryEvens = 
+                    from num in numbers
+                    where (num % 2) == 0
+                    select num;
+
+                var queryDescending =
+                    from number in queryEvens
+                    orderby number descending
+                    select number;
+                
+                //List<int> evens = new List<int>();
+                //evens = queryEvens.ToList();  // You could foreach(var num in queryEvens) { evens.Add(num);}
+
+                Console.WriteLine("List of numbers: ");
+                foreach(var number in numbers) { Console.Write(number + " "); }
+
+                Console.WriteLine("\nEvens: ");
+                foreach(var number in queryEvens) { Console.Write(number + " "); }
+
+                Console.WriteLine("\nEvens Descending: ");
+                foreach(var number in queryDescending) { Console.Write(number + " "); }
+
+            }
+        }
 
         public static void executeDriver(bool standardInput = false) {
             Console.WriteLine("\nTEST: C# Language");
@@ -30,6 +63,8 @@ namespace Snippets {
                 wr.read();
                 //if (standardInput) wr.read2();
                 wr.remove();
+            Console.WriteLine("\nSubTest: LINQ");
+                LinqExample.executeDriver();
         }
 
         class ManyDetails {
@@ -677,6 +712,15 @@ namespace Snippets {
                 Console.WriteLine("redCircle2 is Shape {0}", redCircle3 is Shape);   // true
                 Console.WriteLine("redCircle2 is Position {0}", redCircle3 is Position); // true
 
+                // Generics
+                // - We can assign a type when we create the myContainer object.
+                SomeContainer<int> myContainer = new SomeContainer<int>(5);
+                var myIntFromSomeContainer = myContainer.value;
+
+                SomeContainer<string> myContainer2 = new SomeContainer<string>("Hello");
+                var myStringFromSomeContainer = myContainer2.value;
+
+
 
                 // DELEGATE, closure, and lambda.
                 int someIntHere = 5;
@@ -698,8 +742,7 @@ namespace Snippets {
                 // - Exception is the base class.
 
                 try {
-                    int numerator = 1;
-                    int denominator = 0;
+                    int denominator = 0; int numerator = 1; 
                     int result = numerator / denominator; // cannot divide by zero!
                 } catch (Exception e) {
                     Console.WriteLine("\nCannot divide by zero!");
@@ -709,26 +752,25 @@ namespace Snippets {
                 // finally, and rethrow.
                 try {
                     try {
-                        int numerator = 1;
-                        int denominator = 0;
+                        int numerator = 1; int denominator = 0;
                         int result = numerator / denominator; // cannot divide by zero!
                     } catch (Exception e) {
                         Console.WriteLine("\nCannot divide by zero, again.");
-                        throw; // rethrows the exception
+                        throw; // rethrows the exception, ensure that there is something to catch it.
                     } finally {
                         Console.WriteLine("This line always runs.");
                         // This can be useful to "cleanup" some resources.
                         // - like ensuring closing an opened stream.
                     }
                 } catch (Exception e) {
-                    Console.WriteLine("Now here");
+                    Console.WriteLine("Caught the exception!");
                 } finally {
                     Console.WriteLine("Finally 2");
                 }
                 /* Output of above
                     Cannot divide by zero, again.
                     This line always runs.
-                    Now here
+                    Caught the exception!
                     Finally 2
                 */
                 // When would finally not run? one  possibility is if we have the return keyword.
@@ -745,7 +787,14 @@ namespace Snippets {
                     // throw; // If throw from here the catch(Exception e) below won't catch it!
                 } catch (Exception e) {
                     Console.WriteLine("This line does not run in this example.");
-                } 
+                }
+
+                // ANONYMOUS OBJECT
+                var anonObject = new {
+                    Name="AnonymousObject",
+                    Description="I don't do anything, lol."
+                };
+                Console.WriteLine("Writing out anonymous object. Name {0}, Description {1}", anonObject.Name, anonObject.Description);
 
 
                 Console.WriteLine("\n\n\n");
@@ -904,10 +953,24 @@ namespace Snippets {
                 }
             }
 
+            // Generic class of Type T
+            class SomeContainer<T> {
+                public T value;
+                public SomeContainer(T value) {
+                    this.value = value;
+                }
+            }
+
             // Objects passed to a function are passed by a value, the value being a reference to the object.
             static void ChangePositionViaFunction(Position position, int x, int y) {
                 position.changePosition(x, y);
             }
+
+
+            
+
+
+
 
         } // End class ManyDetails
 
