@@ -965,11 +965,7 @@ namespace Snippets {
                 {
                     get { return previousValues[index]; }
                 }
-
-                
-            }
-
-
+            } // Enc class SumNumberStrings
 
 
         } // End class ManyDetails
