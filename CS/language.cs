@@ -678,18 +678,17 @@ namespace Snippets {
                 Console.WriteLine("redCircle2 is Position {0}", redCircle3 is Position); // true
 
 
-                // Delegate, closure, and lambda.
+                // DELEGATE, closure, and lambda.
                 int someIntHere = 5;
                 ReturnsIntDelegate someDelegate = (a, b) => someIntHere + a + b;  // Lamda expression is an anonymous function
                 // Notice how "someIntHere" is inside the lambda expression, the lambda has access to it.
 
-                Console.WriteLine("Invoking the delegate, expecting 10, got back {0}", someDelegate(2, 3) ); // 10
+                // Another way of writing it
+                // Note Func<argType1, argType2, returnType>
+                Func<int, int, int> someDelegate2 = delegate(int a, int b) { return someIntHere + a + b; }; // it determines return type implicitly
 
-                // A delegate that takes an int, squares, and returns a string.
-                Func<int, string> myFunc = (a) => { int x = a*a; return x.ToString(); };
-                //Invoke
-                Console.WriteLine("Invoking another delegate: giving {0}, expecting {1}, getting {2}", 5, 25, myFunc(5));
-                
+                Console.WriteLine("Invoking a delegate, expecting 10, got back {0}", someDelegate(2, 3) ); // 10
+
 
                 Console.WriteLine("\n\n\n");
             } // End executeDriver()
