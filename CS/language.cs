@@ -691,7 +691,62 @@ namespace Snippets {
 
                 someDelegate = new ReturnsIntDelegate(returnsIntFunction); // Like a function pointer
                 int intValue = someDelegate(1, 2); // invoking
-                
+
+
+                // EXCEPTIONS
+                // - Things should be "exceptional" when these occur.
+                // - Exception is the base class.
+
+                try {
+                    int numerator = 1;
+                    int denominator = 0;
+                    int result = numerator / denominator; // cannot divide by zero!
+                } catch (Exception e) {
+                    Console.WriteLine("\nCannot divide by zero!");
+                }
+
+
+                // finally, and rethrow.
+                try {
+                    try {
+                        int numerator = 1;
+                        int denominator = 0;
+                        int result = numerator / denominator; // cannot divide by zero!
+                    } catch (Exception e) {
+                        Console.WriteLine("\nCannot divide by zero, again.");
+                        throw; // rethrows the exception
+                    } finally {
+                        Console.WriteLine("This line always runs.");
+                        // This can be useful to "cleanup" some resources.
+                        // - like ensuring closing an opened stream.
+                    }
+                } catch (Exception e) {
+                    Console.WriteLine("Now here");
+                } finally {
+                    Console.WriteLine("Finally 2");
+                }
+                /* Output of above
+                    Cannot divide by zero, again.
+                    This line always runs.
+                    Now here
+                    Finally 2
+                */
+                // When would finally not run? one  possibility is if we have the return keyword.
+
+
+                // Exception hierarchy goes from specific to base.
+                try {
+                    int[] array = new int[]{ 1, 2, 3};
+                    for(int i=0; i<100; ++i) { // length is only 3
+                        array[i] = 0;
+                    }
+                } catch (IndexOutOfRangeException e) {
+                    Console.WriteLine("IndexOutOfRange");
+                    // throw; // If throw from here the catch(Exception e) below won't catch it!
+                } catch (Exception e) {
+                    Console.WriteLine("This line does not run in this example.");
+                } 
+
 
                 Console.WriteLine("\n\n\n");
             } // End executeDriver()

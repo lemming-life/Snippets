@@ -1,9 +1,128 @@
 Project CS (.NETCoreApp,Version=v1.1) will be compiled because inputs were modified
 Compiling CS for .NETCoreApp,Version=v1.1
 
-Compilation failed.
-    23 Warning(s)
-    3 Error(s)
+Compilation succeeded.
+    28 Warning(s)
+    0 Error(s)
 
-Time elapsed 00:00:01.5146950
+Time elapsed 00:00:01.6524785
+ 
 
+
+TEST: C# Language
+
+SubTest: ManyDetails
+A way to output to console.
+Writing with some value: 33
+Writing with some value: 33
+Writing with value: 33 and a second value 66
+do while loop
+0
+1
+2
+while loop
+0
+1
+2
+for loop
+0
+1
+2
+Nested for loops
+i: 0 j: 0
+i: 0 j: 1
+i: 0 j: 2
+i: 1 j: 0
+i: 1 j: 1
+i: 1 j: 2
+i: 2 j: 0
+i: 2 j: 1
+i: 2 j: 2
+Using continue
+i: 0 j: 0
+i: 0 j: 2
+i: 1 j: 0
+i: 1 j: 2
+i: 2 j: 0
+i: 2 j: 2
+Using break
+i: 0 j: 0
+i: 1 j: 0
+i: 2 j: 0
+Printing the values of the elements of anArrayOfStrings via index
+red
+orange
+yellow
+Printing the values of the elements of anArrayOfStrings via foreach
+red
+orange
+yellow
+Printing values from multiDimensionalSpecified
+Row 0 Col 0 Value 0
+Row 0 Col 1 Value 1
+Row 0 Col 2 Value 2
+Row 1 Col 0 Value 3
+Row 1 Col 1 Value 4
+Row 1 Col 2 Value 5
+
+A random dice number: 3
+
+Numbers of the list sorted.
+1 2 2 3 4 
+Removed a 2 from myList, here are the results.
+1 2 3 4 
+Removed element at 0 index from myList, here are the results.
+2 3 4 
+Checking woodenDoor is
+woodenDoor is Object True
+woodenDoor is DoorInterface True
+woodenDoor is WoodDoor True
+smallCircle.ToString() x: 0, y: 0, radius: 1
+Called Circle.changeName()
+
+Checking smallCircle is
+smallCircle is Circle False
+smallCircle is Circle True
+smallCircle is Shape True
+smallCircle is Position True
+Changed position, doing smallCircle.ToString() x: 99, y: 99, radius: 1
+bigCircle.ToString() x: 2, y: 3, radius: 10
+Called Shape.changeName()
+
+Checking bigCircle is
+bigCircle is Circle False
+bigCircle is Circle True
+bigCircle is Shape True
+bigCircle is Position True
+Changed position, doing bigCircle.ToString() x: 99, y: 99, radius: 10
+Called Circle.changeName()
+
+Checking redCircle1 is
+redCircle1 is RedCircle True
+redCircle1 is Circle True
+redCircle1 is Shape True
+redCircle1 is Position True
+Changed position, doing redCircle1.ToString() x: 99, y: 99, radius: 2
+Called Circle.changeName()
+
+Checking redCircle1 is
+redCircle2 is RedCircle True
+redCircle2 is Circle True
+redCircle2 is Shape True
+redCircle2 is Position True
+Called Circle.changeName()
+
+Checking redCircle1 is
+redCircle2 is RedCircle True
+redCircle2 is Circle True
+redCircle2 is Shape True
+redCircle2 is Position True
+Invoking a delegate, expecting 10, got back 10
+
+Cannot divide by zero!
+
+Cannot divide by zero, again.
+This line always runs.
+Now here
+Finally 2
+IndexOutOfRange
