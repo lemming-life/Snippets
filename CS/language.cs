@@ -11,8 +11,6 @@ using System.Linq;
 namespace Snippets {
     class Language {
 
-        
-
         public static void executeDriver(bool standardInput = false) {
             Console.WriteLine("\nTEST: C# Language");
             
@@ -767,6 +765,17 @@ namespace Snippets {
                 Console.WriteLine("Writing out anonymous object. Name {0}", anonObject.Name);
                 Console.WriteLine($"Another way of writing the name of object {anonObject.Name}");
 
+                // Using an Extension Method
+                // - Scroll to "static class MyExtensions" to view more info.
+                string theLine = "abcAAdefA";
+                Console.WriteLine("Extension method, count of A in {0} is {1}", theLine, theLine.getCountOf('A'));
+
+
+                // A way to sort quickly.
+                int[] myArrayOfInts = new int[] { 2, 4, 1, 0};
+                var sorted = myArrayOfInts.OrderBy( a => a); // 0, 1, 2, 4
+
+
                 Console.WriteLine("\n\n\n");
             } // End executeDriver()
 
@@ -938,7 +947,7 @@ namespace Snippets {
 
 
             
-            // Operator overloading
+            // OPERATOR OVERLOADING
             class SumNumberStrings {
                 public string value;
                 public List<string> previousValues;
@@ -967,9 +976,11 @@ namespace Snippets {
                 }
             } // Enc class SumNumberStrings
 
-
+        
         } // End class ManyDetails
 
+
+        
 
 
 
@@ -1103,4 +1114,23 @@ namespace Snippets {
 
 
     } // End class CsLanguage
+
+
+
+    // EXTENSION METHODS
+    // - Note how it must be a top level class (aka not nested)
+    // - An extension method makes it seem as if a certain type has a method that can be called.
+    // - Example below is for strings, now strings can call getCountOf
+    public static class MyExtensions {
+        public static int getCountOf(this string str, char aChar) {
+            int count = 0;
+            foreach(var c in str) {
+                if (c == aChar) {
+                    ++count;
+                }
+            }
+            return count;
+        }
+    }
+
 }

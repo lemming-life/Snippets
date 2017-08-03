@@ -2,8 +2,8 @@ Project CS (.NETCoreApp,Version=v1.1) will be compiled because inputs were modif
 Compiling CS for .NETCoreApp,Version=v1.1
 
 Compilation failed.
-    28 Warning(s)
+    29 Warning(s)
     1 Error(s)
 
-Time elapsed 00:00:01.5286497
+Time elapsed 00:00:01.5051140
 
