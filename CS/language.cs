@@ -680,6 +680,18 @@ namespace Snippets {
                 Console.WriteLine("redCircle2 is Shape {0}", redCircle3 is Shape);   // true
                 Console.WriteLine("redCircle2 is Position {0}", redCircle3 is Position); // true
 
+                // Polymorphism
+                // - Having a virtual base method, overridden by concrete classes.
+                // - The language knows which to call.
+                // - Shape has a virtual method called draw
+
+                Console.WriteLine("Polymorphism test.");
+                smallCircle.draw(); // Circle
+                bigCircle.draw();   // Circle      -> notice that this was defined as Shape bigCircle
+                redCircle1.draw();  // RedCircle
+                redCircle2.draw();  // RedCircle
+                redCircle3.draw();  // RedCircle
+
                 // Generics
                 // - We can assign a type when we create the myContainer object.
                 SomeContainer<int> myContainer = new SomeContainer<int>(5);
@@ -906,6 +918,10 @@ namespace Snippets {
                     Console.WriteLine("Called Shape.changeName()");
                     this.name = name;
                 }
+
+                public virtual void draw() {
+                    Console.WriteLine("Drawing shape");
+                }
                 
             }
 
@@ -920,6 +936,10 @@ namespace Snippets {
                     Console.WriteLine("Called Circle.changeName()");
                     this.name = name;
                 }
+
+                public override void draw() {
+                    Console.WriteLine("Writing Circle");
+                }
             }
 
 
@@ -929,6 +949,10 @@ namespace Snippets {
                 int color = 1;
                 public RedCircle() : base(2, -2, -2)  {
                     base.changeName("Red Circle");
+                }
+
+                public override void draw() {
+                    Console.WriteLine("Drawing RedCircle");
                 }
             }
 

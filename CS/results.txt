@@ -1,9 +1,378 @@
 Project CS (.NETCoreApp,Version=v1.1) will be compiled because inputs were modified
 Compiling CS for .NETCoreApp,Version=v1.1
 
-Compilation failed.
-    29 Warning(s)
-    1 Error(s)
+Compilation succeeded.
+    32 Warning(s)
+    0 Error(s)
 
-Time elapsed 00:00:01.5051140
+Time elapsed 00:00:01.5493683
+ 
 
+
+TEST: C# Language
+
+SubTest: ManyDetails
+A way to output to console.
+Writing with some value: 33
+Writing with some value: 33
+Writing with value: 33 and a second value 66
+do while loop
+0
+1
+2
+while loop
+0
+1
+2
+for loop
+0
+1
+2
+Nested for loops
+i: 0 j: 0
+i: 0 j: 1
+i: 0 j: 2
+i: 1 j: 0
+i: 1 j: 1
+i: 1 j: 2
+i: 2 j: 0
+i: 2 j: 1
+i: 2 j: 2
+Using continue
+i: 0 j: 0
+i: 0 j: 2
+i: 1 j: 0
+i: 1 j: 2
+i: 2 j: 0
+i: 2 j: 2
+Using break
+i: 0 j: 0
+i: 1 j: 0
+i: 2 j: 0
+Printing the values of the elements of anArrayOfStrings via index
+red
+orange
+yellow
+Printing the values of the elements of anArrayOfStrings via foreach
+red
+orange
+yellow
+Printing values from multiDimensionalSpecified
+Row 0 Col 0 Value 0
+Row 0 Col 1 Value 1
+Row 0 Col 2 Value 2
+Row 1 Col 0 Value 3
+Row 1 Col 1 Value 4
+Row 1 Col 2 Value 5
+
+A random dice number: 6
+
+Numbers of the list sorted.
+1 2 2 3 4 
+Removed a 2 from myList, here are the results.
+1 2 3 4 
+Removed element at 0 index from myList, here are the results.
+2 3 4 
+Checking woodenDoor is
+woodenDoor is Object True
+woodenDoor is DoorInterface True
+woodenDoor is WoodDoor True
+smallCircle.ToString() x: 0, y: 0, radius: 1
+Called Circle.changeName()
+
+Checking smallCircle is
+smallCircle is Circle False
+smallCircle is Circle True
+smallCircle is Shape True
+smallCircle is Position True
+Changed position, doing smallCircle.ToString() x: 99, y: 99, radius: 1
+bigCircle.ToString() x: 2, y: 3, radius: 10
+Called Shape.changeName()
+
+Checking bigCircle is
+bigCircle is Circle False
+bigCircle is Circle True
+bigCircle is Shape True
+bigCircle is Position True
+Changed position, doing bigCircle.ToString() x: 99, y: 99, radius: 10
+Called Circle.changeName()
+
+Checking redCircle1 is
+redCircle1 is RedCircle True
+redCircle1 is Circle True
+redCircle1 is Shape True
+redCircle1 is Position True
+Changed position, doing redCircle1.ToString() x: 99, y: 99, radius: 2
+Called Circle.changeName()
+
+Checking redCircle1 is
+redCircle2 is RedCircle True
+redCircle2 is Circle True
+redCircle2 is Shape True
+redCircle2 is Position True
+Called Circle.changeName()
+
+Checking redCircle1 is
+redCircle2 is RedCircle True
+redCircle2 is Circle True
+redCircle2 is Shape True
+redCircle2 is Position True
+Polymorphism test.
+Writing Circle
+Writing Circle
+Drawing RedCircle
+Drawing RedCircle
+Drawing RedCircle
+Invoking a delegate, expecting 10, got back 10
+
+Cannot divide by zero!
+
+Cannot divide by zero, again.
+This line always runs.
+Caught the exception!
+Finally 2
+IndexOutOfRange
+Writing out anonymous object. Name AnonymousObject
+Another way of writing the name of object AnonymousObject
+Extension method, count of A in abcAAdefA is 3
+
+
+
+
+
+SubTest: ConsoleOutputInput
+My name is Jack
+Jack is my name.
+Format 1234.5678 with 4 decimal places: 1234.5678
+Format 1234.5678 as number with 3 decimal places: 1,234.568
+Format 1234.5678 as currency with two decimal places: $1,234.57
+Format 1234.5678 as exponential: 1.234568e+003
+Format 12 with leading zeros: 0012
+Format 0.33 as percent: 33.000%
+Format 12.3 with 4 leading digits a period and 2 decimal places 0012.30
+
+SubTest: ChangeConsole
+
+SubTest: WriteRead
+Writing file tempFile.txt
+Finished writing file.
+Reading file tempFile.txt
+	Line 0
+	Line 1
+	Line 2
+	Line 3
+	Line 4
+Finished reading file.
+Removed file tempFile.txt
+
+SubTest: LINQ
+List of numbers: 
+0 1 2 3 4 5 6 7 8 9 
+Evens: 
+0 2 4 6 8 
+Evens Descending: 
+8 6 4 2 0 
+queryConcat {1, 2, 3} and {'a', 'b', 'c'} 
+1a 1b 1c 2a 2b 2c 3a 3b 3c 
+
+
+
+TEST: Maths
+
+nSubTest: fibonacciIterative
+fibonacciIterative(0) = 0
+fibonacciIterative(1) = 1
+fibonacciIterative(2) = 1
+fibonacciIterative(3) = 2
+fibonacciIterative(4) = 3
+fibonacciIterative(5) = 5
+fibonacciIterative(6) = 8
+
+nSubTest: fibonacciRecursive
+fibonacciRecursive(0) = 0
+fibonacciRecursive(1) = 1
+fibonacciRecursive(2) = 1
+fibonacciRecursive(3) = 2
+fibonacciRecursive(4) = 3
+fibonacciRecursive(5) = 5
+fibonacciRecursive(6) = 8
+
+SubTest: breakByDenomination
+Initial money: $99
+How many $50.00? 1, remaining money: 49
+How many $20.00? 2, remaining money: 9
+How many $10.00? 0, remaining money: 9
+How many $5.00? 1, remaining money: 4
+How many $1.00? 4, remaining money: 0
+
+SubTest: getAverage
+The average of 1 2 3 5.5 6.6 7.7  is 4.3
+
+SubTest: getHighest / getLowest / getHighestByIndex / getLowestByIndex 
+Given 1 2 3 5.5 6.6 7.7 1.5 4 99 64 
+Highest is 99 and lowest is 1
+Index of highest is 8, index of lowest is 0
+
+TEST: Geometry
+
+SubTest: CircleInSquare
+Circle In Square Details
+Radius of circle 5 and length of square 10
+Area of circle: 78.5398
+Area of square: 100.0000
+Sum of corners area: 21.4602
+
+SubTest: getHypothenuse
+sideA 2 and sideB4, hypothenuse is 4.47213595499958
+
+SubTest: getPolarCoordinates
+
+Testing quadrants
+x: 2 y: 2 | Polar coords, angle 45.00, distance 2.8284
+x: -2 y: 2 | Polar coords, angle 135.00, distance 2.8284
+x: -2 y: -2 | Polar coords, angle 225.00, distance 2.8284
+x: 2 y: -2 | Polar coords, angle 315.00, distance 2.8284
+
+Testing when coords have zeros.
+x: 0 y: 0 | Polar coords, angle NaN, distance 0.0000
+x: 1 y: 0 | Polar coords, angle 0.00, distance 1.0000
+x: -1 y: 0 | Polar coords, angle 180.00, distance 1.0000
+x: 0 y: 1 | Polar coords, angle 90.00, distance 1.0000
+x: 0 y: -1 | Polar coords, angle 270.00, distance 1.0000
+
+TEST: String Operations
+
+SubTest: Reverse
+The reverse of 'Hello, World' is 'dlroW ,olleH'
+The reverse of 12345 is 54321
+
+SubTest: Palindrome
+Is hello a palindrome? False
+Is 101 a palindrome? True
+Is aabbaa a palindrome? True
+
+SubTest: UrlParser
+Url is: http://google.com/theQuery123
+Protocol: http
+Domain: google.com
+Query no path: theQuery123
+Query with path: theQuery123
+
+Url is: http://google.com/some/stuff/in/between/theQuery123
+Protocol: http
+Domain: google.com
+Query no path: theQuery123
+Query with path: some/stuff/in/between/theQuery123
+
+Url is: http://www.somewebsitewithnoqueryline.com/index.html
+Protocol: http
+Domain: www.somewebsitewithnoqueryline.com
+Query?: 
+
+Url is: http://www.somewebsitewithquestionmarkquery.com/index.html?aquery=123
+Protocol: http
+Domain: www.somewebsitewithquestionmarkquery.com
+Query?: aquery=123
+
+SubTest: IsWellFormed1
+Is () well formed? True
+Is ([)] well formed? False
+
+SubTest: IsWellFormed2
+Is hello well formed? True
+Is (hello) well formed? True
+Is (he[llo]) well formed? True
+Is hell{} well formed? True
+Is (he[llo) well formed? False
+Is hell}o well formed? False
+Is ]hello well formed? False
+Is he(ll]o well formed? False
+
+TEST: Time
+
+SubTest: isLeapYear
+Is 4 leap? False
+Is 100 leap? False
+Is 400 leap? False
+Is 2000 leap? True
+Is 2001 leap? False
+Is 2002 leap? False
+Is 2003 leap? False
+Is 2004 leap? True
+Is 2005 leap? False
+
+SubTest: timeAsMinutes
+00:33 is 33 minutes
+01:00 is 60 minutes
+01:33 is 93 minutes
+24:00 is 1440 minutes
+
+TEST: Misc
+
+SubTest generic Swap
+Before: 3 and 5
+After: 5 and 3
+Before: red and green
+After: green and red
+
+TEST: Sorting
+
+SubTest: bubbleSortArray
+Unsorted data: 
+5 2 11 4 6 5 
+Sorted descending data:
+11 6 5 5 4 2 
+Sorted ascending data:
+2 4 5 5 6 11 
+
+TEST: Challenge1
+Sum n and its reverse, if result isPalindrome quit, else n is result and repeat.
+Output the iteration count and the resulting sum.
+Input: 195
+Output: 4 9339
+
+TEST: Challenge2
+Do the inclusive sum of numbers from 1 to n, excluding numbers divisible by 5 and 7
+Input: 5, Output: 10
+Input: 6, Output: 16
+Input: 7, Output: 16
+Input: 8, Output: 24
+
+TEST: Challenge3
+Subtest1
+Trip departs at 01:00, expected to arrive at 02:00, but has 10% delay
+The new arrival time is 02:06
+
+Subtest2
+Trip departs at 23:30, expected to arrive at 24:00, but has 50% delay
+The new arrival time is 00:15
+
+Subtest3
+Trip departs at 23:30, expected to arrive at 00:00, but has 50% delay
+The new arrival time is 00:15
+
+Subtest4
+Trip departs at 23:30, expected to arrive at 01:00, but has 50% delay
+The new arrival time is 01:45
+
+Test: Challenge4
+Line is Hello World, World
+1
+Line is Tomato is potato,potato
+1
+Line is Tomato is potato,Tomato
+0
+Line is Tomato is potato,Blabla
+0
+
+TEST: Patterns
+
+Strategy Pattern
+bigCar horn is 
+LOUD!!!
+smallCar horn is 
+SOFT
+
+Decorator and Null Pattern
+A milk with cream and sugar. $1.00
+A milk with double sugar. $1.00

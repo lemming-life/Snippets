@@ -19,8 +19,6 @@ namespace Challenges {
 
 
     class Challenge1 {
-
-
         /* Challenge Description:
         Credits: Programming Challenges by Steven S. Skiena and Miguel A. Revilla
 
@@ -81,7 +79,6 @@ namespace Challenges {
 
 
     class Challenge2 {
-
         /* Challenge Description:
         Write a program that, given an integer, sums all the numbers from 1 through that integer (both inclusive).
         Do not include in your sum any of the intermediate numbers (1 and n inclusive) that are divisible by 5 or 7.
@@ -155,7 +152,6 @@ namespace Challenges {
         Given an initial departure and arrival time, determine the new arrival time with
         consideration of a percent delay. Use a HH:MM, and 24 hour, format.
         */
-
         public static void executeDriver(bool standardIn = false) {
             Console.WriteLine("\nTEST: Challenge3");
 
@@ -243,7 +239,6 @@ namespace Challenges {
         Your program should read lines of text from standard input.
         Each line will contain two strings, A and B, separated by a comma.
          */
-
         
         public static void executeDriver(bool standardIn = false) {
             Console.WriteLine("\nTest: Challenge4");
