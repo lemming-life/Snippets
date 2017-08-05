@@ -72,48 +72,49 @@ namespace Patterns {
         // - Can have quite tedious looking code.
 
         public static void executeDriver() {
-            Console.WriteLine("\nDecorator and Null Pattern");
-            var milkCreamSugar = new Milk(new Cream(new Sugar(null)));
-            Console.WriteLine("A milk with cream and sugar. {0:c2}", milkCreamSugar.cost() );
-            var milkSugarSugar = new Milk(new Sugar(new Sugar(null)));
-            Console.WriteLine("A milk with double sugar. {0:c2}", milkSugarSugar.cost() );
+            Console.WriteLine("\nDecorator Pattern");
+            Console.WriteLine("Milk $1, Cream $2, Sugar $3");
+
+            var milkSugar = new Sugar(new Milk());
+            Console.WriteLine("Milk sugar. {0:c2}", milkSugar.cost()); // $4
+
+            var milkCreamSugar = new Cream(new Sugar(new Milk()));
+            Console.WriteLine("Milk with cream and sugar. {0:c2}", milkCreamSugar.cost()); // $6
+
+            var milkCreamCreamSugar = new Cream(new Cream(new Sugar(new Milk())));
+            Console.WriteLine("Milk with double cream and sugar. {0:c2}", milkCreamCreamSugar.cost()); // $8
         }
 
-        interface CostInterface {
+
+        // Component
+        public interface MilkComponent {
             int cost();
         }
 
-        public class Decorator : CostInterface {
+
+        // Concrete Component
+        public class Milk : MilkComponent {
+            public int cost() { return 1; }
+        }
+
+        // Decorator
+        public abstract class Decorator : MilkComponent {
             // Base Decorator class
-            protected Decorator other;
-            public Decorator(Decorator other = null) {
-                this.other = other;
-            }
-            public int cost() {
-                if (other != null) {
-                    return other.cost();;
-                }
-                return 0;
-            }
+            protected MilkComponent _other = null;
+            public Decorator(MilkComponent other) { _other = other; }
+            public virtual int cost() { return 0; }
         }
 
-
-        class Milk : Decorator {
-
-            public Milk(Decorator other ) : base(other) { }
-            public int cost() { return (other.cost() + 1); }
-        }
-
+        // Concrete Decorator
         class Cream : Decorator {
-            public Cream(Decorator other ) : base(other) { }
-
-            public int cost() { return (other.cost() + 2); }
+            public Cream(MilkComponent other) : base(other) { }
+            public override int cost() { return 2 + _other.cost(); }
         }
 
+        // Concrete Decorator
         class Sugar : Decorator {
-            public Sugar(Decorator other ) : base(other) { }
-
-            public int cost() { return (other.cost() + 1); }
+            public Sugar(MilkComponent other) : base(other) { }
+            public override int cost() { return 3 + _other.cost(); }
         }
     }  // End class DecoratorAndNullPattern
 
