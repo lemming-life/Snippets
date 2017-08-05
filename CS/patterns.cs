@@ -57,19 +57,22 @@ namespace Patterns {
 
 
     public class DecoratorPattern {
-        // Decorator pattern, with NullPattern
+        // Description: A fairly bland component that is then decorated with other components.
 
         // Decorator principles:
         // - Open for extension, closed for modification.
         // - Single responsibility
-        // - A derived class can be used wherever an instance of the base class is used.
+        // - Separate what varies from what stays the same.
 
         // Pros:
-        // - Flexible
+        // - Flexible, and should be easy to debug.
 
         // Cons:
         // - Lots of objects are created.
-        // - Can have quite tedious looking code.
+        // - Can have quite tedious looking code when instantiating.
+
+        
+
 
         public static void executeDriver() {
             Console.WriteLine("\nDecorator Pattern");
@@ -85,24 +88,22 @@ namespace Patterns {
             Console.WriteLine("Milk with double cream and sugar. {0:c2}", milkCreamCreamSugar.cost()); // $8
         }
 
-
-        // Component
+        // Component (abstraction)
         public interface MilkComponent {
             int cost();
         }
-
 
         // Concrete Component
         public class Milk : MilkComponent {
             public int cost() { return 1; }
         }
 
-        // Decorator
+        // Decorator (abstraction)
         public abstract class Decorator : MilkComponent {
             // Base Decorator class
             protected MilkComponent _other = null;
             public Decorator(MilkComponent other) { _other = other; }
-            public virtual int cost() { return 0; }
+            public abstract int cost();
         }
 
         // Concrete Decorator
