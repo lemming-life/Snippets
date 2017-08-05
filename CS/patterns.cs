@@ -36,6 +36,7 @@ namespace Patterns {
 
 
         class Car {
+            // Context
             HornBehavior horn;
             public Car(HornBehavior horn) { this.horn = horn; }
 
@@ -43,14 +44,17 @@ namespace Patterns {
         }
 
         interface HornBehavior {
+            // Strategy
             void makeSound();
         }
 
         class LoudHorn : HornBehavior {
+            // Concrete strategy
             public void makeSound() { Console.WriteLine("LOUD!!!"); }
         }
 
         class SoftHorn : HornBehavior {
+            // Concrete strategy
             public void makeSound() { Console.WriteLine("SOFT"); }
         }
     } // End class StrategyPattern
@@ -90,27 +94,30 @@ namespace Patterns {
             int cost();
         }
 
-        // Concrete Component
         class Milk : MilkComponent {
+            // Concrete Component
+            
             public int cost() { return 1; }
         }
 
-        // Decorator (abstraction)
         abstract class Decorator : MilkComponent {
+            // Decorator (abstraction)
+            
             // Base Decorator class
             protected MilkComponent _other = null;
             public Decorator(MilkComponent other) { _other = other; }
             public abstract int cost();
         }
 
-        // Concrete Decorator
         class Cream : Decorator {
+            // Concrete Decorator
             public Cream(MilkComponent other) : base(other) { }
             public override int cost() { return 2 + _other.cost(); }
         }
 
-        // Concrete Decorator
+        
         class Sugar : Decorator {
+            // Concrete Decorator
             public Sugar(MilkComponent other) : base(other) { }
             public override int cost() { return 3 + _other.cost(); }
         }
