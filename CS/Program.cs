@@ -29,6 +29,8 @@ namespace ConsoleApplication {
 
             Challenges.AllChallenges.executeDriver(CONSOLE_INPUT);
             Patterns.AllPatterns.executeDriver();
+
+             
         } // End Main()
 
     } // End class Program

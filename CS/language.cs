@@ -7,6 +7,8 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.ComponentModel;
 
 namespace Snippets {
     class Language {
@@ -787,6 +789,16 @@ namespace Snippets {
                 int[] myArrayOfInts = new int[] { 2, 4, 1, 0};
                 var sorted = myArrayOfInts.OrderBy( a => a); // 0, 1, 2, 4
 
+                // Go through the Enum members.
+                foreach(var item in Enum.GetValues(typeof(Colors))) {
+                    Console.WriteLine(item);
+                }
+                /* Output:
+                    RED
+                    GREEN
+                    BLUE
+                */
+
 
                 Console.WriteLine("\n\n\n");
             } // End executeDriver()
@@ -795,6 +807,7 @@ namespace Snippets {
             public delegate int ReturnsIntDelegate(int a, int b);
 
             public static int returnsIntFunction(int a, int b) { return a + b; }
+
 
 
             struct SimpleStruct {
@@ -999,6 +1012,14 @@ namespace Snippets {
                     get { return previousValues[index]; }
                 }
             } // Enc class SumNumberStrings
+
+        
+            // An Enum is a collection of constant values.
+            // - In C# it is a numeric value,
+            enum Colors {RED, GREEN, BLUE};
+            enum Presidents { WASHINGTON=2, LINCOLN, KENNEDY }
+            enum Bytes : byte { ONE = 1, TWO, THREE, FOUR}
+
 
         
         } // End class ManyDetails

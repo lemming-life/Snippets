@@ -5,7 +5,7 @@ Compilation succeeded.
     32 Warning(s)
     0 Error(s)
 
-Time elapsed 00:00:01.5493683
+Time elapsed 00:00:01.6359782
  
 
 
@@ -65,7 +65,7 @@ Row 1 Col 0 Value 3
 Row 1 Col 1 Value 4
 Row 1 Col 2 Value 5
 
-A random dice number: 6
+A random dice number: 1
 
 Numbers of the list sorted.
 1 2 2 3 4 
@@ -376,3 +376,5 @@ SOFT
 Decorator and Null Pattern
 A milk with cream and sugar. $1.00
 A milk with double sugar. $1.00
+true
+true
