@@ -120,20 +120,13 @@ namespace Patterns {
     class AdapterPattern {
         public static void executeDriver() {
             Console.WriteLine("\nAdapter Pattern");
-            var obj1 = new TargetAlready();
-            var obj2 = new AdapteeToTarget();
-            var obj3 = new Adaptee();
-
+            var obj1 = new TargetAlready();  // obj1.request() returns int
+            var obj2 = new Adaptee();   // obj2.request() returns string
+            var obj3 = new AdapteeToTarget(); // obj3.request() returns int
+            // But obj3 is really an Adaptee that makes methods compatible with new interface.
             
-            if ( obj1.request() == obj2.request() ) {
-                Console.WriteLine("They are compatible");
-            }
-
-            //if ( obj1.request() == obj3.request() ) {
-            //}
-
-            
-
+            //if ( obj1.request() == obj2.request() ) {} // Incompatible
+            if ( obj1.request() == obj3.request() ) {} // Compatible
         }
 
         interface CurrentTargetSpecification {
@@ -155,9 +148,7 @@ namespace Patterns {
         class Adaptee {
             // The adaptee is the version that is incompatible
             // but the code is good for use, if adapted by the adapter. 
-            public string request() {
-                return "33";
-            }
+            public string request() {return "33";}
         }
     }
 
