@@ -809,6 +809,8 @@ namespace Snippets {
             public static int returnsIntFunction(int a, int b) { return a + b; }
 
 
+            /// Return type determined automatically.
+            public static dynamic returnTypeOfString() { return "a string"; }
 
             struct SimpleStruct {
                 // Structs are similar to a Class

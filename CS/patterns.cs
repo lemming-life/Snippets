@@ -50,7 +50,7 @@ namespace Patterns {
             public void makeSound() { Console.WriteLine("LOUD!!!"); }
         }
 
-        public class SoftHorn : HornBehavior {
+        class SoftHorn : HornBehavior {
             public void makeSound() { Console.WriteLine("SOFT"); }
         }
     } // End class StrategyPattern
@@ -86,17 +86,17 @@ namespace Patterns {
         }
 
         // Component (abstraction)
-        public interface MilkComponent {
+        interface MilkComponent {
             int cost();
         }
 
         // Concrete Component
-        public class Milk : MilkComponent {
+        class Milk : MilkComponent {
             public int cost() { return 1; }
         }
 
         // Decorator (abstraction)
-        public abstract class Decorator : MilkComponent {
+        abstract class Decorator : MilkComponent {
             // Base Decorator class
             protected MilkComponent _other = null;
             public Decorator(MilkComponent other) { _other = other; }
@@ -115,6 +115,51 @@ namespace Patterns {
             public override int cost() { return 3 + _other.cost(); }
         }
     }  // End class DecoratorAndNullPattern
+
+
+    class AdapterPattern {
+        public static void executeDriver() {
+            Console.WriteLine("\nAdapter Pattern");
+            var obj1 = new TargetAlready();
+            var obj2 = new AdapteeToTarget();
+            var obj3 = new Adaptee();
+
+            
+            if ( obj1.request() == obj2.request() ) {
+                Console.WriteLine("They are compatible");
+            }
+
+            //if ( obj1.request() == obj3.request() ) {
+            //}
+
+            
+
+        }
+
+        interface CurrentTargetSpecification {
+            int request();
+        }
+
+        class TargetAlready : CurrentTargetSpecification {
+            public int request() { return 33; }
+        }
+
+        class AdapteeToTarget : CurrentTargetSpecification {
+            // This s the Adapter
+            public int request() {
+                Adaptee adaptee = new Adaptee();
+                return int.Parse(adaptee.request());
+            }
+        }
+
+        class Adaptee {
+            // The adaptee is the version that is incompatible
+            // but the code is good for use, if adapted by the adapter. 
+            public string request() {
+                return "33";
+            }
+        }
+    }
 
 
 } // End namespace Patterns
