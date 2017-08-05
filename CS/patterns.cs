@@ -53,7 +53,7 @@ namespace Patterns {
         public class SoftHorn : HornBehavior {
             public void makeSound() { Console.WriteLine("SOFT"); }
         }
-    }
+    } // End class StrategyPattern
 
 
     public class DecoratorPattern {
@@ -70,9 +70,6 @@ namespace Patterns {
         // Cons:
         // - Lots of objects are created.
         // - Can have quite tedious looking code when instantiating.
-
-        
-
 
         public static void executeDriver() {
             Console.WriteLine("\nDecorator Pattern");
