@@ -139,9 +139,12 @@ namespace Patterns {
 
         class AdapteeToTarget : CurrentTargetSpecification {
             // This s the Adapter
+            // In C++ we have public inheritance of CurrentTargetSpecification
+            // and private inheritance of Adaptee
+            // But in C# we don't have that, so we'll use an object in the method.
             public int request() {
                 Adaptee adaptee = new Adaptee();
-                return int.Parse(adaptee.request());
+                return int.Parse( adaptee.request() );  // Adapting from string to an int
             }
         }
 
