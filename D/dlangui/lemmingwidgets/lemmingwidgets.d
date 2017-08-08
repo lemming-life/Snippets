@@ -126,52 +126,10 @@ class ListWidgetNav : StringListWidget {
 	override bool onKeyEvent(KeyEvent event) {
         if (itemCount == 0)
             return false;
-        int navigationDelta = 0;
-        if (event.action == KeyAction.KeyDown) {
-            if (orientation == Orientation.Vertical) {
-                if (event.keyCode == KeyCode.DOWN)
-                    navigationDelta = 1;
-                else if (event.keyCode == KeyCode.UP)
-                    navigationDelta = -1;
-            } else {
-                if (event.keyCode == KeyCode.RIGHT)
-                    navigationDelta = 1;
-                else if (event.keyCode == KeyCode.LEFT)
-                    navigationDelta = -1;
-            }
-        }
-        if (navigationDelta != 0) {
-            moveSelection(navigationDelta);
-            return true;
-        }
-        if (event.action == KeyAction.KeyDown) {
-            if (event.keyCode == KeyCode.HOME) {
-                // select first enabled item on HOME key
-                selectItem(0, 1);
-                return true;
-            } else if (event.keyCode == KeyCode.END) {
-                // select last enabled item on END key
-                selectItem(itemCount - 1, -1);
-                return true;
-            } else if (event.keyCode == KeyCode.PAGEDOWN) {
-                // TODO
-            } else if (event.keyCode == KeyCode.PAGEUP) {
-                // TODO
-            }
-        }
-        if ((event.keyCode == KeyCode.SPACE || event.keyCode == KeyCode.RETURN)) {
-            if (event.action == KeyAction.KeyDown && enabled) {
-                if (itemEnabled(_selectedItemIndex)) {
-                    itemClicked(_selectedItemIndex);
-                }
-            }
-            return true;
-        }
 
 		// Lemming modification
 		// - Accept user input and try to find a match in the list.
 		if (event.action == KeyAction.Text) {
-
 			if (!_sw.running) {
 				// If stopWatch not running
 				_sw.start;
