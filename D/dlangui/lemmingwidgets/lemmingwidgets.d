@@ -199,6 +199,7 @@ class ListWidgetNav : StringListWidget {
     } // End onKeyEvent()
 
 	bool selectClosestMatch(dstring term) {
+		import std.uni : toLower;
 		if (term.length == 0) { return false;}
 
 		int[int] scores;
@@ -218,7 +219,7 @@ class ListWidgetNav : StringListWidget {
 				bool addItem = true;
 				foreach(int termIndex; 0 .. cast(int)term.length) {
 					if (termIndex < item.length) {
-						if (term[termIndex] != item[termIndex]) {
+						if (toLower(term[termIndex]) != toLower(item[termIndex]) ) {
 							addItem = false;
 							break;
 						}
