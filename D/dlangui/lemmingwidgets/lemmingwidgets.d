@@ -114,11 +114,16 @@ class EditLineForList : EditLine {
 	}
 } // End EditLineForList
 
+interface OnItemTriggered {
+	bool itemTriggerd(Widget source, int itemIndex);
+}
 
 // Widget that allows selection of item via keys
 class ListWidgetNav : StringListWidget {
 	import std.conv : to;
 	import std.datetime : dto = to, StopWatch;
+
+	Signal!OnItemTriggered itemTriggered;
 
 	private dstring _searchString = "";
 	private StopWatch _sw;
@@ -127,8 +132,14 @@ class ListWidgetNav : StringListWidget {
         if (itemCount == 0)
             return false;
 
-		// Lemming modification
-		// - Accept user input and try to find a match in the list.
+		if (event.action == KeyAction.KeyDown) {
+			if (event.keyCode == KeyCode.RETURN || event.keyCode == KeyCode.RIGHT || event.keyCode == KeyCode.LEFT) {
+				itemTriggered(this, selectedItemIndex);
+				return true;
+			}
+		}
+
+		// Accept user input and try to find a match in the list.
 		if (event.action == KeyAction.Text) {
 			if (!_sw.running) {
 				// If stopWatch not running
