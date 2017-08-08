@@ -211,6 +211,7 @@ class ListWidgetNav : StringListWidget {
 			if (item == term) {
 				// Perfect match
 				selectItem(itemIndex);
+				itemSelected(this, itemIndex);
 				return true;
 			} else {
 				// Not perfect, but maybe within term
@@ -230,6 +231,7 @@ class ListWidgetNav : StringListWidget {
 		// Select the first item
 		if (indexes.length > 0) {
 			selectItem(indexes[0]);
+			itemSelected(this, indexes[0]);
 			return true;
 		}
 
