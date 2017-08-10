@@ -128,6 +128,14 @@ class ListWidgetNav : StringListWidget {
 	private dstring _searchString = "";
 	private StopWatch _sw;
 
+	KeyFlag keyFlag = KeyFlag.Command;
+
+	//version ( OSX ) {
+	//	keyFlag = KeyFlag.Command;
+	//} else {
+	//	keyFlag = KeyFlag.Control;
+	//}
+
 	override bool onKeyEvent(KeyEvent event) {
         if (itemCount == 0)
             return false;
@@ -136,6 +144,36 @@ class ListWidgetNav : StringListWidget {
 			if (event.keyCode == KeyCode.RETURN || event.keyCode == KeyCode.RIGHT || event.keyCode == KeyCode.LEFT) {
 				itemTriggered(this, selectedItemIndex);
 				return true;
+			}
+		}
+
+		if (event.action == KeyAction.KeyDown) {
+			import std.stdio : writeln;
+
+			if ( (event.flags & keyFlag) == keyFlag) {
+				if (event.keyCode == KeyCode.KEY_J) {
+					// Navigate left
+					
+					return true;
+				} else if (event.keyCode == KeyCode.KEY_L) {
+					// Navigate right
+					
+					return true;
+				} else if (event.keyCode == KeyCode.KEY_I) {
+					"I".writeln;
+					// Up
+					return true;
+				} else if (event.keyCode == KeyCode.KEY_K) {
+					// Down
+					"K".writeln;
+					return true;
+				} else if (event.keyCode == KeyCode.KEY_E) {
+					// Open it
+					"item trigger".writeln;
+					itemTriggered(this, selectedItemIndex);
+					return true;
+				}
+
 			}
 		}
 
