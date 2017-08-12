@@ -1,10 +1,27 @@
 // Author: http://lemming.life
-// Language: C++
+// Language: C
 // Purpose: Given an input string, and an exclude string of characters,
 //  remove characters of input string if they appear in the exclude string.
 
-#include <iostream>
-using namespace std;
+// Compile: gcc removeCharsInPlace.c
+// Run: ./a.out
+
+#include <stdio.h>
+#include <stdbool.h>
+
+// Forward declarator
+void removeCharactersInPlace(char*, char*);
+
+// Entry point
+int main() {
+    char mySentence[] = "Hello, world!";
+    char excludeCharacters[] = "aeiou";
+
+    printf("%s \n", mySentence);
+    removeCharactersInPlace(mySentence, excludeCharacters);
+    printf("%s \n", mySentence);
+    return 0;
+}
 
 void removeCharactersInPlace(char* aString, char* excludeChars) {
     // Note: aString and exludeChars are  C-strings,
@@ -34,16 +51,6 @@ void removeCharactersInPlace(char* aString, char* excludeChars) {
         ++aString;
     }
 
+    // Ensure the string has null terminator.
     *address = '\0';
-}
-
-
-int main() {
-    char mySentence[] = "Hello, world!";
-    char excludeCharacters[] = "aeiou";
-
-    cout << mySentence << "\n"; // Hello, world!
-    removeCharactersInPlace(mySentence, excludeCharacters);
-    cout << mySentence << "\n"; // Hll, wrld!
-    return 0;
 }
