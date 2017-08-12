@@ -111,6 +111,29 @@ int main(int argc, char** argv) {
         // This runs
     }
 
+    anInt = 2;
+    switch (anInt) {
+        case 1:
+            break;
+        case 2:
+            // This runs
+            break;
+        default:
+            "Deosn't run."
+    }
+
+    // Note no break
+    anInt = 1
+    switch (anInt) {
+        case 1:
+            // This runs
+        case 2:
+            // This runs
+            break;
+        default:
+            "Deosn't run."
+    }
+
 
     // For loop
     for(int i=0; i<argc; ++i) {
