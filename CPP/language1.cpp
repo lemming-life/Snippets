@@ -119,11 +119,12 @@ int main(int argc, char** argv) {
             // This runs
             break;
         default:
-            "Deosn't run."
+            //"Doesn't run."
+            break;
     }
 
     // Note no break
-    anInt = 1
+    anInt = 1;
     switch (anInt) {
         case 1:
             // This runs
@@ -131,7 +132,8 @@ int main(int argc, char** argv) {
             // This runs
             break;
         default:
-            "Deosn't run."
+            //"Doesn't run."
+            break;
     }
 
 
