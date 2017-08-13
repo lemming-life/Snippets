@@ -101,6 +101,11 @@ class Circle : public Shape {
             radius = newRadius;
         }
 
+        ~Circle() {
+            // This is the Circle destructor
+            // then ~Shape destructor is called
+        }
+
         Color getColor() {
             return Shape::getColor(); // Explicitly calling the abstract class getColor();
         }
@@ -109,21 +114,26 @@ class Circle : public Shape {
             color = aColor; // Circle can access protected and public members
         }
 
+
+        double getArea() { return 3.13 * (radius * radius); }
+
         string toString() {
             return Shape::toString() + " Radius: " + to_string(radius);
         }
-
-        ~Circle() {
-            // This is the Circle destructor
-            // then ~Shape destructor is called
-        }
 };
 
-class Square : public Shape {
+class Rectangle : public Shape {
     private:
         int width;
         int height;
     public:
+
+        Rectangle(int newX, int newY, int newWidth, int newHeight) : Shape(newX, newY) {
+            width = newWidth;
+            height = newHeight;
+        }
+
+        ~Rectangle() { }
 
         // Repeating ourselves is tedious...
         // Seeing repetition like this means that we should reconsider
@@ -133,16 +143,12 @@ class Square : public Shape {
         Color getColor() { return color; }
         void setColor(Color aColor) { color = aColor; }
 
+        double getArea() { return width * height; }
+        
 
         string toString() {
             return Shape::toString() + " Width: " + to_string(width) + " Height: " + to_string(height);
         }
-
-        Square(int newX, int newY, int newWidth, int newHeight) : Shape(newX, newY) {
-            width = newWidth;
-            height = newHeight;
-        }
-        ~Square() { }
 };
 
 
@@ -161,18 +167,35 @@ int main() {
     circle->setColor(RED);
     cout << circle->toString() << '\n'; // x: 0 y: 0 Color: Red Radius: 5
     delete circle; // Order of destructor call is from specific to base.
+    circle = NULL;
 
     // Imagine having a collection of Circles, then we have a collection of Squares.
     // Then we go through each collection, and call the toString() method of each element.
     // Wouldn't it be better if we had a single collection of Squares and Circles -- a collection of Shapes.
     // We can do this because Shape* is an abstract class and both Squares and Circles inherit from it.
-    Shape* shapes[] = { new Circle(1, 2, 3), new Square(4, 5, 6, 7) }; // This may also be called "program to an interface"
+    Shape* shapes[] = { new Circle(1, 2, 3), new Rectangle(4, 5, 6, 7) }; // This may also be called "program to an interface"
     int length = 2;
 
     for(int i=0; i<length; ++i) {
         // Polymorphism: it knows which to call Circle::toString() or Square::toString()
         cout << shapes[i]->toString() << '\n'; 
-        delete shapes[i]; // Delete the object. In C++ we must free memory manually.
+    }
+
+    // To determine what type something is we use Run-Time Type Information (RTTI)
+    for (int i=0; i<length; ++i) {
+        if (typeid(*shapes[i]) == typeid(Circle)) {
+            // Cast it
+            Circle* circlePtr = dynamic_cast<Circle*>(shapes[i]);
+            cout << "Area of circle: " << circlePtr->getArea() << '\n';
+        } else if(typeid(*shapes[i]) == typeid(Rectangle)) {
+            Rectangle* rectanglePtr = dynamic_cast<Rectangle*>(shapes[i]);
+            cout << "Area of rectangle: " << rectanglePtr->getArea() << '\n';
+        }
+    }
+
+    for (int i=0; i<length; ++i) {
+         delete shapes[i]; // Delete the object. In C++ we must free memory manually.
+         shapes[i] = NULL;
     }
 
     return 0;
