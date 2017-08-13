@@ -46,6 +46,15 @@ std::string toString(T* array, int n, string spacer) {
     return s;
 }
 
+template<typename T>
+int countItemInArray(T item, T* array, int n) {
+    int count = 0;
+    for (int i=0; i<n; ++i) {
+        if (array[i] == item) { ++count; }
+    }
+    return count;
+}
+
 
 int main() {
     char msg[] = "Tom";
@@ -54,10 +63,12 @@ int main() {
     reverser(msg, determineLength(msg));                
     cout << "Characters Reversed: " << msg << '\n';                // moT
 
-    int numbers[] = { 1, 2, 3, 4, 5 };
-    cout << "Numbers Normal: " << toString(numbers, 5, " ") << "\n";
+    int numbers[] = { 1, 2, 7, 7, 5 };
+    cout << "Numbers Normal: " << toString(numbers, 5, " ") << '\n';
     reverser(numbers, 5);
-    cout << "Numbers Reversed: " << toString(numbers, 5, " ") << "\n";
+    cout << "Numbers Reversed: " << toString(numbers, 5, " ") << '\n';
+
+    cout << "Count of " << 7 << " in Numbers is " << countItemInArray(7, numbers, 5) << '\n';
     
     return 0;
 }
