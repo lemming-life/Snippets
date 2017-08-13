@@ -25,6 +25,10 @@
 #include <exception>
 using namespace std; // So that we avoid having to type std::cout, std::cin, etc.
 
+
+// Define a dataType
+typedef int myNumberType; // note that you replace int with other types.
+
 // The program entry point.
 // - argc is the argument count
 // - args is a pointer to a pointer that has a c-string.
@@ -42,6 +46,7 @@ int main(int argc, char** argv) {
     char aChar;     // Look ascii table, but 2^8
     bool aBool;     // true, false
     string aString; // Note that for string type we need to #include <string>
+    myNumberType someNumber; // is an int really
 
     // Initialize the variable using literals.
     anUint = 123; 
