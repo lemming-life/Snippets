@@ -72,6 +72,27 @@ namespace misc {
             return getIndexOfSecond(s.substr(1), t, ++index); // Look further into the source
         }
     }
+
+
+    int fibRecursive(int n) {
+        if (n == 0 || n == 1) { return n; }
+        return fibRecursive(n-2) + fibRecursive(n-1);
+    }
+
+    int fibIterative(int n) {
+        if (n == 0 || n == 1) { return n; }
+        int left = 0;
+        int right = 1;
+        int value;
+        for (int i = 2; i <= n; ++i) {
+            value = left + right;
+            left = right;
+            right = value;
+        }
+        return value;
+    }
+
+
 }
 
 #endif

@@ -24,6 +24,9 @@ int main() {
 
         cout << "Looking for 'world' in 'Hello, world!', expecting index 7, got " << getIndexOfSecond("Hello, world!", "world", 0) << '\n';
         cout << "Looking for 'red' in 'Hello, world!', expecting index -1, got " << getIndexOfSecond("Hello, world!", "red", 0) << '\n';
+    
+        cout << "fibRecursive(7) recursive is " << fibRecursive(7) << '\n';
+        cout << "fibIterative(7) recursive is " << fibIterative(7) << '\n';
     }
 
     {
