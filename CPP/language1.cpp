@@ -22,6 +22,7 @@
 #include <string>   // For strings
 #include <vector>   // Essentially a dynamic array.
 #include <fstream>  // For reading and writing files
+#include <exception>
 using namespace std; // So that we avoid having to type std::cout, std::cin, etc.
 
 // The program entry point.
@@ -276,28 +277,30 @@ int main(int argc, char** argv) {
 
     // FILE I/O
     const char fileName[] = "test.txt";
+    remove(fileName); // Ensures that test.txt gets removed.
 
     // Write a file with integers on each line.
-    ofstream fileOut;
-    fileOut.open(fileName);
-    if (!fileOut.fail()) {
-        for (int i=0; i<5; ++i) {
-            fileOut << i << '\n';
+    {
+        ofstream fileOut;
+        fileOut.open(fileName);
+        if (!fileOut.fail()) {
+            for (int i=0; i<5; ++i) {
+                fileOut << i << '\n';
+            }
+            fileOut.close();
         }
-        fileOut.close();
     }
 
     // Read a file with integers on each line
-    ifstream fileIn;
-    fileIn.open(fileName);
-    if (!fileIn.fail()) {
-        while (!fileIn.eof()) {
-            int n;
-            fileIn >> n;
-            if (!fileIn.fail()) {
-                cout << "Read from file: " << n << '\n';
+    {
+        ifstream fileIn;
+        fileIn.open(fileName);
+        int n;
+        while (fileIn.good() && fileIn>>n) {
+            if (fileIn.good()) {
+                fileIn.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             }
-            fileIn.ignore(); // Removes the \n
+            cout << "Read from file: " << n << '\n';
         }
         fileIn.close();
     }
@@ -307,8 +310,84 @@ int main(int argc, char** argv) {
         ...
         Read from file: 4
     */
-
+    
     remove(fileName); // Ensures that test.txt gets removed.
+
+
+    // EXCEPTIONS
+
+    try {
+        throw exception();
+    } catch (...) {
+        cout << "Caught exception\n";
+    }
+
+
+    {
+        ifstream shouldFailStream;
+        // Tell the stream to generate an exception for badbit, failbit, eofbit
+        shouldFailStream.exceptions(ios_base::badbit | ios_base::failbit | ios_base::eofbit);
+        try {
+            shouldFailStream.open(fileName);
+            cout << "This line shouldn't run, since " << fileName << " doesn't exist.\n";
+        } catch(ios_base::failure) {
+            cout << "Failed to open " << fileName << " as expected\n";
+        }
+    }
+
+    
+
+    // Write a temporary file
+    cout  << "Writing a temp file\n";
+    int n_lines = 0;
+    {
+        ofstream fileOut;
+        fileOut.open(fileName);
+        fileOut << 1 << '\n'; ++n_lines;
+        fileOut << 2 << '\n'; ++n_lines;
+        fileOut << "e\n"; ++n_lines;
+        fileOut << 4 << '\n'; ++n_lines;
+        fileOut.close();
+    }
+
+
+    cout << "Reading a temp file, expecting errors\n";
+    // We expect to read n_lines integers, but there is an "error" in file.
+    try {
+        ifstream fileIn;
+        fileIn.exceptions(ios_base::badbit | ios_base::failbit | ios_base::eofbit);
+        fileIn.open(fileName);
+        int n = 0;
+        bool doneWithLoop = false;
+        while (n < n_lines && !doneWithLoop) {
+            int nFromFile;
+            try {
+                fileIn >> nFromFile;
+                if (fileIn.good()) {
+                    fileIn.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                    cout << "Got " << nFromFile << "\n";
+                }
+            } catch (std::ios_base::failure e) {
+                if (fileIn.eof()) {
+                    cout << "Reached end of file\n";
+                }
+
+                if (fileIn.fail()) {
+                    cout << "Something wrong with file, as expected.\n";
+                }
+                doneWithLoop = true;
+            }
+            ++n;
+        }
+        
+        fileIn.close();
+        
+    } catch (ios_base::failure e) {
+        cout << "This line should never run\n";
+    }
+    remove(fileName);
+
+
 
     
 
