@@ -1,6 +1,7 @@
 #include <iostream>
 #include "simpleVector.h"
 #include "miscFunctions.h"
+#include "linkedList.h"
 using namespace std;
 using namespace misc;
 
@@ -56,6 +57,50 @@ int main() {
         cout << "\n"; 
         cout << myCharVector.toString() << "\n";
     }
+
+    {
+        cout << "\n\nLINKED LIST TEST\n";
+        List<int> intList;
+        cout << "pushBack(1)\n"; 
+        intList.pushBack(1);
+        cout << "\tFront: " << intList.front() << '\n';   // 1
+        cout << "\tBack: " << intList.back() << '\n';     // 1
+
+        cout << "pushFront(2)\n";
+        intList.pushFront(2);
+        cout << "\tFront: " << intList.front() << '\n';   // 2
+        cout << "\tBack: " << intList.back() << '\n';     // 1
+
+        cout << "pushBack(3)\n"; 
+        intList.pushBack(3);
+        cout << "\tFront: " << intList.front() << '\n';   // 2
+        cout << "\tBack: " << intList.back() << '\n';     // 3
+
+        for (int i=0; i<intList.size(); ++i) {
+            cout << "Value at(" << i << ") is " << intList.at(i) << '\n';
+        }
+
+        cout << "popBack is " << intList.popBack() <<  " expecting 3\n";    // 3
+        cout << "popFront is " << intList.popFront() << " expecting 2\n";   // 2
+
+        cout << "Is front() == back() ? " << (intList.front() == intList.back() ? "yes" : "no") << '\n'; // yes
+
+
+        List<char> charList;
+        for(int i=0; i<6; ++i) { charList.pushBack(65 + i); }
+
+        cout << "charList size is " << charList.size() << '\n';
+        while(charList.size() != 0) {
+            cout << "charList popFront is " << charList.popFront() << '\n';
+        }
+
+        for(int i=0; i<6; ++i) { charList.pushBack(65 + i); }
+        cout << "charList size is " << charList.size() << '\n';
+        while(charList.size() != 0) {
+            cout << "charList popBack is " << charList.popBack() << '\n';
+        }
+
+    } // End Linked List test
 
     return 0;
 }
