@@ -60,6 +60,18 @@ namespace misc {
         }
         return count;
     }
+
+
+    int getIndexOfSecond(string s, string t, int index) {
+        // Given two strings, find the target string within the source string
+        // Return -1 if not found, return an index >= 0 if found
+        if (t.length() > s.length()) { return -1; } // The word was not found
+        if (s.substr(0, t.length()) == t) {
+            return index;   // Target is within the source
+        } else {
+            return getIndexOfSecond(s.substr(1), t, ++index); // Look further into the source
+        }
+    }
 }
 
 #endif

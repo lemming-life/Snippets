@@ -21,6 +21,9 @@ int main() {
         cout << "Numbers Reversed: " << toString(numbers, 5, " ") << '\n';
 
         cout << "Count of " << 7 << " in Numbers is " << countItemInArray(7, numbers, 5) << '\n';
+
+        cout << "Looking for 'world' in 'Hello, world!', expecting index 7, got " << getIndexOfSecond("Hello, world!", "world", 0) << '\n';
+        cout << "Looking for 'red' in 'Hello, world!', expecting index -1, got " << getIndexOfSecond("Hello, world!", "red", 0) << '\n';
     }
 
     {
@@ -87,18 +90,28 @@ int main() {
 
 
         List<char> charList;
-        for(int i=0; i<6; ++i) { charList.pushBack(65 + i); }
+        for(int i=0; i<3; ++i) { charList.pushBack(65 + i); }
 
         cout << "charList size is " << charList.size() << '\n';
         while(charList.size() != 0) {
             cout << "charList popFront is " << charList.popFront() << '\n';
         }
 
-        for(int i=0; i<6; ++i) { charList.pushBack(65 + i); }
+        for(int i=0; i<3; ++i) { charList.pushBack(65 + i); }
         cout << "charList size is " << charList.size() << '\n';
         while(charList.size() != 0) {
             cout << "charList popBack is " << charList.popBack() << '\n';
         }
+
+        for(int i=0; i<6; ++i) { charList.pushBack(71 + i); }
+        List<char> charList2(charList); // Test the constructor that accepts lists.
+        cout << "Expecting charList2 to have 6 items, it has " << charList2.size() << '\n';
+
+        for(int i=0; i<6; ++i) { charList.pushBack(77 + i); }
+        charList2 = charList; // Test assignment
+        cout << "Expecting charList2 to have 12 items, it has " << charList2.size() << '\n';
+
+        
 
     } // End Linked List test
 

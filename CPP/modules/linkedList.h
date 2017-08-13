@@ -12,7 +12,7 @@ struct Node {
     Node* _right;
     T _item;
 
-    Node(T item, Node* left) {
+    Node(const T item, Node* left) {
         _item = item;
         _left = left;
         if (left != NULL) { left->_right = this; }
@@ -42,7 +42,7 @@ public:
         clear();
     }
 
-    void pushBack(T item) {
+    void pushBack(const T item) {
         Node<T>* node;
         if (_size == 0 ) {
             node = new Node<T>(item, NULL);
@@ -55,7 +55,7 @@ public:
         ++_size;
     }
 
-    void pushFront(T item) {
+    void pushFront(const T item) {
         Node<T>* node;
         if (_size == 0 ) {
             node = new Node<T>(item, NULL);
@@ -97,7 +97,7 @@ public:
     T front() const { return _front->_item; }
     T back() const { return _back->_item; }
 
-    T at(int index) {
+    T at(const int index) const {
         if (index < 0 || index > _size-1) { throw index; }
         
         Node<T>* node = _front;
@@ -111,7 +111,7 @@ public:
         return node->_item;
     }
 
-    int size() { return _size; }
+    int size() const { return _size; }
 
     void clear() {
         if (_size == 0) { return; }
@@ -124,6 +124,29 @@ public:
         }
         delete node;
 
+        _front = NULL;
+        _back = NULL;
+        _size = 0;
+
+    }
+
+    List(const List& b) {
+        copy(b);
+    }
+
+    List& copy(const List& b) {
+        clear();
+        for (int i=0; i<b.size(); ++i) {
+            this->pushBack(b.at(i));
+        }
+        return *this;
+    }
+    
+    List& operator=(const List& b) {
+        if (this != &b) {
+            copy(b);
+        }
+        return *this;
     }
 
 };
