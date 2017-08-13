@@ -2,8 +2,10 @@
 // Language: C++
 // Purpose: A simple Vector class
 
+#ifndef SIMPLE_VECTOR
+#define SIMPLE_VECTOR
+
 #include <iostream>
-#include <exception>
 using namespace std;
 
 // For simple types only!
@@ -83,43 +85,10 @@ class Vector {
 
         void print(string separator) {
             for (int i=0; i<size(); ++i) {
-                cout << at(i) << separator;
+                std::cout << at(i) << separator;
             }
         }
+    
 };
 
-int main() {
-    cout << "Int Vector\n";
-    Vector<int> myIntVector;
-    for(int i=0; i<6; ++i) { myIntVector.push(i); }
-    myIntVector.print(" ");
-    cout << '\n';
-    cout << myIntVector.toString() << "\n";
-    cout << "Clearing vector.\n";
-    myIntVector.clear();
-    cout << myIntVector.toString() << "\n";
-
-    cout << "Char Vector\n";
-    Vector<char> myCharVector;
-    for (int i=0; i<5; ++i) { myCharVector.push(65+i); }
-    myCharVector.print(" "); // A B C D E
-    cout << '\n';
-    myCharVector.removeAt(2);
-    myCharVector.print(" "); // A B D E
-    cout << "\n"; 
-    myCharVector.removeAt(0);
-    myCharVector.print(" "); // B D E
-    cout << "\n";
-    myCharVector.removeAt(2);
-    myCharVector.print(" "); // B D
-    cout << "\n";  
-    myCharVector.removeAt(1);
-    myCharVector.print(" "); // B
-    cout << "\n"; 
-    myCharVector.removeAt(0);
-    myCharVector.print(" "); // 
-    cout << "\n"; 
-    cout << myCharVector.toString() << "\n";
-
-    return 0;
-}
+#endif
