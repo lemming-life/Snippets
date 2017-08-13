@@ -1,10 +1,10 @@
 // Author: http://lemming.life
 // Language: C++
-// Purpose: A simple Linked List class
+// Description: A simple Linked List class
+// - This will handle simple types, so List<int>, List<char>, etc.
 
 #ifndef LINKED_LIST
 #define LINKED_LIST
-
 
 template<class T>
 struct Node {
