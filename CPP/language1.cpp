@@ -19,8 +19,9 @@
 
 // The way to include libraries is to use #include
 #include <iostream> // For console input and output.
-#include <string>
-#include <vector>
+#include <string>   // For strings
+#include <vector>   // Essentially a dynamic array.
+#include <fstream>  // For reading and writing files
 using namespace std; // So that we avoid having to type std::cout, std::cin, etc.
 
 // The program entry point.
@@ -249,7 +250,10 @@ int main(int argc, char** argv) {
     cout << '\n'; // 523
 
 
+
     // INPUT
+    // Uncommented to avoid tedious console input.
+    /*
     cout << "Give us an int: ";
     cin >> anInt;
     cin.ignore(); // Ignores the \n that is still in buffer
@@ -268,6 +272,44 @@ int main(int argc, char** argv) {
     cout << "Give us a sentence (aka two or more words): ";
     getline(cin, aString);
     cout << "You gave us: " << aString << '\n';
+    */
+
+    // FILE I/O
+    const char fileName[] = "test.txt";
+
+    // Write a file with integers on each line.
+    ofstream fileOut;
+    fileOut.open(fileName);
+    if (!fileOut.fail()) {
+        for (int i=0; i<5; ++i) {
+            fileOut << i << '\n';
+        }
+        fileOut.close();
+    }
+
+    // Read a file with integers on each line
+    ifstream fileIn;
+    fileIn.open(fileName);
+    if (!fileIn.fail()) {
+        while (!fileIn.eof()) {
+            int n;
+            fileIn >> n;
+            if (!fileIn.fail()) {
+                cout << "Read from file: " << n << '\n';
+            }
+            fileIn.ignore(); // Removes the \n
+        }
+        fileIn.close();
+    }
+    // Output:
+    /*
+        Read from file: 0
+        ...
+        Read from file: 4
+    */
+
+    remove(fileName); // Ensures that test.txt gets removed.
+
     
 
     return 0;
