@@ -6,22 +6,34 @@
 <body>
 
 <?php
+    // Setup stuff
     $br = "<br/>";
+    $countAsserts = 0;
+    function doAssert($boolean) {
+        $countAsserts++;
+        if ($boolean !== true) {
+            echo "Assert " . $countAsserts . " failed. <br />";
+        } 
+    }
+
     echo "Hello, World!" . $br;     // Print to html
 
     // Variables    
     $myStr1 = "Hello";              // Declare and initialize
-    $myStr2 = $myStr1 . ", World2!" . $br; // Concatenate
+    $myStr2 = $myStr1 . ", World2!"; // Concatenate
+    doAssert($myStr2 == "Hello, World2!");
+
     $myNumber1 = 1;                 // Number
     $myNumber2 = $myNumber1 + 2;    // Addition
-
-    echo $myStr2;                   
+    
 
     $myBool0 = true; // Can be true or false
+    doAssert($myBool0 == true);    
     $myBool1 = $myNumber == $myNumber;  // Check for true
     $myBool2 = $myNumber !== $myNumber; // Check for false
     $myBool3 = true and true;   // if left and right true, then true otherwise false
     $myBool4 = false or true;   // if either left or right true, then true, else if both false then false
+
 
     // If else
     if ($myBool3) {
@@ -33,33 +45,26 @@
     // Arrays
     $myNumberArray = [1, 2, 3, 4];              // Declare and init
     $myStringArray = ["Zero", "One", "Two"];    // Declare and init
-    $myStringArray[0] = "Zero";                 // Change value
-    echo "Number array: " . $myStringArray[0] . $br;  // Get value at index 0
+    $myStringArray[0] = "Nero";                 // Change value
+    doAssert($myStringArray[0] == "Nero");
 
-    echo doSum(2, 5) . $br;                     // Function call with arguments.
+    doAssert( doSum(2, 5) == 7 );                   // Function call with arguments.
     printStringArray($myStringArray);           // Function call with aguments.
 
     // Objects
     $myObj = (object) array('x' => '0', 'y' => '1'); // An anonymous object
-    echo $myObj->x; // 0
-    echo $myObj->y; // 1
-
-    echo $br;
+    doAssert($myObj->x == 0);   // Access to member variable
+    doAssert($myObj->y == 1);   // Access to member variable
 
     $myShape = new Shape;       // Object is an instance of a class.
     $myShape->x = 5;            // Setting member variable
     $myShape->{'setY'}(6);      // Calling a function and passing it a parameter
-    echo $myShape->x;           // Getting the value from member x
-    echo $myShape->{'getY'}();  // Calling a function and getting the value.
-
-    echo $br;
+    doAssert( $myShape->x == 5 );   // Get value from public member
+    doAssert( $myShape->{'getY'}() == 6 );  // Get value via member method
 
     for( $i=0; $i<5; $i++ ) {
         echo $i . " ";
     }
-
-    
-    
 
     // Function with two arguments, and return
     function doSum($a, $b) {
@@ -91,9 +96,7 @@
         function getY() {
             return $this->$y;
         }
-    }
-
-    
+    } // End class Shape
 
 ?>
 
