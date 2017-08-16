@@ -39,6 +39,21 @@
     printStringArray($myStringArray);           // Calling a function with argument
 
 
+    // Objects
+    $myObj = (object) array('x' => '0', 'y' => '1'); // An anonymous object
+    echo $myObj->x; // 0
+    echo $myObj->y; // 1
+
+    echo $br;
+
+    $myShape = new Shape;
+    $myShape->x = 5;
+    $myShape->{'setY'}(6);   // Calling a function and passing it a parameter
+    echo $myShape->x;           // Getting the value from member x
+    echo $myShape->{'getY'}();  // Calling a function and getting the value.
+
+
+
     // Function with two arguments, and return
     function doSum($a, $b) {
         return $a + $b;
@@ -53,6 +68,23 @@
         }
         echo "</ul>";
     };
+
+
+    // Classes
+    class Shape {
+        public $x = 0;  // public member variable
+        private $y = 0; // private member variable
+
+        // Method to set private member variable
+        function setY($aY) {
+            $this->$y = $aY;
+        }
+
+        // Method to return the value of a member variable
+        function getY() {
+            return $this->$y;
+        }
+    }
 
     
 
