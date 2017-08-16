@@ -9,6 +9,8 @@
     // Setup stuff
     $br = "<br/>";
     $countAsserts = 0;
+
+    // If doAssert fails print a message
     function doAssert($boolean) {
         $countAsserts++;
         if ($boolean !== true) {
@@ -25,7 +27,8 @@
 
     $myNumber1 = 1;                 // Number
     $myNumber2 = $myNumber1 + 2;    // Addition
-    
+    $varFloat = 1.2345;             // Float
+    doAssert( $varFloat == 1.2345 );
 
     $myBool0 = true; // Can be true or false
     doAssert($myBool0 == true);    
@@ -58,13 +61,23 @@
 
     $myShape = new Shape;       // Object is an instance of a class.
     $myShape->x = 5;            // Setting member variable
-    $myShape->{'setY'}(6);      // Calling a function and passing it a parameter
     doAssert( $myShape->x == 5 );   // Get value from public member
+    
+    $myShape->setY(7);          // Calling a function and passing it a parameter
+    doAssert( $myShape->getY() == 7 ); // Get value via member method
+
+    $myShape->{'setY'}(6);      // Calling a function and passing it a parameter
     doAssert( $myShape->{'getY'}() == 6 );  // Get value via member method
 
     for( $i=0; $i<5; $i++ ) {
         echo $i . " ";
     }
+
+    echo $br;
+    $varCircle = new Circle();
+    $varCircle->$radius = 2.0;
+
+    doAssert( $varCircle->getArea() == 12.56 ); 
 
     // Function with two arguments, and return
     function doSum($a, $b) {
@@ -84,19 +97,27 @@
 
     // Classes
     class Shape {
-        public $x = 0;  // public member variable
-        private $y = 0; // private member variable
+        public $x;  // public member variable
+        private $y; // private member variable
 
         // Method to set private member variable
-        function setY($aY) {
+        public function setY($aY) {
             $this->$y = $aY;
         }
 
         // Method to return the value of a member variable
-        function getY() {
+        public function getY() {
             return $this->$y;
         }
     } // End class Shape
+
+    class Circle extends Shape {
+        public $radius;
+
+        public function getArea() {
+            return (($this->$radius * $this->$radius) * 3.14);
+        }
+    }
 
 ?>
 
