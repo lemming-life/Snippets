@@ -7,12 +7,14 @@
 
 <?php
     $br = "<br/>";
+    echo "Hello, World!" . $br;     // Print to html
+
+    // Variables    
     $myStr1 = "Hello";              // Declare and initialize
     $myStr2 = $myStr1 . ", World2!" . $br; // Concatenate
     $myNumber1 = 1;                 // Number
     $myNumber2 = $myNumber1 + 2;    // Addition
 
-    echo "Hello, World!" . $br;     // Print to html
     echo $myStr2;                   
 
     $myBool0 = true; // Can be true or false
@@ -23,21 +25,19 @@
 
     // If else
     if ($myBool3) {
-        echo "true" . $br;
+        echo "Condition evaluated to true." . $br;
     } else {
-        echo "false" . $br;
+        echo "Condition evaluated to false." . $br;
     }
 
     // Arrays
     $myNumberArray = [1, 2, 3, 4];              // Declare and init
     $myStringArray = ["Zero", "One", "Two"];    // Declare and init
+    $myStringArray[0] = "Zero";                 // Change value
     echo "Number array: " . $myStringArray[0] . $br;  // Get value at index 0
-    $myStringArray[0] = "Negative One";         // Change value
 
-    echo doSum(2, 5) . $br;                     // 7
-
-    printStringArray($myStringArray);           // Calling a function with argument
-
+    echo doSum(2, 5) . $br;                     // Function call with arguments.
+    printStringArray($myStringArray);           // Function call with aguments.
 
     // Objects
     $myObj = (object) array('x' => '0', 'y' => '1'); // An anonymous object
@@ -46,13 +46,20 @@
 
     echo $br;
 
-    $myShape = new Shape;
-    $myShape->x = 5;
-    $myShape->{'setY'}(6);   // Calling a function and passing it a parameter
+    $myShape = new Shape;       // Object is an instance of a class.
+    $myShape->x = 5;            // Setting member variable
+    $myShape->{'setY'}(6);      // Calling a function and passing it a parameter
     echo $myShape->x;           // Getting the value from member x
     echo $myShape->{'getY'}();  // Calling a function and getting the value.
 
+    echo $br;
 
+    for( $i=0; $i<5; $i++ ) {
+        echo $i . " ";
+    }
+
+    
+    
 
     // Function with two arguments, and return
     function doSum($a, $b) {
