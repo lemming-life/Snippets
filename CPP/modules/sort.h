@@ -132,8 +132,10 @@ void quickSort(int* array, int left, int right) {
     // - Pick a pivot from the array.
     // - Partition (reorder array so that elements values less than pivot come before the pivot)
     // - Recursively apply above steps to smaller sub-arrays.
-    // Worst case: O(n^2)
+    // - Note that this implementation uses a median for the pivot
+    // Worst case is when array is sorted already and if pivot is the first element as pivot: O(n^2)
     // Best case: O(nlogn)
+
     if (right <= left) { return; }
 
     // Order the partition, and teh pivotIndex
