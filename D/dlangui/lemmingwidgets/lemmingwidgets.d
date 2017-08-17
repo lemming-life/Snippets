@@ -197,7 +197,6 @@ class ListWidgetNav : StringListWidget {
         }
 
         return super.onKeyEvent(event);
-
     } // End onKeyEvent()
 
 
@@ -240,7 +239,6 @@ class ListWidgetNav : StringListWidget {
         }
 
         return false; // Did not find term
-
-    }
+    } // End selectClosestMatch()
 
 } // End class ListWidgetNav
