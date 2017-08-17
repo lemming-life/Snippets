@@ -5,8 +5,11 @@
 #include "miscFunctions.h"
 #include "linkedList.h"
 #include "sort.h"
+#include "sortHelper.h"
 using namespace std;
 using namespace misc;
+
+
 
 int main() {
 
@@ -123,32 +126,10 @@ int main() {
         cout << "\n\nSORT TEST\n";
 
         int size = 10;
-        
-        {
-            cout << "INSERTION SORT\n";
-            int array[size];
-            for(int i=0; i<size; ++i) { array[i] = rand() % 101; }
-    
-            cout << "Unsorted: " << toString(array, size, " ") << '\n';
-            insertionSort(array, size);
-            cout << "  Sorted: " << toString(array, size, " ") << '\n';
-        }
-
-        {
-            cout << "SHELL SORT\n";
-            int array[size];
-            for(int i=0; i<size; ++i) { array[i] = rand() % 101; }
-    
-            cout << "Unsorted: " << toString(array, size, " ") << '\n';
-            shellSort(array, size);
-            cout << "  Sorted: " << toString(array, size, " ") << '\n';
-        }
-        
-
-
-        
-
+        sortHelper("INSERTION SORT", size, 1, insertionSort, blankFunc2);
+        sortHelper("SHELL SORT", size, 1, shellSort, blankFunc2);
+        sortHelper("QUICK SORT", size, 2, blankFunc1, quickSort);
     }
 
     return 0;
-}
+} // End main()
