@@ -1,7 +1,10 @@
-#include <iostream>
+#include <iostream> // cout, cin
+#include <stdlib.h> // srand, rand
+
 #include "simpleVector.h"
 #include "miscFunctions.h"
 #include "linkedList.h"
+#include "sort.h"
 using namespace std;
 using namespace misc;
 
@@ -113,10 +116,39 @@ int main() {
         for(int i=0; i<6; ++i) { charList.pushBack(77 + i); }
         charList2 = charList; // Test assignment
         cout << "Expecting charList2 to have 12 items, it has " << charList2.size() << '\n';
+    } // End Linked List test
+
+
+    {
+        cout << "\n\nSORT TEST\n";
+
+        int size = 10;
+        
+        {
+            cout << "INSERTION SORT\n";
+            int array[size];
+            for(int i=0; i<size; ++i) { array[i] = rand() % 101; }
+    
+            cout << "Unsorted: " << toString(array, size, " ") << '\n';
+            insertionSort(array, size);
+            cout << "  Sorted: " << toString(array, size, " ") << '\n';
+        }
+
+        {
+            cout << "SHELL SORT\n";
+            int array[size];
+            for(int i=0; i<size; ++i) { array[i] = rand() % 101; }
+    
+            cout << "Unsorted: " << toString(array, size, " ") << '\n';
+            shellSort(array, size);
+            cout << "  Sorted: " << toString(array, size, " ") << '\n';
+        }
+        
+
 
         
 
-    } // End Linked List test
+    }
 
     return 0;
 }

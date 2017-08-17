@@ -126,7 +126,7 @@ class ListWidgetNav : StringListWidget {
 	Signal!OnItemTriggered itemTriggered;
 
 	private dstring _searchString = "";
-	private StopWatch _sw;
+	private StopWatch _stopWatch;
 
 	KeyFlag keyFlag = KeyFlag.Command;
 
@@ -178,74 +178,69 @@ class ListWidgetNav : StringListWidget {
 		}
 
 		// Accept user input and try to find a match in the list.
-		if (event.action == KeyAction.Text) {
-			if (!_sw.running) {
-				// If stopWatch not running
-				_sw.start;
-				_searchString = ""d ~ to!dchar(event.text.toUTF8);
-			} else {
-				immutable auto timePassed = _sw.peek.dto!("seconds", float)(); // dto is std.datetime.to
+		if (itemCount == 0) return false;
 
-				if (timePassed > 0.5) {
-					_searchString = ""d ~ to!dchar(event.text.toUTF8);
-					_sw.reset;
-				} else {
-					_searchString ~= to!dchar(event.text.toUTF8);
-					_sw.reset;
-				}
-			}
+        // Accept user input and try to find a match in the list.
+        if (event.action == KeyAction.Text) {
+            if ( !_stopWatch.running) { _stopWatch.start; }
 
-			if ( selectClosestMatch(_searchString) ) {
-				invalidate();
-				return true;
-			}
-		}
+            auto timePassed = _stopWatch.peek.dto!("seconds", float)(); // dtop is std.datetime.to
+
+            if (timePassed > 0.5) _searchString = ""d;
+            _searchString ~= to!dchar(event.text.toUTF8);
+            _stopWatch.reset;
+
+            if ( selectClosestMatch(_searchString) ) {
+                invalidate();
+                return true;
+            }
+        }
 
         return super.onKeyEvent(event);
 
     } // End onKeyEvent()
 
-	bool selectClosestMatch(dstring term) {
-		import std.uni : toLower;
-		if (term.length == 0) { return false;}
 
-		int[int] scores;
-		auto myItems = (cast(StringListAdapter)adapter).items;
+	private bool selectClosestMatch(dstring term) {
+        import std.uni : toLower;
+        if (term.length == 0) return false;
+        auto myItems = (cast(StringListAdapter)adapter).items;
 
-		// Perfect match or best match
-		int[] indexes;
-		foreach(int itemIndex; 0 .. myItems.length) {
-			dstring item = myItems.get(itemIndex);
-			if (item == term) {
-				// Perfect match
-				selectItem(itemIndex);
-				itemSelected(this, itemIndex);
-				return true;
-			} else {
-				// Not perfect, but maybe within term
-				bool addItem = true;
-				foreach(int termIndex; 0 .. cast(int)term.length) {
-					if (termIndex < item.length) {
-						if (toLower(term[termIndex]) != toLower(item[termIndex]) ) {
-							addItem = false;
-							break;
-						}
-					}
-				}
-				if (addItem) { indexes ~= itemIndex; }
-			}
-		}
+        // Perfect match or best match
+        int[] indexes;
+        foreach(int itemIndex; 0 .. myItems.length) {
+            dstring item = myItems.get(itemIndex);
 
-		// Select the first item
-		if (indexes.length > 0) {
-			selectItem(indexes[0]);
-			itemSelected(this, indexes[0]);
-			return true;
-		}
+            if (item == term) {
+                // Perfect match
+                indexes ~= itemIndex;
+                break;
+            } else {
+                // Term approximate 
+                bool addItem = true;
+                foreach(int termIndex; 0 .. cast(int)term.length) {
+                    if (termIndex < item.length) {
+                        if ( toLower(term[termIndex]) != toLower(item[termIndex]) ) {
+                            addItem = false;
+                            break;
+                        }
+                    }
+                }
 
-		// Did not find an item
-		return false;
-		
-	} // End selectClosestMatch()
+                if (addItem) { indexes ~= itemIndex; }
+
+            }
+        }
+
+        // Return best match
+        if (indexes.length > 0) {
+            selectItem(indexes[0]);
+            itemSelected(this, indexes[0]);
+            return true;
+        }
+
+        return false; // Did not find term
+
+    }
 
 } // End class ListWidgetNav
