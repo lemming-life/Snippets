@@ -155,6 +155,20 @@ func main() {
 	fmt.Println(notDefinedValuesSlice[0:]) // [0 1 2 4 5 6]
 
 	// Maps
+	kidAges := make(map[string] int) // map[keyType] valueType
+	kidAges["Tom"] = 12
+	kidAges["Tim"] = 13
+	fmt.Println(kidAges) // map[Tom:12 Tim:13]
+	delete(kidAges, "Tom")
+	fmt.Println(kidAges) // map[Tim:13]
+	fmt.Println(len(kidAges)) // 1
 
+	// Function call
+	fmt.Println( sum(2, 3) ) // 5
+}
 
+// Declare a function
+// func nameOfFunction(variableName variableType) returnType
+func sum(a int, b int) int {
+	return a + b
 }
