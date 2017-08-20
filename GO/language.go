@@ -174,7 +174,16 @@ func main() {
 
 	fmt.Println( sumTheArguments(1, 2, 3, 4, 5, 6) ) // 21
 	
+	// Functions with closure
+	{
+		num:= 2
+		checkForDivisible := func(n int) bool {
+			return n % num == 0 // Note that num doesn't exist in this scope, but it's one level outside
+		}
 
+		fmt.Printf("Is 5 divisible by %d? %t \n", num, checkForDivisible(5)) // false
+
+	}
 
 
 }
