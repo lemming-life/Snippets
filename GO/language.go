@@ -78,20 +78,12 @@ func main() {
 	
 		// Going through the array, considering index
 		for index, value := range cards {
-			fmt.Println(value, index)
+			assert( value-1 == index, "value-1 == index")
 		}
-		/* Output:
-			1 0
-			2 1
-		*/
-	
+
 		for _, value := range cards2 {
-			fmt.Println(value)
+			assert( value == value, "value == value")
 		}
-		/* Output:
-			1
-			2
-		*/
 	}
 
 	// Logical operators:
@@ -142,7 +134,7 @@ func main() {
 		
 		slice := []int {0, 1, 2, 3, 4, 5}
 		firstSlice := slice[0:3] // 0 up to but not including 3rd index, so length is 3 and has {0, 1, 2}
-		fmt.Println(firstSlice[0], " ", firstSlice[2]) // 0 2
+		assert( firstSlice[0] == 0 && firstSlice[2] == 2, "0 2")
 		fmt.Println(slice[:3]) // From 0 to but not including 3rd index.  Output: [0, 1, 2]
 		fmt.Println(slice[2:]) // From 2 index to end. Output: [2, 3, 4, 5]
 	
@@ -164,9 +156,8 @@ func main() {
 		kidAges := make(map[string] int) // map[keyType] valueType
 		kidAges["Tom"] = 12
 		kidAges["Tim"] = 13
-		fmt.Println(kidAges) // map[Tom:12 Tim:13]
+		assert( len(kidAges) == 2, "len(kidAges) == 2" )
 		delete(kidAges, "Tom")
-		fmt.Println(kidAges) // map[Tim:13]
 		assert( len(kidAges) == 1, "len(kidAges) == 1" )
 	}
 	
@@ -236,4 +227,3 @@ func fib(n int) int {
 	if (n == 0 || n == 1) { return n }
 	return fib(n-1) + fib(n-2)
 }
-
