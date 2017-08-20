@@ -49,6 +49,7 @@ func main() {
 	)
 
 	// Math: +, -, *, /, %
+	// Also: +=, -= for  a = a + x
 	fingers = fingers + 5 - 5 / 1
 	hands = (4 % hands) + 2
 
@@ -163,8 +164,19 @@ func main() {
 	fmt.Println(kidAges) // map[Tim:13]
 	fmt.Println(len(kidAges)) // 1
 
-	// Function call
+	// Function calls
 	fmt.Println( sum(2, 3) ) // 5
+
+	{
+		num1, num2 := returnTwoValues()
+		fmt.Println(num1, " ", num2) // 2 3
+	}
+
+	fmt.Println( sumTheArguments(1, 2, 3, 4, 5, 6) ) // 21
+	
+
+
+
 }
 
 // Declare a function
@@ -172,3 +184,19 @@ func main() {
 func sum(a int, b int) int {
 	return a + b
 }
+
+// Function with multiple return
+// func nameOfFunction(arguments) (returnType1, returnType2, returnType...)
+func returnTwoValues() (int, int) {
+	return 2, 3 
+}
+// Function with n arguments
+func sumTheArguments(arguments ... int) int {
+	theSum := 0
+	for _, value := range arguments  {
+		theSum += value
+	}
+	return theSum
+}
+
+// 
