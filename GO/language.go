@@ -10,6 +10,7 @@ package main
 // To run type at terminal: go run language.go
 
 import "fmt" // Input and output
+import "log"
 
 // Program entry point
 func main() {
@@ -59,43 +60,44 @@ func main() {
 
 	fmt.Println("Concatenating this string " + "and this other string.")
 
+	// Using fmt.Printf
 	fmt.Printf("Humans have %d fingers, %d hands, and %.2f average IQ\n", fingers, hands, someFloat)
 	// Output: Humans have 5 fingers, 2 hands, and 100.01 average IQ
 
-	// Output the data type
-	fmt.Printf("aUint8 is of type %T\n", aUint8)
-
-	// Output as binary
-	fmt.Printf("someNumber in binary is %b \n", someNumber) // 100001
-	fmt.Printf("The code 64 code is character %c \n", 64) // @
+	fmt.Printf("aUint8 is of type %T\n", aUint8) // Output the data type
+	fmt.Printf("someNumber in binary is %b \n", someNumber) // Output as binary, 100001
+	fmt.Printf("The code 64 code is character %c \n", 64) // Output a character, @
 	
-	// Arrays
-	var cards[2] int
-	cards[0] = 1
-	cards[1] = 2
-
-	cards2 := [2]int {1, 2} // Same as above
-
-	// Going through the array, considering index
-	for index, value := range cards {
-		fmt.Println(value, index)
+	{
+		// Arrays
+		var cards[2] int
+		cards[0] = 1
+		cards[1] = 2
+	
+		cards2 := [2]int {1, 2} // Same as above
+	
+		// Going through the array, considering index
+		for index, value := range cards {
+			fmt.Println(value, index)
+		}
+		/* Output:
+			1 0
+			2 1
+		*/
+	
+		for _, value := range cards2 {
+			fmt.Println(value)
+		}
+		/* Output:
+			1
+			2
+		*/
 	}
-	/* Output:
-		1 0
-		2 1
-	*/
-
-	for _, value := range cards2 {
-		fmt.Println(value)
-	}
-
 
 	// Logical operators:
 	// - And: &&
 	// - Or: ||
 	// - Not: !
-
-	
 
 	// Relational operators:
 	// - Equality: ==
@@ -105,9 +107,7 @@ func main() {
 
 	// For loops
 	i:=0
-	for i < 10 {
-		i++
-	}
+	for i < 10 { i++ }
 
 	for j:=0; j<10; j++ {
 		// Stuff to do
@@ -137,55 +137,78 @@ func main() {
 	}
 
 	
+	{
 	// Slices: like an array, but no size specified
-	slice := []int {0, 1, 2, 3, 4, 5}
-	firstSlice := slice[0:3] // 0 up to but not including 3rd index, so length is 3 and has {0, 1, 2}
-	fmt.Println(firstSlice[0], " ", firstSlice[2]) // 0 2
-	fmt.Println(slice[:3]) // From 0 to but not including 3rd index.  Output: [0, 1, 2]
-	fmt.Println(slice[2:]) // From 2 index to end. Output: [2, 3, 4, 5]
+		
+		slice := []int {0, 1, 2, 3, 4, 5}
+		firstSlice := slice[0:3] // 0 up to but not including 3rd index, so length is 3 and has {0, 1, 2}
+		fmt.Println(firstSlice[0], " ", firstSlice[2]) // 0 2
+		fmt.Println(slice[:3]) // From 0 to but not including 3rd index.  Output: [0, 1, 2]
+		fmt.Println(slice[2:]) // From 2 index to end. Output: [2, 3, 4, 5]
+	
+		zeroForFirst := 3
+		size := 9
+		notDefinedValuesSlice := make([]int, zeroForFirst, size)
+		fmt.Println(notDefinedValuesSlice[0:]) // [0 0 0]
+	
+		copy(notDefinedValuesSlice, slice) // Copy values from slice to notDefinedValuesSlice
+		fmt.Println(notDefinedValuesSlice[0:]) // [0 1 2]
+	
+		notDefinedValuesSlice = append(notDefinedValuesSlice, 4, 5, 6)
+		fmt.Println(notDefinedValuesSlice[0:]) // [0 1 2 4 5 6]
+	}
+	
 
-	zeroForFirst := 3
-	size := 9
-	notDefinedValuesSlice := make([]int, zeroForFirst, size)
-	fmt.Println(notDefinedValuesSlice[0:]) // [0 0 0]
-
-	copy(notDefinedValuesSlice, slice) // Copy values from slice to notDefinedValuesSlice
-	fmt.Println(notDefinedValuesSlice[0:]) // [0 1 2]
-
-	notDefinedValuesSlice = append(notDefinedValuesSlice, 4, 5, 6)
-	fmt.Println(notDefinedValuesSlice[0:]) // [0 1 2 4 5 6]
-
-	// Maps
-	kidAges := make(map[string] int) // map[keyType] valueType
-	kidAges["Tom"] = 12
-	kidAges["Tim"] = 13
-	fmt.Println(kidAges) // map[Tom:12 Tim:13]
-	delete(kidAges, "Tom")
-	fmt.Println(kidAges) // map[Tim:13]
-	fmt.Println(len(kidAges)) // 1
+	{
+		// Maps
+		kidAges := make(map[string] int) // map[keyType] valueType
+		kidAges["Tom"] = 12
+		kidAges["Tim"] = 13
+		fmt.Println(kidAges) // map[Tom:12 Tim:13]
+		delete(kidAges, "Tom")
+		fmt.Println(kidAges) // map[Tim:13]
+		assert( len(kidAges) == 1, "len(kidAges) == 1" )
+	}
+	
 
 	// Function calls
-	fmt.Println( sum(2, 3) ) // 5
-
 	{
-		num1, num2 := returnTwoValues()
-		fmt.Println(num1, " ", num2) // 2 3
+		// Simple function call
+		assert( sum(2,3) == 5, "sum(2,3) == 5" )
 	}
 
-	fmt.Println( sumTheArguments(1, 2, 3, 4, 5, 6) ) // 21
-	
-	// Functions with closure
 	{
+		// Multiple return from function
+		num1, num2 := returnTwoValues()
+		assert( num1 == 2, "num1 == 2")
+		assert( num2 == 3, "num3 == 3")
+	}
+
+	{
+		// n arguments in function
+		assert( sumTheArguments(1, 2, 3, 4, 5, 6) == 21, "sumTheArguments(1, 2, 3, 4, 5, 6) == 21")
+	}
+
+	
+	{
+		// Function with closure
 		num:= 2
 		checkForDivisible := func(n int) bool {
 			return n % num == 0 // Note that num doesn't exist in this scope, but it's one level outside
 		}
-
-		fmt.Printf("Is 5 divisible by %d? %t \n", num, checkForDivisible(5)) // false
-
+		assert( checkForDivisible(5) == false, "checkForDivisible(5) == false")
 	}
 
+	{
+		// Calling Recursive function
+		assert( fib(8) == 21, "fib(8) == 21" )
+	}
 
+}
+
+// For my debug testing
+func assert(evaluateTo bool, description string) {
+	if (!evaluateTo) { log.Fatal("Failed assert,", description) }
 }
 
 // Declare a function
@@ -208,4 +231,9 @@ func sumTheArguments(arguments ... int) int {
 	return theSum
 }
 
-// 
+// Recursive function
+func fib(n int) int {
+	if (n == 0 || n == 1) { return n }
+	return fib(n-1) + fib(n-2)
+}
+
