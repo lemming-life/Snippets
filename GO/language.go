@@ -209,8 +209,6 @@ func main() {
 
 		floatFromString, _ := strconv.ParseFloat(someString2, 64)
 		assert( floatFromString == 78.9, "float from string")
-
-		
 	}
 	
 
@@ -297,23 +295,61 @@ func main() {
 		assert(text1 == "Some text", "Verifying data from file.")
 	}
 
-	// Using time
 	{
+		// time.Sleep
 		for i:=0; i<3; i++ {
 			fmt.Println("i is ", i)
 			time.Sleep(time.Second) // Sleep for one second
 		}
+	}
 
+	{
+		// Go routine: a lightweight thread
 		myFunc := func (id int) {
 			fmt.Print("{id:", id, "}\t")
 		}
 		// Calling a function
 		for i:=0; i<50; i++ {
-			go myFunc(i) // go routine: a lightweight thread
+			go myFunc(i) // go routine
 		}
 		// The above will probably not yield in order output.
+		time.Sleep(time.Second*4)
 	}
 
+	{
+		// Channels
+		fmt.Println("\n\nCHANNELS")
+		someNum := 0
+
+		myFunc := func(intChannel chan int) {
+			someNum++
+			fmt.Println("myFunc, someNum is ", someNum)
+			intChannel <- someNum // Passes it onto the next go routine
+			time.Sleep(time.Second)
+		}
+
+		myFunc2 := func(intChannel chan int) {
+			someNum := <- intChannel
+			fmt.Println("myFunc2, someNum received is ", someNum)
+			time.Sleep(time.Second)
+		}
+
+		intChan := make(chan int)
+		for i:=0; i<3; i++ {
+			go myFunc(intChan)
+			go myFunc2(intChan)
+			time.Sleep(time.Second*2)
+		}
+
+		/* Output
+			myFunc, someNum is  1
+			myFunc2, someNum received is  1
+			myFunc, someNum is  2
+			myFunc2, someNum received is  2
+			myFunc, someNum is  3
+			myFunc2, someNum received is  3
+		*/
+	}
 
 }
 
