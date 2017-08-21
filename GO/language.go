@@ -278,8 +278,10 @@ func main() {
 	}
 
 
-	// FILE IO
 	{
+	// FILE IO		
+		fmt.Println("FILE IO")
+
 		fileName := "temp.txt"
 		defer os.Remove(fileName) // Cleanup
 
@@ -297,6 +299,8 @@ func main() {
 
 	{
 		// time.Sleep
+		fmt.Println("TIME.SLEEP")
+		
 		for i:=0; i<3; i++ {
 			fmt.Println("i is ", i)
 			time.Sleep(time.Second) // Sleep for one second
@@ -305,6 +309,8 @@ func main() {
 
 	{
 		// Go routine: a lightweight thread
+		fmt.Println("GO ROUTINE")
+		
 		myFunc := func (id int) {
 			fmt.Print("{id:", id, "}\t")
 		}
@@ -313,7 +319,7 @@ func main() {
 			go myFunc(i) // go routine
 		}
 		// The above will probably not yield in order output.
-		time.Sleep(time.Second*4)
+		time.Sleep(time.Second*3)
 	}
 
 	{
