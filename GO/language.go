@@ -12,12 +12,15 @@ package main
 import "fmt" // Input and output
 
 // Another way of importing
-import ("log"
+import (
+"log"
 "strings"
 "sort"
 "os"
 "io/ioutil"
-"strconv")
+"strconv"
+"time"
+)
 
 
 // Program entry point
@@ -196,15 +199,18 @@ func main() {
 		someString1 := "56"
 		someString2 := "78.9"
 
-		assert( int(someUint) == 0, "Uint to int" )
-		assert( float64(someInt) == 1.0, "Int to float" )
-		assert( int(someFloat) == 2, "Float to int" )
+		assert( int(someUint) == 0, "uint to int" )
+		assert( float64(someInt) == 1.0, "unt to float" )
+		assert( int(someFloat) == 2, "float to int" )
+		assert( strconv.Itoa(someInt) == "1", "int to string")
 		
 		intFromString, _ := strconv.ParseInt(someString1, 0, 64)
 		assert( intFromString == 56, "int from string")
 
 		floatFromString, _ := strconv.ParseFloat(someString2, 64)
 		assert( floatFromString == 78.9, "float from string")
+
+		
 	}
 	
 
@@ -291,7 +297,22 @@ func main() {
 		assert(text1 == "Some text", "Verifying data from file.")
 	}
 
+	// Using time
+	{
+		for i:=0; i<3; i++ {
+			fmt.Println("i is ", i)
+			time.Sleep(time.Second) // Sleep for one second
+		}
 
+		myFunc := func (id int) {
+			fmt.Print("{id:", id, "}\t")
+		}
+		// Calling a function
+		for i:=0; i<50; i++ {
+			go myFunc(i) // go routine: a lightweight thread
+		}
+		// The above will probably not yield in order output.
+	}
 
 
 }
