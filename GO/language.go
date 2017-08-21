@@ -10,7 +10,12 @@ package main
 // To run type at terminal: go run language.go
 
 import "fmt" // Input and output
-import "log"
+
+// Another way of importing
+import ("log"
+"strings"
+"sort")
+
 
 // Program entry point
 func main() {
@@ -160,6 +165,21 @@ func main() {
 		delete(kidAges, "Tom")
 		assert( len(kidAges) == 1, "len(kidAges) == 1" )
 	}
+
+
+	{
+		// string operations
+		helloWorld := "Hello, World"
+		assert(strings.Contains(helloWorld, "ld") == true, "Check for ld")
+		assert(strings.Index(helloWorld, "llo") == 2, "Index of llo")
+		assert(strings.Count(helloWorld, "l") == 3, "Count of ls")
+		assert(strings.Replace(helloWorld, "o", "0", 1) == "Hell0, World", "Replacing one o in Hello, World")
+
+		names := "Tim,Tom,Bob"
+		arrayOfNames := strings.Split(names, ",")
+		sort.Strings(arrayOfNames)
+
+	}
 	
 
 	// Function calls
@@ -222,8 +242,9 @@ func main() {
 
 	
 	{
+		// Using a function that uses an interface
 		truck := Truck { }
-		doDrive(&truck)
+		doDrive(&truck) // Since Truck is a Vehicle then this is ok
 	}
 
 
