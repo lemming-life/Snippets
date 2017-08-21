@@ -14,7 +14,10 @@ import "fmt" // Input and output
 // Another way of importing
 import ("log"
 "strings"
-"sort")
+"sort"
+"os"
+"io/ioutil"
+"strconv")
 
 
 // Program entry point
@@ -184,6 +187,25 @@ func main() {
 		otherNames := strings.Join( []string{"Tara", "Thor"}, "," )
 		fmt.Println(otherNames) // Tara,Thor
 	}
+
+	{
+		// Conversion
+		someUint := 0
+		someInt := 1
+		someFloat := 2.34
+		someString1 := "56"
+		someString2 := "78.9"
+
+		assert( int(someUint) == 0, "Uint to int" )
+		assert( float64(someInt) == 1.0, "Int to float" )
+		assert( int(someFloat) == 2, "Float to int" )
+		
+		intFromString, _ := strconv.ParseInt(someString1, 0, 64)
+		assert( intFromString == 56, "int from string")
+
+		floatFromString, _ := strconv.ParseFloat(someString2, 64)
+		assert( floatFromString == 78.9, "float from string")
+	}
 	
 
 	// Function calls
@@ -250,6 +272,26 @@ func main() {
 		truck := Truck { }
 		doDrive(&truck) // Since Truck is a Vehicle then this is ok
 	}
+
+
+	// FILE IO
+	{
+		fileName := "temp.txt"
+		defer os.Remove(fileName) // Cleanup
+
+		// Writing
+		fileOut, err := os.Create(fileName)
+		if (err != nil) { log.Fatal(err) }
+		fileOut.WriteString("Some text")
+		fileOut.Close()
+
+		fileIn, err := ioutil.ReadFile(fileName)
+		if (err != nil) { log.Fatal(err) }
+		text1 := string(fileIn)
+		assert(text1 == "Some text", "Verifying data from file.")
+	}
+
+
 
 
 }
