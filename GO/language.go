@@ -200,8 +200,26 @@ func main() {
 		doPanic() // Hello, this calls recover()
 	}
 
+	{
+		// Pass by value
+		n := 0
+		passByValue(&n)	// &n gets the address of n
+		assert( n == 1, "n == 1")
 
-	
+		// Pointer
+		nPtr := new(int) // A pointer
+		passByValue(nPtr)
+		assert( *nPtr == 1, "*nPtr == 1") // The * is used to dereference
+	}
+
+	{
+		point := Point{ 0, 1 }
+		assert( point.x == 0, "point.x == 0")
+		assert( point.y == 1, "point.y == 1")
+		assert( point.isXPositive() == true, "point.isXPositive() == true")
+	}
+
+
 
 
 }
@@ -250,3 +268,22 @@ func doPanic() {
 	defer func() { fmt.Println(recover()) }()
 	panic("Hello, this calls recover()")
 }
+
+// Passing by reference
+func passByValue(nPtr *int) {
+	*nPtr = 1
+}
+
+// Structs
+type Point struct {
+	x int
+	y int
+}
+
+// Method for Point called isXPositive
+func (point *Point) isXPositive() bool {
+	if ( point.x >= 0) {return true}
+	return false
+}
+
+// Interfaces
