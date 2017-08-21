@@ -213,13 +213,18 @@ func main() {
 	}
 
 	{
+		// Object
 		point := Point{ 0, 1 }
 		assert( point.x == 0, "point.x == 0")
 		assert( point.y == 1, "point.y == 1")
 		assert( point.isXPositive() == true, "point.isXPositive() == true")
 	}
 
-
+	
+	{
+		truck := Truck { }
+		doDrive(&truck)
+	}
 
 
 }
@@ -282,8 +287,22 @@ type Point struct {
 
 // Method for Point called isXPositive
 func (point *Point) isXPositive() bool {
-	if ( point.x >= 0) {return true}
-	return false
+	if ( point.x < 0) { return false }
+	return true
 }
 
 // Interfaces
+// - If you want to be a Vehicle then you must implement drive() method
+type Vehicle interface {
+	drive() 
+}
+
+type Truck struct { }
+
+// Implementation of drive()
+func (truck *Truck) drive() { }
+
+// Function that accepts objects that employ the Vehicle interface
+func doDrive(vehicle Vehicle)  {
+	vehicle.drive()
+}
