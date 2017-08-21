@@ -175,10 +175,14 @@ func main() {
 		assert(strings.Count(helloWorld, "l") == 3, "Count of ls")
 		assert(strings.Replace(helloWorld, "o", "0", 1) == "Hell0, World", "Replacing one o in Hello, World")
 
+		// Split, sort
 		names := "Tim,Tom,Bob"
 		arrayOfNames := strings.Split(names, ",")
 		sort.Strings(arrayOfNames)
 
+		// Join
+		otherNames := strings.Join( []string{"Tara", "Thor"}, "," )
+		fmt.Println(otherNames) // Tara,Thor
 	}
 	
 
