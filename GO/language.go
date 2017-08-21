@@ -163,10 +163,15 @@ func main() {
 	
 
 	// Function calls
-	{
-		// Simple function call
-		assert( sum(2,3) == 5, "sum(2,3) == 5" )
-	}
+	
+	// Simple function call
+	assert( sum(2,3) == 5, "sum(2,3) == 5" )
+
+	// Call a function when main finishes, useful for cleanup operations
+	defer assert( sum(1,2) == 3, "sum(1,2) == 3")
+	
+	// n arguments in function
+	assert( sumTheArguments(1, 2, 3, 4, 5, 6) == 21, "sumTheArguments(1, 2, 3, 4, 5, 6) == 21")
 
 	{
 		// Multiple return from function
@@ -174,12 +179,7 @@ func main() {
 		assert( num1 == 2, "num1 == 2")
 		assert( num2 == 3, "num3 == 3")
 	}
-
-	{
-		// n arguments in function
-		assert( sumTheArguments(1, 2, 3, 4, 5, 6) == 21, "sumTheArguments(1, 2, 3, 4, 5, 6) == 21")
-	}
-
+	
 	
 	{
 		// Function with closure
@@ -194,6 +194,11 @@ func main() {
 		// Calling Recursive function
 		assert( fib(8) == 21, "fib(8) == 21" )
 	}
+
+	{
+		produceDivByZero(); // runtime error: integer divide by zero
+	}
+
 
 }
 
@@ -226,4 +231,12 @@ func sumTheArguments(arguments ... int) int {
 func fib(n int) int {
 	if (n == 0 || n == 1) { return n }
 	return fib(n-1) + fib(n-2)
+}
+
+// Function with defer and recover
+func produceDivByZero() {
+	defer func() { fmt.Println(recover()) }()
+	n := 0
+	divByZero := func() int { return 5 / n }
+	divByZero() // Will yield: runtime error: integer divide by zero
 }
