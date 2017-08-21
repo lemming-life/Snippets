@@ -197,7 +197,11 @@ func main() {
 
 	{
 		produceDivByZero(); // runtime error: integer divide by zero
+		doPanic() // Hello, this calls recover()
 	}
+
+
+	
 
 
 }
@@ -239,4 +243,10 @@ func produceDivByZero() {
 	n := 0
 	divByZero := func() int { return 5 / n }
 	divByZero() // Will yield: runtime error: integer divide by zero
+}
+
+// Function with panic
+func doPanic() {
+	defer func() { fmt.Println(recover()) }()
+	panic("Hello, this calls recover()")
 }
