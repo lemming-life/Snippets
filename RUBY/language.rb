@@ -77,6 +77,23 @@ end
 
 # Ternary operator ? :
 number = true == true ? 1 : 2   # picks 1 in this case
+number = true == false ? 1 : 2  # picks 2 in this case
+
+# Loops
+i = 0
+loop do
+    i += 1
+    break if i > 5
+end
+# i is 6
+
+i = 0
+loop do
+    i += 1
+    next if i < 5
+    break
+end
+# i is 5
 
 
 # Write File
