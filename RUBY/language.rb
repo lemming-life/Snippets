@@ -12,8 +12,9 @@
 # Output to console
 print "Hello, World1\n"  # print does not add a \n
 puts "Hello, World2"     # puts always adds a \n
-string = "Hello, World3"
-puts "#{string}"         # places the value of string inside #{ }
+string = "Hello, World"
+puts "#{string + 3.to_s}"   # Conducts operations inside #{ }
+puts '#{string + 3.to_s'    # Yields #{string + 3.to_s}
 
 # Arithmetic: +, -, *, /, %, +=, -=
 
@@ -31,13 +32,22 @@ float.class        # Float
 string.class       # String
 bool.class         #TrueClass
 
-
 # Constant
 # - First letter in upper case
 MATH_PI = 3.14
 #MATH_PI = 5.3   # Gives us warning that MATH_PI was previously initialized
 
 KEYBOARD_INPUT_EXAMPLES = false
+
+# Multi line string
+# - Begins with <<EOM
+# - Ends with EOM
+# - Keeps the \n at end of each line
+multi_line_string = <<EOM
+This is the story of Ruby,
+ a language that is dynamic and strong
+EOM
+
 
 # Boolean operators: >, >=, <, <=, ==, != 
 # Logical operators: and, &&, or, ||, not, !
