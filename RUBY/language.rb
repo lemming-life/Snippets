@@ -75,6 +75,9 @@ else
     # this runs
 end
 
+# Ternary operator ? :
+number = true == true ? 1 : 2   # picks 1 in this case
+
 
 # Write File
 file_out = File.new("test.txt", "w")
