@@ -10,8 +10,10 @@
 =end
 
 # Output to console
-print "Hello, World\n"  # print does not add a \n
-puts "Hello, World"     # puts always adds a \n
+print "Hello, World1\n"  # print does not add a \n
+puts "Hello, World2"     # puts always adds a \n
+string = "Hello, World3"
+puts "#{string}"         # places the value of string inside #{ }
 
 # Arithmetic: +, -, *, /, %, +=, -=
 
@@ -34,6 +36,8 @@ bool.class         #TrueClass
 # - First letter in upper case
 MATH_PI = 3.14
 #MATH_PI = 5.3   # Gives us warning that MATH_PI was previously initialized
+
+KEYBOARD_INPUT_EXAMPLES = false
 
 # Boolean operators: >, >=, <, <=, ==, != 
 # Logical operators: and, &&, or, ||, not, !
@@ -79,7 +83,7 @@ end
 number = true == true ? 1 : 2   # picks 1 in this case
 number = true == false ? 1 : 2  # picks 2 in this case
 
-# Loops
+# loop do
 i = 0
 loop do
     i += 1
@@ -87,6 +91,7 @@ loop do
 end
 # i is 6
 
+# loop do
 i = 0
 loop do
     i += 1
@@ -94,6 +99,33 @@ loop do
     break
 end
 # i is 5
+
+# while
+i = 0
+while i < 5
+    i += 1
+end
+
+#until
+i = 0
+until i > 5
+    i += 1
+end 
+
+# Arrays
+numbers = [1, 2, 3]
+
+# Go through each element in the array
+for n in numbers
+    # runs again, and again
+end
+
+# Iterating through with a holding cell |n|
+numbers.each do |n|
+    # runs again, and again
+end
+
+
 
 
 # Write File
@@ -112,17 +144,17 @@ load "language_other_file.rb" # Executing language_other_file.rb
 
 
 # Get number from console example
-=begin
-print "Enter an integer: "
-number = gets.to_i                  # Get from console, convert to integer
-puts "You entered " + number.to_s   # Output to console the concatenation of the literal and the converted number to string
-=end
+if KEYBOARD_INPUT_EXAMPLES == true
+    print "Enter an integer: "
+    number = gets.to_i                  # Get from console, convert to integer
+    puts "You entered " + number.to_s   # Output to console the concatenation of the literal and the converted number to string
+end
 
 # Get string from console example
-=begin
-print "Enter your name: "
-name = gets.chomp  # chomp removes the \n
-puts "You entered " + name
-=end
+if KEYBOARD_INPUT_EXAMPLES == true
+    print "Enter your name: "
+    name = gets.chomp  # chomp removes the \n
+    puts "You entered " + name
+end
 
 
