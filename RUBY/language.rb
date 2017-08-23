@@ -63,6 +63,19 @@ number = 2
 number = 5 if 3 > 2     # number is now equal to 5
 # puts number.to_s      # 5
 
+# The case example
+case number
+when 2
+    # this doesn't run
+    exit
+when 3, 4
+    # this doesn't run
+    exit
+else
+    # this runs
+end
+
+
 # Write File
 file_out = File.new("test.txt", "w")
 file_out.puts("Some text inside.").to_s
