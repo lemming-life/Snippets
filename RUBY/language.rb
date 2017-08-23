@@ -3,15 +3,21 @@
 
 # This is a comment
 
+=begin
+    This is a 
+    multi-line
+    comment
+=end
+
 # Output to console
 print "Hello, World\n"  # print does not add a \n
 puts "Hello, World"     # puts always adds a \n
 
 
 # Get from console example
-print "Enter an integer: "
-number = gets.to_i                  # Get from console, convert to integer
-puts "You entered " + number.to_s   # Output to console the concatenation of the literal and the converted number to string
+# print "Enter an integer: "
+# number = gets.to_i                  # Get from console, convert to integer
+# puts "You entered " + number.to_s   # Output to console the concatenation of the literal and the converted number to string
 
 # Arithmetic: +, -, *, /, %, +=, -=
 
@@ -32,10 +38,28 @@ string.class    # String
 MATH_PI = 3.14
 #MATH_PI = 5.3   # Gives us warning that MATH_PI was previously initialized
 
+# Boolean operators: >, >=, <, <=, ==, != 
+# And: &&
+# Or: ||
+
+# Conditional: if, elsif, els
+if (2 > 3 && 5 < 3)
+    # This will not run
+elsif ( 2 >= 3  || 3 <= 2)
+    # This will not run
+else
+    # This will run
+end
+
+
 # Write File
 file_out = File.new("test.txt", "w")
-file.out.puts("Some text inside.").to_s
+file_out.puts("Some text inside.").to_s
 file_out.close
 
 # Read File
 text_from_file = File.read("test.txt") # Contains the text that we previously wrote
+
+# Load and execute from other file
+load "language_other_file.rb" # Executing language_other_file.rb
+
