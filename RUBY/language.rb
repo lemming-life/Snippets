@@ -39,8 +39,7 @@ MATH_PI = 3.14
 #MATH_PI = 5.3   # Gives us warning that MATH_PI was previously initialized
 
 # Boolean operators: >, >=, <, <=, ==, != 
-# And: &&
-# Or: ||
+# Logical operators: and, &&, or, ||, not, !
 
 # Conditional: if, elsif, els
 if (2 > 3 && 5 < 3)
