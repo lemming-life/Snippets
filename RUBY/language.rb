@@ -142,10 +142,31 @@ end
 sum1(2, 3) # 5
 
 # Function declaration 2
-def sum1(a, b)
-    return a + b    # explicit return
+def divideBy(a, b)
+    return a / b    # explicit return
 end
 
+# Exceptions
+begin
+    result = divideBy(2, 0)
+rescue
+    # This line runs this time
+    puts "Can't divide by zero"
+    #exit #if we want to stop execution below
+end
+
+# User Exceptions
+def willThrow(n)
+    raise ArgumentError, "Argument is zero, need anything but zero" if n == 0
+    puts "This line only runs if n is less than or greater than zero"
+end
+
+begin
+    willThrow(0)
+rescue ArgumentError
+    # This line runs if willThrow(0)
+    puts "Argument is zero at willThrow(0)"
+end
 
 
 # Write File
