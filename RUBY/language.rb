@@ -23,7 +23,7 @@ puts '#{string + 3.to_s'    # Yields #{string + 3.to_s}
 # - note the lower case for variable name
 number = 1       
 float = 0.123   # Floats must have zero prior to the decimal.  Recall that there are limits on float (14 digits)
-string = "This is a string"
+string = "This " + " is a string"  # concatenating strings
 bool = true     
 
 # Get the class name by doing .class
