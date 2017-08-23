@@ -125,6 +125,26 @@ numbers.each do |n|
     # runs again, and again
 end
 
+# Range
+# - (fromInclusive .. toInclusive)
+(0..3).each do |n|
+    # runs again, and again, until
+end
+
+
+# Function declaration 1
+# - arguments passed by value
+def sum1(a, b)
+    a + b   # implicit return is last line
+end
+
+# Call the function
+sum1(2, 3) # 5
+
+# Function declaration 2
+def sum1(a, b)
+    return a + b    # explicit return
+end
 
 
 
@@ -156,5 +176,3 @@ if KEYBOARD_INPUT_EXAMPLES == true
     name = gets.chomp  # chomp removes the \n
     puts "You entered " + name
 end
-
-
