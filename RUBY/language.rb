@@ -60,6 +60,9 @@ file_out.close
 # Read File
 text_from_file = File.read("test.txt") # Contains the text that we previously wrote
 
+# Remove/delete File
+File.delete("test.txt")
+
 # Load and execute from other file
 load "language_other_file.rb" # Executing language_other_file.rb
 
