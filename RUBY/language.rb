@@ -209,6 +209,9 @@ some_string.to_i    # to number
 some_string.to_f    # to float
 some_string.to_sym    # to symbol
 
+
+
+
 # Write File
 file_out = File.new("test.txt", "w")
 file_out.puts("Some text inside.").to_s
@@ -219,9 +222,6 @@ text_from_file = File.read("test.txt") # Contains the text that we previously wr
 
 # Remove/delete File
 File.delete("test.txt")
-
-# Load and execute from other file
-load "language_other_file.rb" # Executing language_other_file.rb
 
 
 # Get number from console example
@@ -237,3 +237,6 @@ if KEYBOARD_INPUT_EXAMPLES == true
     name = gets.chomp  # chomp removes the \n
     puts "You entered " + name
 end
+
+# Load and execute from other file
+load "language_other_file.rb" # Executing language_other_file.rb
