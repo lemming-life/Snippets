@@ -81,10 +81,8 @@ number = 5 if 3 > 2     # number is now equal to 5
 case number
 when 2
     # this doesn't run
-    exit
 when 3, 4
     # this doesn't run
-    exit
 else
     # this runs
 end
