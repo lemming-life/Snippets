@@ -121,6 +121,38 @@ until i > 5
     i += 1
 end 
 
+# string operations
+cities_str = "San Diego, Washington, Miami"
+cities_str.include?("Washington")   # Does the string include "Washington" ?  true
+cities_str.size                     # Number of characters
+cities_str.length                   # Number of characters
+cities_str.start_with?("S")         # True
+cities_str.end_with?("i")           # True
+cities_str.index("Washington")      # The index where Washington begins, 11 in this case
+cities_str.strip                    # Removes white space
+cities_str.lstrip                   # Removes white space from left
+cities_str.rstrip                   # Removes white space from right
+cities_str.count("ae")              # Number of 'a' and 'e' characters in string
+cities_str.count("^ae")             # Number of characters that are not 'a' and 'e'
+cities_str.downcase                 # san diego, washington, miami
+cities_str.upcase                   # SAN DIEGO, WASHINGTON, MIAMI
+cities_str.swapcase                 # sAN dIEGO, wASHINGTON, mIAMI
+cities_str.equal?(cities_str)       # Test if same object
+
+cities_str.chop           # Removes last letter from string
+cities_str.rjust(40, '#') # Right justified, yields ############San Diego, Washington, Miami
+cities_str.ljust(40, '#') # Right justified, yields San Diego, Washington, Miami############
+cities_str.center(40, '#') # Left justified, yields ######San Diego, Washington, Miami######
+cities_str.delete("o")    # Removes the string specified, yields San Dieg, Washingtn, Miami
+cities_str.split("i") # Splits the string by the delimiter indicated.  Yields ["San D", "ego, Wash", "ngton, M", "am"]
+cities_str.split(/ /).to_s # ["San", "Diego,", "Washington,", "Miami"]
+cities_str.split(//).to_s  # ["S", "a", "n", " ", "D", "i", "e", "g", "o", ",", " ", "W", "a", "s", "h", "i", "n", "g", "t", "o", "n", ",", " ", "M", "i", "a", "m", "i"]
+
+some_string = "12"
+some_string.to_i    # to number
+some_string.to_f    # to float
+some_string.to_sym    # to symbol
+
 # Arrays
 numbers = [1, 2, 3]
 numbers.length
@@ -160,6 +192,9 @@ array_3_zero.to_s   # [0, 0, 0]
     # runs again, and again, until
 end
 
+# Map, hashmap, key-value
+zipcodes = { "Washington" = 1234, "Seattle" = 5678}
+zipcodes["Washington"] # 1234
 
 # Function declaration 1
 # - arguments passed by value
@@ -197,37 +232,7 @@ rescue ArgumentError
     puts "Argument is zero at willThrow(0)"
 end
 
-# string operations
-cities_str = "San Diego, Washington, Miami"
-cities_str.include?("Washington")   # Does the string include "Washington" ?  true
-cities_str.size                     # Number of characters
-cities_str.length                   # Number of characters
-cities_str.start_with?("S")         # True
-cities_str.end_with?("i")           # True
-cities_str.index("Washington")      # The index where Washington begins, 11 in this case
-cities_str.strip                    # Removes white space
-cities_str.lstrip                   # Removes white space from left
-cities_str.rstrip                   # Removes white space from right
-cities_str.count("ae")              # Number of 'a' and 'e' characters in string
-cities_str.count("^ae")             # Number of characters that are not 'a' and 'e'
-cities_str.downcase                 # san diego, washington, miami
-cities_str.upcase                   # SAN DIEGO, WASHINGTON, MIAMI
-cities_str.swapcase                 # sAN dIEGO, wASHINGTON, mIAMI
-cities_str.equal?(cities_str)       # Test if same object
 
-cities_str.chop           # Removes last letter from string
-cities_str.rjust(40, '#') # Right justified, yields ############San Diego, Washington, Miami
-cities_str.ljust(40, '#') # Right justified, yields San Diego, Washington, Miami############
-cities_str.center(40, '#') # Left justified, yields ######San Diego, Washington, Miami######
-cities_str.delete("o")    # Removes the string specified, yields San Dieg, Washingtn, Miami
-cities_str.split("i") # Splits the string by the delimiter indicated.  Yields ["San D", "ego, Wash", "ngton, M", "am"]
-cities_str.split(/ /).to_s # ["San", "Diego,", "Washington,", "Miami"]
-cities_str.split(//).to_s  # ["S", "a", "n", " ", "D", "i", "e", "g", "o", ",", " ", "W", "a", "s", "h", "i", "n", "g", "t", "o", "n", ",", " ", "M", "i", "a", "m", "i"]
-
-some_string = "12"
-some_string.to_i    # to number
-some_string.to_f    # to float
-some_string.to_sym    # to symbol
 
 
 
