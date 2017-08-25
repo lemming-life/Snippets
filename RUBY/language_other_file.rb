@@ -74,3 +74,47 @@ circle.x = 1    # Uses the x setter from Shape
 circle.y = -1   
 circle.radius = 2
 circle.get_area # 6.28
+
+
+# Allows us to use the StopWatch module
+require_relative "stopwatch"
+
+module Phone
+    def play_ringtone
+        puts "ring, ring..."
+    end
+
+    def vibrate
+        puts "brrr"
+    end
+end
+
+class FancyPhone
+    include Phone
+
+    # Include StopWatch methods in the Phone
+    include StopWatch
+end
+
+
+
+fancyPhone = FancyPhone.new
+fancyPhone.play_ringtone
+fancyPhone.start_stop_watch
+fancyPhone.output_stop_watch
+fancyPhone.stop_stop_watch
+
+class NotFancyPhone
+    prepend Phone
+
+    # Note how vibrate is a method in both Phone and NotFancyPhone
+    # the preprend Phone means that the Phone one will be used instead of the NotFancyPhone
+    def vibrate
+        puts "no vibrate"
+    end
+end
+
+noFancyPhone = NotFancyPhone.new
+noFancyPhone.vibrate    # brrr
+
+# Access to the module
