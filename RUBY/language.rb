@@ -123,6 +123,8 @@ end
 
 # Arrays
 numbers = [1, 2, 3]
+numbers.length
+numbers.size
 
 # Go through each element in the array
 for n in numbers
@@ -133,6 +135,24 @@ end
 numbers.each do |n|
     # runs again, and again
 end
+
+# Empty array
+array_n = Array.new
+array_n.empty?  # true
+
+#Array with 3 ( no values )
+array_3 = Array.new(3)
+array_3.to_s    # [nil, nil, nil]
+array_3.push(1, 2, 3) # Adds 1, 2, and 3 to the end of the array
+array_3.concat([4, 5, 6])   # Adds the array [4, 5, 6]
+array_3.pop # removes one from array, so now is [nil, nil, nil, 1, 2, 3, 4, 5]
+array_3.shift       # now is [nil, nil, 1, 2, 3, 4, 5]
+array_3.unshift(33) # now is [33, nil, nil, 1, 2, 3, 4, 5]
+p array_3   # print array
+
+# Array with 3 and 0 value
+array_3_zero = Array.new(3, 0)  
+array_3_zero.to_s   # [0, 0, 0]
 
 # Range
 # - (fromInclusive .. toInclusive)
@@ -208,7 +228,6 @@ some_string = "12"
 some_string.to_i    # to number
 some_string.to_f    # to float
 some_string.to_sym    # to symbol
-
 
 
 

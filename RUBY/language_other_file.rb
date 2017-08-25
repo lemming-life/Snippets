@@ -13,15 +13,15 @@ class Shape
     end
 
     def get_x()
-        return @x  # Implicit return
+        return @x  # Explicit return
     end
 
     def set_y(new_y)
-        @y = new_y
+        @y = new_y 
     end
 
     def get_y       # No need for ()
-        return @y   # explicit return
+        @y          # Implicit return
     end
 
     # Setter (can be used to verify that data compatible)
@@ -43,7 +43,7 @@ class Shape
     end
 
     def get_area
-        return 0   
+        return 0
     end
 end
 
@@ -61,13 +61,28 @@ class Circle < Shape
     #attr_writer :radius :area  # Setters
     attr_accessor :radius, :color # Both getter and setter
 
-    # Override get_area of Shape
-    def get_area
-        return 3.14 * radius
+    def initialize
+        radius = 1
     end
 
+    # Override get_area of Shape
+    def get_area
+        return 3.14 * radius.to_f
+    end
 end
 
+class Rectangle < Shape
+    attr_accessor :height, :width
+
+    def initialize
+        height = 1
+        width = 1
+    end
+
+    def get_area
+        return width.to_f * height.to_f
+    end
+end
 
 circle = Circle.new
 circle.x = 1    # Uses the x setter from Shape
@@ -96,8 +111,6 @@ class FancyPhone
     include StopWatch
 end
 
-
-
 fancyPhone = FancyPhone.new
 fancyPhone.play_ringtone
 fancyPhone.start_stop_watch
@@ -117,4 +130,5 @@ end
 noFancyPhone = NotFancyPhone.new
 noFancyPhone.vibrate    # brrr
 
-# Access to the module
+# Symbols (no value given)
+:a_symbol
