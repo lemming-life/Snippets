@@ -193,8 +193,23 @@ array_3_zero.to_s   # [0, 0, 0]
 end
 
 # Map, hashmap, key-value
-zipcodes = { "Washington" = 1234, "Seattle" = 5678}
-zipcodes["Washington"] # 1234
+zipcodes = { "Washington" => 1234, "Seattle" => 5678}
+zipcodes["Washington"]      # 1234
+zipcodes["Denver"] = 90123  # Add key and value to map
+
+# Another way of doing map
+operating_systems = Hash["Microsoft", "Windows", "Apple", "OSX"]
+operating_systems["Microsoft"] # Windows
+
+#update (destructive)
+operating_systems.update( Hash["Open Source", "Linux", "Apple", "IOS"] ) # Apple now IOS
+
+# Go through the keys and values of the map
+operating_systems.do |key, value|
+
+end
+
+# Methods for map: has_key?(<keyName>), has_value?(<value>), empty?, size
 
 # Function declaration 1
 # - arguments passed by value
