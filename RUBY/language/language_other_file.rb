@@ -146,8 +146,11 @@ end
 
 colors = Colors.new
 colors.each do |color|
-    puts "Available color : #{color}"
+    aColor = color
 end
+
+
+
 
 colors.first # red
 colors.find{ |color| color = "red" }.to_s # "red"
@@ -156,5 +159,5 @@ colors.reject { |color| color.size >=4 } # ["red"]
 colors.min # blue
 colors.max # red
 colors.sort   #["blue", "green", "red"]
-colors.reverse_each { |color| puts color} # blue, green, red
+colors.reverse_each { |color| aColor = color} # blue, green, red
 

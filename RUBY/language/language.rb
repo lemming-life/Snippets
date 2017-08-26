@@ -251,11 +251,25 @@ end
 
 # Write File
 file_out = File.new("test.txt", "w")
-file_out.puts("Some text inside.").to_s
+file_out.print("Some text inside.\n")
+file_out.close
+
+# Append to file
+file_out = File.new("test.txt", "a")
+file_out.print "more text inside."
 file_out.close
 
 # Read File
 text_from_file = File.read("test.txt") # Contains the text that we previously wrote
+#puts text_from_file
+
+# Read line as if it was a record, extract info
+File.open("test.txt") do |line|
+    line.each do | item|
+        i1, i2, i3 = item.chomp.split(' ')
+        print "#{i1} #{i2} #{i3}\n"
+    end
+end
 
 # Remove/delete File
 File.delete("test.txt")
