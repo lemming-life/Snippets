@@ -132,3 +132,29 @@ noFancyPhone.vibrate    # brrr
 
 # Symbols (no value given)
 :a_symbol
+
+
+# Enumeration
+class Colors
+    include Enumerable
+    def each
+        yield "red"
+        yield "green"
+        yield "blue"
+    end
+end
+
+colors = Colors.new
+colors.each do |color|
+    puts "Available color : #{color}"
+end
+
+colors.first # red
+colors.find{ |color| color = "red" }.to_s # "red"
+colors.select { |color| color.size <=4 } # ["red", "blue"]
+colors.reject { |color| color.size >=4 } # ["red"]
+colors.min # blue
+colors.max # red
+colors.sort   #["blue", "green", "red"]
+colors.reverse_each { |color| puts color} # blue, green, red
+

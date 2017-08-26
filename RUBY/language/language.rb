@@ -205,7 +205,7 @@ operating_systems["Microsoft"] # Windows
 operating_systems.update( Hash["Open Source", "Linux", "Apple", "IOS"] ) # Apple now IOS
 
 # Go through the keys and values of the map
-operating_systems.do |key, value|
+operating_systems.each do |key, value|
 
 end
 
@@ -246,8 +246,6 @@ rescue ArgumentError
     # This line runs if willThrow(0)
     puts "Argument is zero at willThrow(0)"
 end
-
-
 
 
 
