@@ -1,4 +1,4 @@
-module Crayon
+module Model
     #class Crayons
     #    @db = Array.new
     #end
