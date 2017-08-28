@@ -1,0 +1,42 @@
+This is on a Mac OSX environment.
+
+Installation:
+- Get Homebrew: https://brew.sh
+  -- Or at terminal: /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+- Install ruby:  brew install ruby
+
+Homebrew notes:
+- Find versions of packages: brew search <name>
+- Install version of package: brew install <name>
+- View installed: brew list
+
+Ruby Specific:
+- Sinatra is a lightweight web framework:  gem install sinatra
+
+To run:
+- Navigate to source/app
+- Type: rackup
+
+
+
+
+
+
+DOCKER:
+- Eventually we'll add Docker stuff, for now skip it.
+- Instal docker: https://www.docker.com/docker-mac
+
+Docker notes:
+- Version: docker --version 
+- Hello world: docker run hello-world
+- Show docker images: docker images
+- Get a container: docker pull <name>
+- Run a container: docker run <name>
+- Currently running containers: docker ps -a
+- Stop a container: docker stop <numeric name>
+- Remove image: docker rm <id>
+
+Writing Dockerfile
+- At terminal: touch Dockerfile
+- Open it.
+- We are going to specify a ruby version, bundler, rspec

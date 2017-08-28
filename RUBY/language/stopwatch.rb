@@ -7,6 +7,7 @@ module StopWatch
         self.seconds = 0        # Must refer to self
         self.running = true
         # would need some thread to run doing self.seconds += 1
+        # for this example we just add soem seconds
     end
 
     def stop_stop_watch

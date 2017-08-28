@@ -1,0 +1,3 @@
+App directory: app
+Libraries directory: lib
+Tests: spec
