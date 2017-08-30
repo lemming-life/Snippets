@@ -165,7 +165,37 @@ colors.reverse_each { |color| aColor = color} # blue, green, red
 # You can do this with any class, and you could
 # modify some very essential classes, this is called "moneky patching"
 class Colors
-    def someOtherMethod
+    def some_other_method
 
     end
 end
+
+
+
+# Duck Typing
+# if it behaves like a duck then it is a duck
+# all of Ruby is done this way, which is quite different
+# from static typed languages...
+class Animal
+    def do_quack(maybe_a_duck)
+        # as long as whatever is passed has a quack method
+        # it is ok to have here
+        maybe_a_duck.quack()    
+    end
+end
+
+class Duck
+    def quack
+        puts "quack from Duck"
+    end
+end
+
+class Person
+    #Notice how Person has a quack method
+    def quack 
+        puts "quack from Person"
+    end
+end
+
+Animal.new.do_quack(Duck.new)   # ok
+Animal.new.do_quack(Person.new)   # also ok
