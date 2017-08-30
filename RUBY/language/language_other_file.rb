@@ -199,3 +199,17 @@ end
 
 Animal.new.do_quack(Duck.new)   # ok
 Animal.new.do_quack(Person.new)   # also ok
+
+
+
+# Here's an example of using methodName=
+class Something
+    def setter=(x)
+        @x = x
+    end
+end
+
+# We can now do this:
+something = Something.new
+something.setter=(5)   
+something.setter = 5    # Same as above
