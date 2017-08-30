@@ -150,8 +150,6 @@ colors.each do |color|
 end
 
 
-
-
 colors.first # red
 colors.find{ |color| color = "red" }.to_s # "red"
 colors.select { |color| color.size <=4 } # ["red", "blue"]
@@ -161,3 +159,13 @@ colors.max # red
 colors.sort   #["blue", "green", "red"]
 colors.reverse_each { |color| aColor = color} # blue, green, red
 
+# Open classes allow us to 
+# have more class instance member additions
+# even though class Colors was already defined.
+# You can do this with any class, and you could
+# modify some very essential classes, this is called "moneky patching"
+class Colors
+    def someOtherMethod
+
+    end
+end
