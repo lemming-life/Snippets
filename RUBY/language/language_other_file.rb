@@ -215,7 +215,8 @@ something.setter=(5)
 something.setter = 5    # Same as above
 
 # Classes are "open" so we can add more
-# methods and variables.
+# methods and variables to a class.
+# The additions can be in any file.
 class Something
     def more_stuff
     end
