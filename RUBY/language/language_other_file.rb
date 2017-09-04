@@ -213,3 +213,10 @@ end
 something = Something.new
 something.setter=(5)   
 something.setter = 5    # Same as above
+
+# Classes are "open" so we can add more
+# methods and variables.
+class Something
+    def more_stuff
+    end
+end
