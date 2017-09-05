@@ -20,6 +20,7 @@ import (
 "io/ioutil"
 "strconv"
 "time"
+"unsafe"
 )
 
 
@@ -357,6 +358,20 @@ func main() {
 		*/
 	}
 
+	{
+		// Block of bytes
+		buffer := new([100]byte)
+		fmt.Println(buffer[0])
+
+		// Writing to offset
+		*(*uint32)(unsafe.Pointer(&buffer[0])) = uint32(3333)
+		*(*uint32)(unsafe.Pointer(&buffer[4])) = uint32(4444)
+
+		// Reading from the offsets
+		assert( *(*uint32)(unsafe.Pointer(&buffer[0])) == 3333, "*(*uint32)(unsafe.Pointer(&buffer[0])) == 3333")
+		assert( *(*uint32)(unsafe.Pointer(&buffer[4])) == 4444, "*(*uint32)(unsafe.Pointer(&buffer[1])) == 4444")
+	}
+
 }
 
 // For my debug testing
@@ -436,3 +451,4 @@ func (truck *Truck) drive() { }
 func doDrive(vehicle Vehicle)  {
 	vehicle.drive()
 }
+
