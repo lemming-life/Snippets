@@ -4,7 +4,7 @@
 // Secondary: "Sorts" an associative array that has a numerical value. Returns a sorted list of tuples.
 
 import std.stdio; 
-import std.string;
+import std.string; 
 import std.typecons;
 
 void main(string[] args) {
@@ -55,12 +55,12 @@ auto sortMap(K, V)(ref V[K] aMap){
 
     if (i == 0) {
       sorted = [tuple(k,v)] ~ sorted;
-    } else if (i>=sorted.length){
-      sorted ~= [tuple(k,v)];
-    } else {
+    } else if (i<sorted.length) {
       auto leftSide = sorted[0 .. i];
       auto rightSide = sorted[i .. $];
-      sorted = leftSide ~ [tuple(k,v)] ~ rightSide;
+      sorted = leftSide ~ [tuple(k,v)] ~ rightSide;  
+    } else {
+      sorted ~= [tuple(k,v)];
     }
   }
 
