@@ -56,7 +56,7 @@ auto sortMap(K, V)(ref V[K] aMap){
     if (i == 0) {
       sorted = [tuple(k,v)] ~ sorted;
     } else if (i>=sorted.length){
-      sorted = sorted ~ [tuple(k,v)];
+      sorted ~= [tuple(k,v)];
     } else {
       auto leftSide = sorted[0 .. i];
       auto rightSide = sorted[i .. $];
