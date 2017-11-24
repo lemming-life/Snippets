@@ -35,8 +35,6 @@ void main(string[] args) {
 
 auto sortMap(K, V)(ref V[K] aMap){
   import std.typecons;
-  //import std.algorithm;
-
   Tuple!(K,V)[] sorted = [];
   
   foreach(k,v; aMap) {
