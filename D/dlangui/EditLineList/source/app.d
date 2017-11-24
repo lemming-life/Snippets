@@ -43,7 +43,7 @@ class View {
 
 		// Prep the adapter and list
 		auto listAdapter = new WidgetListAdapterKeysMouse();
-		auto listWidget = new TListWidget!EditLineForList();
+		auto listWidget = new EditLineList();
 			listWidget.layoutWidth(FILL_PARENT);
 			listWidget.layoutHeight(FILL_PARENT);
 			listWidget.ownAdapter = listAdapter;
@@ -59,8 +59,7 @@ class View {
 			listAdapter.add(editLine);
 		}
 
-		// Event Handlers
-		// Note: More efficient if delegate is assigned to the listWidget instead of the individual editLine
+		// Event handling example
 		listWidget.itemSelected = delegate(Widget source, int itemIndex) {
 			auto item = cast(EditLineForList) listAdapter.itemWidget(itemIndex);
 			window.windowCaption = aTitle ~ " | Selected: "d ~ item.idAsDstring;

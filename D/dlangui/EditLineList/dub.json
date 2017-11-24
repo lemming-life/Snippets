@@ -9,7 +9,7 @@
 	"license": "The Unlicense",
 
 	"dependencies": {
-		"dlangui": "~>0.9.83",
+		"dlangui": "~>0.9.91",
 		"editlinelist:lemmingwidgets": "*"
 	},
 

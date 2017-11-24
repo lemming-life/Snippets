@@ -11,7 +11,7 @@ module lemmingwidgets;
 import dlangui;
 
 // SLIGHTLY MODIFIED WIDGETS
-class TListWidget(T) : ListWidget {
+class EditLineList : ListWidget {
 	override bool onKeyEvent(KeyEvent event) {
         if (itemCount == 0)
             return false;
@@ -31,12 +31,11 @@ class TListWidget(T) : ListWidget {
             }
         }
 
-		// Get the item and cast it to the T type.
-		auto item = cast(T) _adapter.itemWidget(_selectedItemIndex);
+		auto item = cast(EditLineForList) _adapter.itemWidget(_selectedItemIndex);
 
         if (navigationDelta != 0) {
             moveSelection(navigationDelta);
-			item = cast(T) _adapter.itemWidget(_selectedItemIndex); // because the item changed
+			item = cast(EditLineForList) _adapter.itemWidget(_selectedItemIndex); // because the item changed
 			item.allAndFocus(); // Do a select all on the EditLine
             return true;
         }
@@ -59,7 +58,7 @@ class TListWidget(T) : ListWidget {
 		return true;
 	}
 
-} // End TListWidget
+} // End EditLineList
 
 // Adapter that can use keys and mouse events.
 class WidgetListAdapterKeysMouse : WidgetListAdapter {
@@ -114,10 +113,12 @@ class EditLineForList : EditLine {
 	}
 } // End EditLineForList
 
-interface OnItemTriggered {
-	bool itemTriggerd(Widget source, int itemIndex);
-}
+//interface OnItemTriggered {
+//	bool itemTriggerd(Widget source, int itemIndex);
+//}
 
+
+/*
 // Widget that allows selection of item via keys
 class ListWidgetNav : StringListWidget {
 	import std.conv : to;
@@ -242,3 +243,4 @@ class ListWidgetNav : StringListWidget {
     } // End selectClosestMatch()
 
 } // End class ListWidgetNav
+*/
