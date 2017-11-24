@@ -9,28 +9,37 @@ import std.typecons;
 
 void main(string[] args) {
   if (args.length != 2) return;
-  int[char] symbols;
-  auto file = File(args[1]);
-  string line;
-  while( (line = file.readln) !is null) {
-    line = line.strip;
-    while( line.length > 0) {
-      if (line[0] in symbols) {
-        ++symbols[line[0]];
-      } else {
-        symbols[line[0]] = 1;
-      }
-      line = line[1 .. $];
-    }
-  }
 
+  // Populate
+  int[char] symbols;
+  populateMap(symbols, args[1]);
+
+  // Sort
   auto sorted = sortMap(symbols);
-  foreach(kv; sorted){
+  
+  // Print results
+  foreach (kv; sorted){
     kv[0].write;
     ":".write;
     kv[1].writeln;
   }
+}
 
+void populateMap(K, V)(ref V[K] aMap, string fileName) {
+  auto file = File(fileName);
+  string line;
+
+  while ((line = file.readln) !is null) {
+    line = line.strip;
+    while (line.length>0) {
+      if (line[0] in aMap) {
+        ++aMap[line[0]];
+      } else {
+        aMap[line[0]] = 1;
+      }
+      line = line[1 .. $];
+    }
+  }
 }
 
 auto sortMap(K, V)(ref V[K] aMap){
@@ -39,12 +48,9 @@ auto sortMap(K, V)(ref V[K] aMap){
   
   foreach(k,v; aMap) {
     int i = 0;
-    while(i<sorted.length){
-      if (sorted[i][1] <= v){
-        ++i;
-      } else {
-        break;
-      }
+    while (i<sorted.length) {
+      if (sorted[i][1] > v) break;
+      ++i;
     }
 
     if (i == 0) {
