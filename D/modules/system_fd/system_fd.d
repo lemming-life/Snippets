@@ -2,7 +2,7 @@
 // Language: D
 // Description: Request the directories or files given a path, span mode, and ignore array.
 
-// Test: rdmd -unittest -main closeststring.d
+// Test: rdmd -unittest -main system_fd.d
 
 
 module system_fd;
